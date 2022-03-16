@@ -1,0 +1,607 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FAA470E127E298AE0039DC52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E027E298AE0039DC52 /* AppDelegate.swift */; };
+		FAA470E327E298AE0039DC52 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E227E298AE0039DC52 /* SceneDelegate.swift */; };
+		FAA470E527E298AE0039DC52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E427E298AE0039DC52 /* ViewController.swift */; };
+		FAA470E827E298AE0039DC52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA470E627E298AE0039DC52 /* Main.storyboard */; };
+		FAA470EA27E298AF0039DC52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA470E927E298AF0039DC52 /* Assets.xcassets */; };
+		FAA470ED27E298AF0039DC52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA470EB27E298AF0039DC52 /* LaunchScreen.storyboard */; };
+		FAA470F827E298AF0039DC52 /* AussieNewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470F727E298AF0039DC52 /* AussieNewsTests.swift */; };
+		FAA4710227E298AF0039DC52 /* AussieNewsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4710127E298AF0039DC52 /* AussieNewsUITests.swift */; };
+		FAA4710427E298AF0039DC52 /* AussieNewsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4710327E298AF0039DC52 /* AussieNewsUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FAA470F427E298AF0039DC52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAA470D527E298AE0039DC52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAA470DC27E298AE0039DC52;
+			remoteInfo = AussieNews;
+		};
+		FAA470FE27E298AF0039DC52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAA470D527E298AE0039DC52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAA470DC27E298AE0039DC52;
+			remoteInfo = AussieNews;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FAA470DD27E298AE0039DC52 /* AussieNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AussieNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA470E027E298AE0039DC52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FAA470E227E298AE0039DC52 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FAA470E427E298AE0039DC52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FAA470E727E298AE0039DC52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FAA470E927E298AF0039DC52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAA470EC27E298AF0039DC52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FAA470EE27E298AF0039DC52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAA470F327E298AF0039DC52 /* AussieNewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AussieNewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA470F727E298AF0039DC52 /* AussieNewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AussieNewsTests.swift; sourceTree = "<group>"; };
+		FAA470FD27E298AF0039DC52 /* AussieNewsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AussieNewsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA4710127E298AF0039DC52 /* AussieNewsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AussieNewsUITests.swift; sourceTree = "<group>"; };
+		FAA4710327E298AF0039DC52 /* AussieNewsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AussieNewsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAA470DA27E298AE0039DC52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA470F027E298AF0039DC52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA470FA27E298AF0039DC52 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FAA470D427E298AE0039DC52 = {
+			isa = PBXGroup;
+			children = (
+				FAA470DF27E298AE0039DC52 /* AussieNews */,
+				FAA470F627E298AF0039DC52 /* AussieNewsTests */,
+				FAA4710027E298AF0039DC52 /* AussieNewsUITests */,
+				FAA470DE27E298AE0039DC52 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAA470DE27E298AE0039DC52 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAA470DD27E298AE0039DC52 /* AussieNews.app */,
+				FAA470F327E298AF0039DC52 /* AussieNewsTests.xctest */,
+				FAA470FD27E298AF0039DC52 /* AussieNewsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAA470DF27E298AE0039DC52 /* AussieNews */ = {
+			isa = PBXGroup;
+			children = (
+				FAA470E027E298AE0039DC52 /* AppDelegate.swift */,
+				FAA470E227E298AE0039DC52 /* SceneDelegate.swift */,
+				FAA470E427E298AE0039DC52 /* ViewController.swift */,
+				FAA470E627E298AE0039DC52 /* Main.storyboard */,
+				FAA470E927E298AF0039DC52 /* Assets.xcassets */,
+				FAA470EB27E298AF0039DC52 /* LaunchScreen.storyboard */,
+				FAA470EE27E298AF0039DC52 /* Info.plist */,
+			);
+			path = AussieNews;
+			sourceTree = "<group>";
+		};
+		FAA470F627E298AF0039DC52 /* AussieNewsTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAA470F727E298AF0039DC52 /* AussieNewsTests.swift */,
+			);
+			path = AussieNewsTests;
+			sourceTree = "<group>";
+		};
+		FAA4710027E298AF0039DC52 /* AussieNewsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FAA4710127E298AF0039DC52 /* AussieNewsUITests.swift */,
+				FAA4710327E298AF0039DC52 /* AussieNewsUITestsLaunchTests.swift */,
+			);
+			path = AussieNewsUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAA470DC27E298AE0039DC52 /* AussieNews */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAA4710727E298AF0039DC52 /* Build configuration list for PBXNativeTarget "AussieNews" */;
+			buildPhases = (
+				FAA470D927E298AE0039DC52 /* Sources */,
+				FAA470DA27E298AE0039DC52 /* Frameworks */,
+				FAA470DB27E298AE0039DC52 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AussieNews;
+			productName = AussieNews;
+			productReference = FAA470DD27E298AE0039DC52 /* AussieNews.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FAA470F227E298AF0039DC52 /* AussieNewsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAA4710A27E298AF0039DC52 /* Build configuration list for PBXNativeTarget "AussieNewsTests" */;
+			buildPhases = (
+				FAA470EF27E298AF0039DC52 /* Sources */,
+				FAA470F027E298AF0039DC52 /* Frameworks */,
+				FAA470F127E298AF0039DC52 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAA470F527E298AF0039DC52 /* PBXTargetDependency */,
+			);
+			name = AussieNewsTests;
+			productName = AussieNewsTests;
+			productReference = FAA470F327E298AF0039DC52 /* AussieNewsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FAA470FC27E298AF0039DC52 /* AussieNewsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAA4710D27E298AF0039DC52 /* Build configuration list for PBXNativeTarget "AussieNewsUITests" */;
+			buildPhases = (
+				FAA470F927E298AF0039DC52 /* Sources */,
+				FAA470FA27E298AF0039DC52 /* Frameworks */,
+				FAA470FB27E298AF0039DC52 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAA470FF27E298AF0039DC52 /* PBXTargetDependency */,
+			);
+			name = AussieNewsUITests;
+			productName = AussieNewsUITests;
+			productReference = FAA470FD27E298AF0039DC52 /* AussieNewsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAA470D527E298AE0039DC52 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					FAA470DC27E298AE0039DC52 = {
+						CreatedOnToolsVersion = 13.3;
+					};
+					FAA470F227E298AF0039DC52 = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = FAA470DC27E298AE0039DC52;
+					};
+					FAA470FC27E298AF0039DC52 = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = FAA470DC27E298AE0039DC52;
+					};
+				};
+			};
+			buildConfigurationList = FAA470D827E298AE0039DC52 /* Build configuration list for PBXProject "AussieNews" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAA470D427E298AE0039DC52;
+			productRefGroup = FAA470DE27E298AE0039DC52 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAA470DC27E298AE0039DC52 /* AussieNews */,
+				FAA470F227E298AF0039DC52 /* AussieNewsTests */,
+				FAA470FC27E298AF0039DC52 /* AussieNewsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAA470DB27E298AE0039DC52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA470ED27E298AF0039DC52 /* LaunchScreen.storyboard in Resources */,
+				FAA470EA27E298AF0039DC52 /* Assets.xcassets in Resources */,
+				FAA470E827E298AE0039DC52 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA470F127E298AF0039DC52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA470FB27E298AF0039DC52 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAA470D927E298AE0039DC52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA470E527E298AE0039DC52 /* ViewController.swift in Sources */,
+				FAA470E127E298AE0039DC52 /* AppDelegate.swift in Sources */,
+				FAA470E327E298AE0039DC52 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA470EF27E298AF0039DC52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA470F827E298AF0039DC52 /* AussieNewsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA470F927E298AF0039DC52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA4710227E298AF0039DC52 /* AussieNewsUITests.swift in Sources */,
+				FAA4710427E298AF0039DC52 /* AussieNewsUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAA470F527E298AF0039DC52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAA470DC27E298AE0039DC52 /* AussieNews */;
+			targetProxy = FAA470F427E298AF0039DC52 /* PBXContainerItemProxy */;
+		};
+		FAA470FF27E298AF0039DC52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAA470DC27E298AE0039DC52 /* AussieNews */;
+			targetProxy = FAA470FE27E298AF0039DC52 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FAA470E627E298AE0039DC52 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAA470E727E298AE0039DC52 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FAA470EB27E298AF0039DC52 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAA470EC27E298AF0039DC52 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAA4710527E298AF0039DC52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FAA4710627E298AF0039DC52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAA4710827E298AF0039DC52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R8V696537A;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AussieNews/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AlexThompsonDevelopment.AussieNews.AussieNews;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FAA4710927E298AF0039DC52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R8V696537A;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AussieNews/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AlexThompsonDevelopment.AussieNews.AussieNews;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FAA4710B27E298AF0039DC52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R8V696537A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AlexThompsonDevelopment.AussieNews.AussieNewsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AussieNews.app/AussieNews";
+			};
+			name = Debug;
+		};
+		FAA4710C27E298AF0039DC52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R8V696537A;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AlexThompsonDevelopment.AussieNews.AussieNewsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AussieNews.app/AussieNews";
+			};
+			name = Release;
+		};
+		FAA4710E27E298AF0039DC52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R8V696537A;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AlexThompsonDevelopment.AussieNews.AussieNewsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AussieNews;
+			};
+			name = Debug;
+		};
+		FAA4710F27E298AF0039DC52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R8V696537A;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.AlexThompsonDevelopment.AussieNews.AussieNewsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AussieNews;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAA470D827E298AE0039DC52 /* Build configuration list for PBXProject "AussieNews" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA4710527E298AF0039DC52 /* Debug */,
+				FAA4710627E298AF0039DC52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAA4710727E298AF0039DC52 /* Build configuration list for PBXNativeTarget "AussieNews" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA4710827E298AF0039DC52 /* Debug */,
+				FAA4710927E298AF0039DC52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAA4710A27E298AF0039DC52 /* Build configuration list for PBXNativeTarget "AussieNewsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA4710B27E298AF0039DC52 /* Debug */,
+				FAA4710C27E298AF0039DC52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAA4710D27E298AF0039DC52 /* Build configuration list for PBXNativeTarget "AussieNewsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA4710E27E298AF0039DC52 /* Debug */,
+				FAA4710F27E298AF0039DC52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAA470D527E298AE0039DC52 /* Project object */;
+}
