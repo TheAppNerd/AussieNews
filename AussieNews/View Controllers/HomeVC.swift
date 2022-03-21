@@ -69,6 +69,9 @@ class HomeVC: UIViewController {
     
     @objc func searchPressed() {
         print("search pressed")
+        let vc = SearchVC()
+        vc.modalPresentationStyle = UIModalPresentationStyle.popover
+        self.present(vc, animated: true)
     }
 
 }
