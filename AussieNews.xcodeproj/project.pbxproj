@@ -10,18 +10,20 @@
 		FA7E121E27E2E8E900E2D94C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA7E121D27E2E8E900E2D94C /* LaunchScreen.storyboard */; };
 		FA7E122027E4311F00E2D94C /* HomeScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E121F27E4311F00E2D94C /* HomeScreenTableViewCell.swift */; };
 		FA7E122627E436C100E2D94C /* View + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E122527E436C100E2D94C /* View + Ext.swift */; };
-		FA7E122A27E43DC600E2D94C /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E122927E43DC600E2D94C /* CustomLabel.swift */; };
 		FA7E122E27E494C200E2D94C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E122D27E494C200E2D94C /* CollectionViewCell.swift */; };
 		FA7E123027E7FB0500E2D94C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E122F27E7FB0500E2D94C /* CustomButton.swift */; };
+		FA7E123227E8069000E2D94C /* UICollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E123127E8069000E2D94C /* UICollectionViewLayout.swift */; };
+		FA7E123527E81EDC00E2D94C /* BookMarkEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E123427E81EDC00E2D94C /* BookMarkEmptyState.swift */; };
+		FA7E123727E8262F00E2D94C /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E123627E8262F00E2D94C /* CustomLabel.swift */; };
 		FAA470E127E298AE0039DC52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E027E298AE0039DC52 /* AppDelegate.swift */; };
 		FAA470E327E298AE0039DC52 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E227E298AE0039DC52 /* SceneDelegate.swift */; };
-		FAA470E527E298AE0039DC52 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E427E298AE0039DC52 /* HomeScreenViewController.swift */; };
+		FAA470E527E298AE0039DC52 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E427E298AE0039DC52 /* HomeVC.swift */; };
 		FAA470EA27E298AF0039DC52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA470E927E298AF0039DC52 /* Assets.xcassets */; };
 		FAA470F827E298AF0039DC52 /* AussieNewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470F727E298AF0039DC52 /* AussieNewsTests.swift */; };
 		FAA4710227E298AF0039DC52 /* AussieNewsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4710127E298AF0039DC52 /* AussieNewsUITests.swift */; };
 		FAA4710427E298AF0039DC52 /* AussieNewsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4710327E298AF0039DC52 /* AussieNewsUITestsLaunchTests.swift */; };
 		FAA4711127E2A11B0039DC52 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4711027E2A11B0039DC52 /* TabBarController.swift */; };
-		FAA4711327E2DAB70039DC52 /* SeconfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4711227E2DAB60039DC52 /* SeconfViewController.swift */; };
+		FAA4711327E2DAB70039DC52 /* SavedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4711227E2DAB60039DC52 /* SavedVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +47,15 @@
 		FA7E121D27E2E8E900E2D94C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		FA7E121F27E4311F00E2D94C /* HomeScreenTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenTableViewCell.swift; sourceTree = "<group>"; };
 		FA7E122527E436C100E2D94C /* View + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Ext.swift"; sourceTree = "<group>"; };
-		FA7E122927E43DC600E2D94C /* CustomLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomLabel.swift; path = "../../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/CustomLabel.swift"; sourceTree = "<group>"; };
-		FA7E122B27E43DD200E2D94C /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		FA7E122D27E494C200E2D94C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		FA7E122F27E7FB0500E2D94C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		FA7E123127E8069000E2D94C /* UICollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewLayout.swift; sourceTree = "<group>"; };
+		FA7E123427E81EDC00E2D94C /* BookMarkEmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkEmptyState.swift; sourceTree = "<group>"; };
+		FA7E123627E8262F00E2D94C /* CustomLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomLabel.swift; path = "../../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/CustomLabel.swift"; sourceTree = "<group>"; };
 		FAA470DD27E298AE0039DC52 /* AussieNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AussieNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA470E027E298AE0039DC52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA470E227E298AE0039DC52 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FAA470E427E298AE0039DC52 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		FAA470E427E298AE0039DC52 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		FAA470E927E298AF0039DC52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAA470EE27E298AF0039DC52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAA470F327E298AF0039DC52 /* AussieNewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AussieNewsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +64,7 @@
 		FAA4710127E298AF0039DC52 /* AussieNewsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AussieNewsUITests.swift; sourceTree = "<group>"; };
 		FAA4710327E298AF0039DC52 /* AussieNewsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AussieNewsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FAA4711027E2A11B0039DC52 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		FAA4711227E2DAB60039DC52 /* SeconfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeconfViewController.swift; sourceTree = "<group>"; };
+		FAA4711227E2DAB60039DC52 /* SavedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +95,8 @@
 		FA7E122127E4343600E2D94C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				FA7E122B27E43DD200E2D94C /* CustomLabel.swift */,
 				FA7E122F27E7FB0500E2D94C /* CustomButton.swift */,
+				FA7E123127E8069000E2D94C /* UICollectionViewLayout.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -101,8 +104,8 @@
 		FA7E122427E436AF00E2D94C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FA7E123627E8262F00E2D94C /* CustomLabel.swift */,
 				FA7E122527E436C100E2D94C /* View + Ext.swift */,
-				FA7E122927E43DC600E2D94C /* CustomLabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -114,6 +117,23 @@
 				FA7E122D27E494C200E2D94C /* CollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		FA7E123327E81EC400E2D94C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA7E123427E81EDC00E2D94C /* BookMarkEmptyState.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FA7E123827E83ABA00E2D94C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAA470E427E298AE0039DC52 /* HomeVC.swift */,
+				FAA4711227E2DAB60039DC52 /* SavedVC.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		FAA470D427E298AE0039DC52 = {
@@ -139,13 +159,13 @@
 		FAA470DF27E298AE0039DC52 /* AussieNews */ = {
 			isa = PBXGroup;
 			children = (
+				FA7E123827E83ABA00E2D94C /* View Controllers */,
+				FA7E123327E81EC400E2D94C /* Views */,
 				FA7E122C27E43DE300E2D94C /* Cells */,
 				FA7E122427E436AF00E2D94C /* Extensions */,
 				FA7E122127E4343600E2D94C /* Utilities */,
 				FAA470E027E298AE0039DC52 /* AppDelegate.swift */,
 				FAA470E227E298AE0039DC52 /* SceneDelegate.swift */,
-				FAA470E427E298AE0039DC52 /* HomeScreenViewController.swift */,
-				FAA4711227E2DAB60039DC52 /* SeconfViewController.swift */,
 				FAA470E927E298AF0039DC52 /* Assets.xcassets */,
 				FA7E121D27E2E8E900E2D94C /* LaunchScreen.storyboard */,
 				FAA470EE27E298AF0039DC52 /* Info.plist */,
@@ -302,13 +322,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA7E122027E4311F00E2D94C /* HomeScreenTableViewCell.swift in Sources */,
-				FA7E122A27E43DC600E2D94C /* CustomLabel.swift in Sources */,
+				FA7E123527E81EDC00E2D94C /* BookMarkEmptyState.swift in Sources */,
+				FA7E123227E8069000E2D94C /* UICollectionViewLayout.swift in Sources */,
 				FA7E122E27E494C200E2D94C /* CollectionViewCell.swift in Sources */,
-				FAA470E527E298AE0039DC52 /* HomeScreenViewController.swift in Sources */,
+				FAA470E527E298AE0039DC52 /* HomeVC.swift in Sources */,
 				FA7E123027E7FB0500E2D94C /* CustomButton.swift in Sources */,
 				FA7E122627E436C100E2D94C /* View + Ext.swift in Sources */,
+				FA7E123727E8262F00E2D94C /* CustomLabel.swift in Sources */,
 				FAA4711127E2A11B0039DC52 /* TabBarController.swift in Sources */,
-				FAA4711327E2DAB70039DC52 /* SeconfViewController.swift in Sources */,
+				FAA4711327E2DAB70039DC52 /* SavedVC.swift in Sources */,
 				FAA470E127E298AE0039DC52 /* AppDelegate.swift in Sources */,
 				FAA470E327E298AE0039DC52 /* SceneDelegate.swift in Sources */,
 			);

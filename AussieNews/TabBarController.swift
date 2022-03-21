@@ -26,16 +26,16 @@ class TabBarController: UITabBarController {
     
     
     func createHomeScreenVC() -> UINavigationController {
-        let homeVC = HomeScreenViewController()
-        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        let homeVC = HomeVC()
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
         return UINavigationController(rootViewController: homeVC)
     }
     
     
     func createSecondVC() -> UINavigationController {
-        let secondVC = SeconfViewController()
-        secondVC.title = "second"
-        secondVC.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 1)
+        let secondVC = SavedVC()
+        secondVC.title = "Saved"
+        secondVC.tabBarItem = UITabBarItem(title: "Saved", image: UIImage(systemName: "bookmark"), tag: 1)
         return UINavigationController(rootViewController: secondVC)
     }
     
