@@ -14,16 +14,17 @@ class HomeScreenTableViewCell: UITableViewCell {
     let newsImage          = UIImageView()
     let topicLabel         = CustomLabel(.secondaryLabel)
     let headlineLabel      = CustomLabel(.label)
-    let articleDateLabel   = CustomLabel(.systemGray3)
-    let articleAuthorLabel = CustomLabel(.systemGray3)
-    //button 1
-    //button 2
+    let articleDateLabel   = CustomLabel(.secondaryLabel)
+    let articleAuthorLabel = CustomLabel(.secondaryLabel)
+    let saveButton         = CustomButton()
+    let optionsButton      = CustomButton()
 
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureCell()
         layoutUI()
+        configureButtons()
     }
     
     required init?(coder: NSCoder) {
@@ -31,7 +32,7 @@ class HomeScreenTableViewCell: UITableViewCell {
     }
     
     private func configureCell() {
-        contentView.addSubviews(newsImage, topicLabel, headlineLabel, articleDateLabel, articleAuthorLabel)
+        contentView.addSubviews(newsImage, topicLabel, headlineLabel, articleDateLabel, articleAuthorLabel, saveButton, optionsButton)
         contentView.isUserInteractionEnabled = true
         
         newsImage.translatesAutoresizingMaskIntoConstraints = false
@@ -41,6 +42,25 @@ class HomeScreenTableViewCell: UITableViewCell {
         headlineLabel.text = "Something happened which was very interestimg but I wont tell you about it"
         articleDateLabel.text = "1 hour ago"
         articleAuthorLabel.text = "CNN"
+    }
+    
+    private func configureButtons() {
+        saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
+        saveButton.addTarget(self, action: #selector(savePressed), for: .touchUpInside)
+        saveButton.tintColor = .secondaryLabel
+        
+        optionsButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        optionsButton.addTarget(self, action: #selector(optionsPressed), for: .touchUpInside)
+        optionsButton.tintColor = .secondaryLabel
+        
+    }
+    
+    @objc func savePressed() {
+        
+    }
+    
+    @objc func optionsPressed() {
+        
     }
     
     
@@ -78,8 +98,19 @@ class HomeScreenTableViewCell: UITableViewCell {
 
             articleAuthorLabel.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
             articleAuthorLabel.leadingAnchor.constraint(equalTo: articleDateLabel.trailingAnchor, constant: padding / 2),
-            articleAuthorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            articleAuthorLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
+            articleAuthorLabel.trailingAnchor.constraint(equalTo: saveButton.leadingAnchor, constant: -padding),
+            articleAuthorLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
+            
+            saveButton.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
+            saveButton.trailingAnchor.constraint(equalTo: optionsButton.leadingAnchor, constant: -padding),
+            saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
+            saveButton.widthAnchor.constraint(equalTo: saveButton.heightAnchor),
+            
+            optionsButton.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
+            optionsButton.leadingAnchor.constraint(equalTo: saveButton.trailingAnchor, constant: padding),
+            optionsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            optionsButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
+            optionsButton.widthAnchor.constraint(equalTo: optionsButton.heightAnchor)
      ])
     }
 }

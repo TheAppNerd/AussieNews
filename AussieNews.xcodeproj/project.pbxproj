@@ -11,6 +11,8 @@
 		FA7E122027E4311F00E2D94C /* HomeScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E121F27E4311F00E2D94C /* HomeScreenTableViewCell.swift */; };
 		FA7E122627E436C100E2D94C /* View + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E122527E436C100E2D94C /* View + Ext.swift */; };
 		FA7E122A27E43DC600E2D94C /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E122927E43DC600E2D94C /* CustomLabel.swift */; };
+		FA7E122E27E494C200E2D94C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E122D27E494C200E2D94C /* CollectionViewCell.swift */; };
+		FA7E123027E7FB0500E2D94C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E122F27E7FB0500E2D94C /* CustomButton.swift */; };
 		FAA470E127E298AE0039DC52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E027E298AE0039DC52 /* AppDelegate.swift */; };
 		FAA470E327E298AE0039DC52 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E227E298AE0039DC52 /* SceneDelegate.swift */; };
 		FAA470E527E298AE0039DC52 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E427E298AE0039DC52 /* HomeScreenViewController.swift */; };
@@ -45,6 +47,8 @@
 		FA7E122527E436C100E2D94C /* View + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Ext.swift"; sourceTree = "<group>"; };
 		FA7E122927E43DC600E2D94C /* CustomLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomLabel.swift; path = "../../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/CustomLabel.swift"; sourceTree = "<group>"; };
 		FA7E122B27E43DD200E2D94C /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		FA7E122D27E494C200E2D94C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		FA7E122F27E7FB0500E2D94C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		FAA470DD27E298AE0039DC52 /* AussieNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AussieNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA470E027E298AE0039DC52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA470E227E298AE0039DC52 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7E122B27E43DD200E2D94C /* CustomLabel.swift */,
+				FA7E122F27E7FB0500E2D94C /* CustomButton.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -106,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7E121F27E4311F00E2D94C /* HomeScreenTableViewCell.swift */,
+				FA7E122D27E494C200E2D94C /* CollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -297,7 +303,9 @@
 			files = (
 				FA7E122027E4311F00E2D94C /* HomeScreenTableViewCell.swift in Sources */,
 				FA7E122A27E43DC600E2D94C /* CustomLabel.swift in Sources */,
+				FA7E122E27E494C200E2D94C /* CollectionViewCell.swift in Sources */,
 				FAA470E527E298AE0039DC52 /* HomeScreenViewController.swift in Sources */,
+				FA7E123027E7FB0500E2D94C /* CustomButton.swift in Sources */,
 				FA7E122627E436C100E2D94C /* View + Ext.swift in Sources */,
 				FAA4711127E2A11B0039DC52 /* TabBarController.swift in Sources */,
 				FAA4711327E2DAB70039DC52 /* SeconfViewController.swift in Sources */,

@@ -9,18 +9,25 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       navigationController?.setNavigationBarHidden(true, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UITabBar.appearance().backgroundColor = . systemGray5
        UITabBar.appearance().tintColor = .green
        viewControllers = [createHomeScreenVC(), createSecondVC()]
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .green
     }
     
     
     func createHomeScreenVC() -> UINavigationController {
         let homeVC = HomeScreenViewController()
-        homeVC.title = "Home"
-        homeVC.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         return UINavigationController(rootViewController: homeVC)
     }
     
