@@ -37,7 +37,7 @@ class HomeScreenTableViewCell: UITableViewCell {
         
         newsImage.translatesAutoresizingMaskIntoConstraints = false
         newsImage.layer.cornerRadius = 10
-        newsImage.image = UIImage(systemName: "folder")
+        newsImage.image = UIImage(named: "newsImage")
         topicLabel.text = "Entertainment"
         headlineLabel.text = "Something happened which was very interestimg but I wont tell you about it"
         articleDateLabel.text = "1 hour ago"
