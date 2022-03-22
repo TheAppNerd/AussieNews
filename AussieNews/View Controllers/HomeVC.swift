@@ -11,6 +11,7 @@ class HomeVC: UIViewController {
 
     var collectionView: UICollectionView!
     let tableView = UITableView()
+    var newsArticles: [Article] = []
     
     
     override func viewDidLoad() {
@@ -20,6 +21,7 @@ class HomeVC: UIViewController {
         configureTableView()
         configureBarButton()
         layoutUI()
+        getArticles()
     }
 
     func configureVC() {
@@ -66,6 +68,25 @@ class HomeVC: UIViewController {
         ])
     }
     
+    func getArticles() {
+        
+        NewsManager.Shared.getNews() { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let newsArticles):
+                DispatchQueue.main.async {
+                    self.newsArticles.append(contentsOf: newsArticles.articles)
+                    self.tableView.reloadData()
+                }
+                
+            case.failure(let error): print(error.rawValue)
+            }
+            
+            
+        }
+    }
+    
     
     @objc func searchPressed() {
         print("search pressed")
@@ -80,11 +101,12 @@ class HomeVC: UIViewController {
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return newsArticles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeScreenTableViewCell.reuseIdentifier) as! HomeScreenTableViewCell
+        //cell.headlineLabel.text = newsArticles[indexPath.row].title
         return cell
     }
     
