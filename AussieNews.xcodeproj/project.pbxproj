@@ -21,6 +21,10 @@
 		FA7E124327E9283800E2D94C /* Articles.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E124227E9283800E2D94C /* Articles.swift */; };
 		FA7E124527E92D3A00E2D94C /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E124427E92D3A00E2D94C /* NewsManager.swift */; };
 		FA7E124727E92E3400E2D94C /* NewsErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E124627E92E3400E2D94C /* NewsErrors.swift */; };
+		FA7E124927E96C2B00E2D94C /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E124827E96C2B00E2D94C /* CustomImageView.swift */; };
+		FA7E124B27E96E1700E2D94C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E124A27E96E1700E2D94C /* Constants.swift */; };
+		FA7E124D27EA7B4600E2D94C /* TrendingCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E124C27EA7B4600E2D94C /* TrendingCategoryVC.swift */; };
+		FA7E125027EA9E3700E2D94C /* TrendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E124F27EA9E3700E2D94C /* TrendingView.swift */; };
 		FAA470E127E298AE0039DC52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E027E298AE0039DC52 /* AppDelegate.swift */; };
 		FAA470E327E298AE0039DC52 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E227E298AE0039DC52 /* SceneDelegate.swift */; };
 		FAA470E527E298AE0039DC52 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E427E298AE0039DC52 /* HomeVC.swift */; };
@@ -64,6 +68,10 @@
 		FA7E124227E9283800E2D94C /* Articles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Articles.swift; sourceTree = "<group>"; };
 		FA7E124427E92D3A00E2D94C /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
 		FA7E124627E92E3400E2D94C /* NewsErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsErrors.swift; sourceTree = "<group>"; };
+		FA7E124827E96C2B00E2D94C /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		FA7E124A27E96E1700E2D94C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FA7E124C27EA7B4600E2D94C /* TrendingCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCategoryVC.swift; sourceTree = "<group>"; };
+		FA7E124F27EA9E3700E2D94C /* TrendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingView.swift; sourceTree = "<group>"; };
 		FAA470DD27E298AE0039DC52 /* AussieNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AussieNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA470E027E298AE0039DC52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA470E227E298AE0039DC52 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,12 +112,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA09528127EAC6B300E22638 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				FAA4711027E2A11B0039DC52 /* TabBarController.swift */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
 		FA7E122127E4343600E2D94C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				FA7E122F27E7FB0500E2D94C /* CustomButton.swift */,
 				FA7E123127E8069000E2D94C /* UICollectionViewLayout.swift */,
 				FA7E124627E92E3400E2D94C /* NewsErrors.swift */,
+				FA7E124827E96C2B00E2D94C /* CustomImageView.swift */,
+				FA7E124A27E96E1700E2D94C /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -136,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7E123427E81EDC00E2D94C /* BookMarkEmptyState.swift */,
+				FA7E124F27EA9E3700E2D94C /* TrendingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -148,6 +167,7 @@
 				FA7E123927E8405000E2D94C /* SearchVC.swift */,
 				FA7E123B27E845C300E2D94C /* CategoriesVC.swift */,
 				FA7E123D27E847F300E2D94C /* SettingsVC.swift */,
+				FA7E124C27EA7B4600E2D94C /* TrendingCategoryVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -184,6 +204,7 @@
 		FAA470DF27E298AE0039DC52 /* AussieNews */ = {
 			isa = PBXGroup;
 			children = (
+				FA09528127EAC6B300E22638 /* TabBarController */,
 				FA7E124127E88A6100E2D94C /* Model */,
 				FA7E123827E83ABA00E2D94C /* View Controllers */,
 				FA7E123327E81EC400E2D94C /* Views */,
@@ -195,7 +216,6 @@
 				FAA470E927E298AF0039DC52 /* Assets.xcassets */,
 				FA7E121D27E2E8E900E2D94C /* LaunchScreen.storyboard */,
 				FAA470EE27E298AF0039DC52 /* Info.plist */,
-				FAA4711027E2A11B0039DC52 /* TabBarController.swift */,
 			);
 			path = AussieNews;
 			sourceTree = "<group>";
@@ -350,6 +370,7 @@
 				FA7E122027E4311F00E2D94C /* HomeScreenTableViewCell.swift in Sources */,
 				FA7E123527E81EDC00E2D94C /* BookMarkEmptyState.swift in Sources */,
 				FA7E123227E8069000E2D94C /* UICollectionViewLayout.swift in Sources */,
+				FA7E124D27EA7B4600E2D94C /* TrendingCategoryVC.swift in Sources */,
 				FA7E122E27E494C200E2D94C /* CollectionViewCell.swift in Sources */,
 				FAA470E527E298AE0039DC52 /* HomeVC.swift in Sources */,
 				FA7E123027E7FB0500E2D94C /* CustomButton.swift in Sources */,
@@ -359,8 +380,11 @@
 				FAA4711127E2A11B0039DC52 /* TabBarController.swift in Sources */,
 				FAA4711327E2DAB70039DC52 /* SavedVC.swift in Sources */,
 				FA7E124527E92D3A00E2D94C /* NewsManager.swift in Sources */,
+				FA7E125027EA9E3700E2D94C /* TrendingView.swift in Sources */,
+				FA7E124927E96C2B00E2D94C /* CustomImageView.swift in Sources */,
 				FA7E123A27E8405000E2D94C /* SearchVC.swift in Sources */,
 				FA7E124727E92E3400E2D94C /* NewsErrors.swift in Sources */,
+				FA7E124B27E96E1700E2D94C /* Constants.swift in Sources */,
 				FAA470E127E298AE0039DC52 /* AppDelegate.swift in Sources */,
 				FA7E124327E9283800E2D94C /* Articles.swift in Sources */,
 				FAA470E327E298AE0039DC52 /* SceneDelegate.swift in Sources */,

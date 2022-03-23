@@ -11,7 +11,7 @@ class HomeScreenTableViewCell: UITableViewCell {
     
     static let reuseIdentifier = "HomeScreenCell"
     
-    let newsImage          = UIImageView()
+    let newsImage          = CustomImageView(frame: .zero)
     let topicLabel         = CustomLabel(.secondaryLabel)
     let headlineLabel      = CustomLabel(.label)
     let articleDateLabel   = CustomLabel(.secondaryLabel)
@@ -37,7 +37,9 @@ class HomeScreenTableViewCell: UITableViewCell {
         
         newsImage.translatesAutoresizingMaskIntoConstraints = false
         newsImage.layer.cornerRadius = 10
-        newsImage.image = UIImage(named: "newsImage")
+        newsImage.layer.masksToBounds = true
+        newsImage.contentMode = .scaleAspectFill
+        
         topicLabel.text = "Entertainment"
         headlineLabel.text = "Something happened which was very interestimg but I wont tell you about it"
         articleDateLabel.text = "1 hour ago"
@@ -64,8 +66,12 @@ class HomeScreenTableViewCell: UITableViewCell {
     }
     
     
-    func set() {
-        
+    func set(article: Article) {
+        if let imageURL = article.media {
+            newsImage.downloadImage(from: imageURL)
+        }
+        topicLabel.text = article.topic
+        headlineLabel.text = article.title
         
     }
     
@@ -78,7 +84,7 @@ class HomeScreenTableViewCell: UITableViewCell {
             newsImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
             newsImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             newsImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            newsImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.4),
+            newsImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6),
             
             topicLabel.topAnchor.constraint(equalTo: newsImage.bottomAnchor, constant: padding / 2),
             topicLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),

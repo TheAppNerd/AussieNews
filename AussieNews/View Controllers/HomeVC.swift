@@ -12,6 +12,7 @@ class HomeVC: UIViewController {
     var collectionView: UICollectionView!
     let tableView = UITableView()
     var newsArticles: [Article] = []
+    let topicArray = ["sport", "tech", "finance", "politics", "business", "economics", "entertainment", "beauty"]
     
     
     override func viewDidLoad() {
@@ -56,12 +57,12 @@ class HomeVC: UIViewController {
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: tableView.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            collectionView.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -20),
             collectionView.heightAnchor.constraint(equalToConstant: view.frame.width / 4),
             
-            tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -106,12 +107,13 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeScreenTableViewCell.reuseIdentifier) as! HomeScreenTableViewCell
-        //cell.headlineLabel.text = newsArticles[indexPath.row].title
+        let article = newsArticles[indexPath.row]
+        cell.set(article: article)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return view.frame.size.height / 3
     }
 }
 
@@ -119,12 +121,20 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return topicArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as! CollectionViewCell
+        let topic = topicArray[indexPath.item]
+        cell.set(topic: topic)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = TrendingCategoryVC()
+        vc.set(articles: newsArticles)
+        show(vc, sender: self)
     }
     
     
