@@ -6,6 +6,13 @@
 //
 
 import UIKit
+import SafariServices
+
+
+//to do next - get all network parameters working with topics
+//finish design of trending and add gestures & button
+//build .map algorithm to filter out identical headlines
+//rework getNews to create new array when selecting collection view
 
 class HomeVC: UIViewController {
 
@@ -14,6 +21,13 @@ class HomeVC: UIViewController {
     var newsArticles: [Article] = []
     let topicArray = ["sport", "tech", "finance", "politics", "business", "economics", "entertainment", "beauty"]
     
+//    var uniqueArticles: [Article] = []
+//    for article in newsArticles {
+//        if !newsArticles.contains(where: {$0.topic == article.topic }) {
+//            uniqueArticles.append(article)
+//        }
+//    }
+//    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,8 +84,8 @@ class HomeVC: UIViewController {
     }
     
     func getArticles() {
-        
-        NewsManager.Shared.getNews() { [weak self] result in
+        NewsManager.Shared.topic = "entertainment"
+        NewsManager.Shared.getNews(params: .trending) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -83,11 +97,19 @@ class HomeVC: UIViewController {
                 
             case.failure(let error): print(error.rawValue)
             }
-            
-            
         }
     }
     
+    
+    func showArticle(urlString: String) {
+        if let url = URL(string: urlString) {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+
+            let vc = SFSafariViewController(url: url, configuration: config)
+            present(vc, animated: true)
+        }
+    }
     
     @objc func searchPressed() {
         print("search pressed")
@@ -107,6 +129,9 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeScreenTableViewCell.reuseIdentifier) as! HomeScreenTableViewCell
+        
+        
+        
         let article = newsArticles[indexPath.row]
         cell.set(article: article)
         return cell
@@ -114,6 +139,12 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.size.height / 3
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let article = newsArticles[indexPath.row].link {
+            showArticle(urlString: article)
+        }
     }
 }
 
@@ -127,20 +158,20 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as! CollectionViewCell
         let topic = topicArray[indexPath.item]
+        
         cell.set(topic: topic)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = TrendingCategoryVC()
+       
         vc.set(articles: newsArticles)
         show(vc, sender: self)
     }
     
-    
- 
-    
-    
+
 }
+
 
 

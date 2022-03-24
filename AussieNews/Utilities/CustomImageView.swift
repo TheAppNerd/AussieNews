@@ -22,6 +22,8 @@ class CustomImageView: UIImageView {
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 10
+        layer.masksToBounds = true
+        
     }
     
     func downloadImage(from urlString: String) {
