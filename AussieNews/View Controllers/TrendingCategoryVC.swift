@@ -23,15 +23,18 @@ class TrendingCategoryVC: UIViewController {
     var progressViewArray: [UIProgressView] = []
     let progressStack = UIStackView()
     let trendingView = TrendingView()
-    
+    let trendingButtonView = TrendingButtonView()
+    var progressStatus: Int = -1
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         configureProgressStack()
         layoutUI()
-        animateProgressViews()
-        trendingView.set(imageString: newsArticles[0].media!, labelText: newsArticles[0].title!)
+        animateProgressViews(startingNum: 0)
+        trendingView.set(newsArticles[0])
+        setupGestures()
     }
     
     private func configure() {
@@ -63,23 +66,43 @@ class TrendingCategoryVC: UIViewController {
     
     private func layoutUI() {
        
-        view.addSubviews(progressStack, trendingView)
+        view.addSubviews(progressStack, trendingView, trendingButtonView)
+       
+        let padding: CGFloat = 20
         
         NSLayoutConstraint.activate([
             progressStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             progressStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             progressStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            progressStack.heightAnchor.constraint(equalToConstant: 10),
+            progressStack.heightAnchor.constraint(equalToConstant: padding / 2),
             
-            trendingView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            trendingView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            trendingView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
-            trendingView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7)
+            trendingView.topAnchor.constraint(equalTo: progressStack.bottomAnchor, constant: padding),
+            trendingView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            trendingView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            trendingView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
+            
+            trendingButtonView.topAnchor.constraint(equalTo: trendingView.bottomAnchor, constant: 20),
+            trendingButtonView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            trendingButtonView.widthAnchor.constraint(equalTo: trendingView.widthAnchor),
+            trendingButtonView.heightAnchor.constraint(equalTo: trendingView.heightAnchor, multiplier: 0.3)
         ])
     }
     
     func set(articles: [Article]) {
         newsArticles = articles
+    }
+    
+    
+    private func setupGestures() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(gesturePressed))
+        trendingView.addGestureRecognizer(tap)
+        trendingView.isUserInteractionEnabled = true
+    }
+    
+    
+    private func setupButtons() {
+        
+        
     }
     
     
@@ -90,21 +113,57 @@ class TrendingCategoryVC: UIViewController {
             self.progressViewArray[num].setProgress(progress, animated: true)
         } completion: { _ in
             let article = self.newsArticles[num]
-            self.trendingView.set(imageString: article.media!, labelText: article.title!)
+            self.trendingView.set(article)
         }
 
     }
     
-    func animateProgressViews() {
-        var num = 0
-        let duration = 4.0
-        Timer.scheduledTimer(withTimeInterval: duration, repeats: true) { timer in
+    func animateProgressViews(startingNum: Int) {
+        for (index, view) in progressViewArray.enumerated() {
+            if index < startingNum {
+                view.progress = 1.0
+            } else {
+              view.progress = 0.0
+        }
+        }
+        var num = startingNum
+        let duration = 3.0
+        timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: true) { timer in
             self.animate(num: num, duration: duration)
             num += 1
+            self.progressStatus += 1
+            print(self.progressStatus)
             if num == 5 {
                 timer.invalidate()
             }
         }
+    }
+    
+    
+    func changeProgressViews() {
+        
+    }
+    
+    @objc func gesturePressed(_ tap: UITapGestureRecognizer) {
+        print("tapped")
+        timer.invalidate()
+        let point = tap.location(in: trendingView)
+        let leftArea = CGRect(x: 0, y: 0, width: trendingView.frame.width / 2, height: trendingView.frame.height)
+        if leftArea.contains(point) {
+            if progressStatus >= 1 {
+           progressStatus -= 1
+            }
+        } else {
+            if progressStatus <= 3 {
+            progressStatus += 1
+            }
+        }
+        print(progressStatus)
+        
+        let article = self.newsArticles[progressStatus]
+        self.trendingView.set(article)
+        animateProgressViews(startingNum: progressStatus)
+        
     }
     
 }

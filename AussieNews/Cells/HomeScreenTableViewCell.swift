@@ -35,9 +35,6 @@ class HomeScreenTableViewCell: UITableViewCell {
         contentView.addSubviews(newsImage, topicLabel, headlineLabel, articleDateLabel, articleAuthorLabel, saveButton, optionsButton)
         contentView.isUserInteractionEnabled = true
         
-        newsImage.translatesAutoresizingMaskIntoConstraints = false
-        newsImage.layer.cornerRadius = 10
-        newsImage.layer.masksToBounds = true
         newsImage.contentMode = .scaleAspectFill
         
         topicLabel.text = "Entertainment"

@@ -12,7 +12,7 @@ struct Articles: Codable {
     let articles: [Article]
 }
 
-struct Article: Codable {
+struct Article: Codable, Hashable {
     
     let title: String?
     let author: String?

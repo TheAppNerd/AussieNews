@@ -9,20 +9,43 @@ import UIKit
 
 class NewsManager {
     
+    let baseURL = "https://api.newscatcherapi.com/v2/"
+    let headlines = "latest_headlines?lang=en&countries=au"
+    let trending = "latest_headlines?lang=en&countries=au&topic="
+    let topicURL = "sources?countries=au&topic="
+    var topic: String = ""
+    
+    enum networkParams {
+        case home
+        case trending
+        case topic
+    }
+    
     static let Shared = NewsManager()
     
     private init () {}
     
     let cache = NSCache<NSString, UIImage>()
 
-    let baseURL = "https://api.newscatcherapi.com/v2/search?q=Tesla"
     
     
-    func getNews(completed: @escaping (Result<Articles, NewsErrors>) -> Void) {
+    ////v2/latest_headlines?countries=AU&topic=business&page_size=2
+    
+    func getNews(params: networkParams, completed: @escaping (Result<Articles, NewsErrors>) -> Void) {
+        
+        var endpoint: String = ""
+        
+        switch params {
+        case .home:
+            endpoint = baseURL + headlines
+        case .trending:
+            endpoint = baseURL + trending + topic
+        case .topic:
+            endpoint = baseURL + topicURL + topic
+        }
 
-    //let endpoint = baseURL + "/v2/search?q=Apple&from='2021/12/15'&countries=CA&page_size=1"
 
-        guard let url = URL(string: baseURL) else {
+        guard let url = URL(string: endpoint) else {
             completed(.failure(.urlError))
             return
         }
@@ -99,4 +122,5 @@ class NewsManager {
         task.resume()
     }
 
+    
 }
