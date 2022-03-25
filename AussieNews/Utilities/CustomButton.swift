@@ -26,3 +26,11 @@ class CustomButton: UIButton {
     }
 
 }
+
+extension CustomButton {
+    
+    func savePressed() {
+        
+    }
+    
+}

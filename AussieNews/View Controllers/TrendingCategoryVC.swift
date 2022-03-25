@@ -15,8 +15,6 @@ import UIKit
 //create x top right to dismiss and return to home
 
 
-
-
 class TrendingCategoryVC: UIViewController {
     
     var newsArticles: [Article] = []
@@ -27,15 +25,39 @@ class TrendingCategoryVC: UIViewController {
     var progressStatus: Int = -1
     var timer = Timer()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getArticles(params: .trending)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configure()
         configureProgressStack()
         layoutUI()
-        animateProgressViews(startingNum: 0)
-        trendingView.set(newsArticles[0])
         setupGestures()
     }
+    
+    
+    func getArticles(params: NewsManager.networkParams) {
+        NewsManager.Shared.getNews(params:params) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let newsArticles):
+                DispatchQueue.main.async {
+                    self.newsArticles.append(contentsOf: newsArticles.articles)
+                    self.trendingView.set(self.newsArticles[0])
+                    self.animateProgressViews(startingNum: 0)
+                }
+                
+            case.failure(let error): print(error.rawValue)
+            }
+        }
+    }
+    
     
     private func configure() {
         view.backgroundColor = .systemBackground
@@ -86,10 +108,6 @@ class TrendingCategoryVC: UIViewController {
             trendingButtonView.widthAnchor.constraint(equalTo: trendingView.widthAnchor),
             trendingButtonView.heightAnchor.constraint(equalTo: trendingView.heightAnchor, multiplier: 0.3)
         ])
-    }
-    
-    func set(articles: [Article]) {
-        newsArticles = articles
     }
     
     

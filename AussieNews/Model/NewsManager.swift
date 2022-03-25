@@ -79,7 +79,6 @@ class NewsManager {
                 let newsArticles = try decoder.decode(Articles.self, from: data)
                 completed(.success(newsArticles))
             } catch {
-               
                 completed(.failure(.decodeError))
             }
         }
