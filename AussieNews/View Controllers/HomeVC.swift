@@ -20,6 +20,7 @@ class HomeVC: UIViewController {
     let tableView = UITableView()
     var newsArticles: [Article] = []
     let topicArray = ["sport", "tech", "finance", "politics", "business", "economics", "entertainment", "beauty"]
+    let userDefaultFuncs = UserDefaultFuncs()
     
 //    var uniqueArticles: [Article] = []
 //    for article in newsArticles {
@@ -29,6 +30,7 @@ class HomeVC: UIViewController {
 //    }
 //    
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
@@ -36,7 +38,8 @@ class HomeVC: UIViewController {
         configureTableView()
         configureBarButton()
         layoutUI()
-        getArticles()
+        getArticles(params: .home)
+        print(newsArticles.count)
     }
 
     func configureVC() {
@@ -83,9 +86,8 @@ class HomeVC: UIViewController {
         ])
     }
     
-    func getArticles() {
-        NewsManager.Shared.topic = "entertainment"
-        NewsManager.Shared.getNews(params: .trending) { [weak self] result in
+    func getArticles(params: NewsManager.networkParams) {
+        NewsManager.Shared.getNews(params: params) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -99,7 +101,6 @@ class HomeVC: UIViewController {
             }
         }
     }
-    
     
     func showArticle(urlString: String) {
         if let url = URL(string: urlString) {
@@ -142,9 +143,11 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let article = newsArticles[indexPath.row].link {
-            showArticle(urlString: article)
-        }
+        let article = newsArticles[indexPath.row]
+            userDefaultFuncs.savePages(.visited, article: article)
+        
+            showArticle(urlString: article.link!)
+        
     }
 }
 
@@ -158,15 +161,15 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as! CollectionViewCell
         let topic = topicArray[indexPath.item]
-        
         cell.set(topic: topic)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let topic = topicArray[indexPath.row]
+        NewsManager.Shared.topic = topic
         let vc = TrendingCategoryVC()
-       
-        vc.set(articles: newsArticles)
+        vc.title = topic
         show(vc, sender: self)
     }
     

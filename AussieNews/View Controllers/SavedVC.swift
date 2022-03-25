@@ -15,11 +15,14 @@ class SavedVC: UIViewController {
     let tableView = UITableView()
     let lineOne = UIView()
     let lineTwo = UIView()
+    let userDefaultFuncs = UserDefaultFuncs()
+    var buttonArray: [CustomButton] = []
     
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         bookmarkButton.sendActions(for: .touchUpInside)
+        
     }
     
     
@@ -29,6 +32,9 @@ class SavedVC: UIViewController {
         configureButtons()
         configureTableView()
         layoutUI()
+        buttonArray.append(bookmarkButton)
+        buttonArray.append(recentButton)
+        
     }
     
     
@@ -49,7 +55,8 @@ class SavedVC: UIViewController {
     }
     
     private func configureButtons() {
-        bookmarkButton.setTitle("Saved 7", for: .normal)
+        
+        bookmarkButton.setTitle("Saved \(UserDefaultFuncs.savedPagesArray.count)", for: .normal)
         bookmarkButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         bookmarkButton.backgroundColor = .systemBackground
         bookmarkButton.setTitleColor(.black, for: .normal)
@@ -57,7 +64,6 @@ class SavedVC: UIViewController {
         recentButton.setTitle("Recently Viewed", for: .normal)
         recentButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         recentButton.backgroundColor = .systemBackground
-        
         recentButton.setTitleColor(.black, for: .normal)
         
         lineOne.backgroundColor = .secondaryLabel
@@ -123,11 +129,13 @@ class SavedVC: UIViewController {
     
 
     @objc func buttonPressed(sender: CustomButton) {
-        
+        for button in buttonArray {
+            button.isSelected = false
+            button.setTitleColor(.secondaryLabel, for: .normal)
+        }
+        sender.isSelected = true
             lineOne.backgroundColor = .secondaryLabel
             lineTwo.backgroundColor = .secondaryLabel
-        bookmarkButton.setTitleColor(.secondaryLabel, for: .normal)
-        recentButton.setTitleColor(.secondaryLabel, for: .normal)
             
         if sender == bookmarkButton {
             lineOne.backgroundColor = .orange
@@ -136,6 +144,7 @@ class SavedVC: UIViewController {
             recentButton.setTitleColor(.orange, for: .normal)
             lineTwo.backgroundColor = .orange
         }
+        tableView.reloadData()
     }
 }
 
@@ -144,11 +153,20 @@ class SavedVC: UIViewController {
 
 extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        if bookmarkButton.isSelected {
+            return UserDefaultFuncs.savedPagesArray.count
+        } else {
+            return UserDefaultFuncs.visitedPagesArray.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeScreenTableViewCell.reuseIdentifier) as! HomeScreenTableViewCell
+        if bookmarkButton.isSelected {
+            cell.set(article: UserDefaultFuncs.savedPagesArray[indexPath.row])
+        } else {
+            cell.set(article: UserDefaultFuncs.visitedPagesArray[indexPath.row])
+        }
         return cell
     }
     
