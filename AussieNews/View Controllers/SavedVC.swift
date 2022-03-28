@@ -9,70 +9,66 @@ import UIKit
 
 class SavedVC: UIViewController {
     
-    let emptyState = BookMarkEmptyState()
-    let bookmarkButton = CustomButton()
-    let recentButton = CustomButton()
-    let tableView = UITableView()
-    let lineOne = UIView()
-    let lineTwo = UIView()
+    //MARK: - variables & constants
+    
+    let emptyState       = BookMarkEmptyState()
+    let bookmarkButton   = CustomButton()
+    let recentButton     = CustomButton()
+    let tableView        = UITableView()
+    let lineOne          = UIView()
+    let lineTwo          = UIView()
     let userDefaultFuncs = UserDefaultFuncs()
-    var buttonArray: [CustomButton] = []
     
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureButtons()
         bookmarkButton.sendActions(for: .touchUpInside)
-        
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        configureButtons()
+        
         configureTableView()
         layoutUI()
-        buttonArray.append(bookmarkButton)
-        buttonArray.append(recentButton)
-        
+        userDefaultFuncs.retrievePages()
     }
+    
+    //MARK: - Funcs
     
     
     private func configure() {
         title = "Saved"
-        view.backgroundColor = .systemBackground
+        view.backgroundColor              = .systemBackground
         
-        let clearButton = UIBarButtonItem(title: "Clear All", style: .done, target: self, action: #selector(clearPressed))
-        clearButton.tintColor = .orange
+        let clearButton                   = UIBarButtonItem(title: "Clear All", style: .done, target: self, action: #selector(clearPressed))
+        clearButton.tintColor             = .orange
         navigationItem.rightBarButtonItem = clearButton
     }
     
     private func configureTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.register(HomeScreenTableViewCell.self, forCellReuseIdentifier: HomeScreenTableViewCell.reuseIdentifier)
+        tableView.delegate   = self
+        tableView.dataSource = self
     }
     
     private func configureButtons() {
-        
         bookmarkButton.setTitle("Saved \(UserDefaultFuncs.savedPagesArray.count)", for: .normal)
         bookmarkButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        bookmarkButton.backgroundColor = .systemBackground
-        bookmarkButton.setTitleColor(.black, for: .normal)
+        bookmarkButton.setTitleColor(.secondaryLabel, for: .normal)
+        
         
         recentButton.setTitle("Recently Viewed", for: .normal)
         recentButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        recentButton.backgroundColor = .systemBackground
-        recentButton.setTitleColor(.black, for: .normal)
+        recentButton.setTitleColor(.secondaryLabel, for: .normal)
         
         lineOne.backgroundColor = .secondaryLabel
         lineOne.translatesAutoresizingMaskIntoConstraints = false
         
         lineTwo.backgroundColor = .secondaryLabel
         lineTwo.translatesAutoresizingMaskIntoConstraints = false
-        
-        
     }
     
     
@@ -80,7 +76,6 @@ class SavedVC: UIViewController {
         view.addSubviews(bookmarkButton, recentButton, lineOne, lineTwo, tableView)
         
         NSLayoutConstraint.activate([
-        
             bookmarkButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             bookmarkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bookmarkButton.trailingAnchor.constraint(equalTo: recentButton.leadingAnchor),
@@ -123,12 +118,17 @@ class SavedVC: UIViewController {
 //        ])
     }
     
+    
+    
+    //MARK: - @objc Funcs
+    
     @objc func clearPressed() {
         
     }
     
 
     @objc func buttonPressed(sender: CustomButton) {
+        let buttonArray = [bookmarkButton, recentButton]
         for button in buttonArray {
             button.isSelected = false
             button.setTitleColor(.secondaryLabel, for: .normal)
@@ -146,6 +146,11 @@ class SavedVC: UIViewController {
         }
         tableView.reloadData()
     }
+    
+    @objc func saveButtonPressed() {
+        tableView.reloadData()
+        bookmarkButton.setTitle("Saved \(UserDefaultFuncs.savedPagesArray.count)", for: .normal)
+    }
 }
 
 
@@ -162,6 +167,7 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HomeScreenTableViewCell.reuseIdentifier) as! HomeScreenTableViewCell
+        cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         if bookmarkButton.isSelected {
             cell.set(article: UserDefaultFuncs.savedPagesArray[indexPath.row])
         } else {
@@ -169,7 +175,4 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         }
         return cell
     }
-    
-    
-    
 }

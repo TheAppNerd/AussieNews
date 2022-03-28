@@ -17,13 +17,18 @@ import UIKit
 
 class TrendingCategoryVC: UIViewController {
     
+    //MARK: - Variables & Constants
+    
+    
+    let progressStack       = UIStackView()
+    let trendingView        = TrendingView()
+    let trendingButtonView  = TrendingButtonView()
+    
+    var progressStatus: Int = -1
+    var timer               = Timer()
     var newsArticles: [Article] = []
     var progressViewArray: [UIProgressView] = []
-    let progressStack = UIStackView()
-    let trendingView = TrendingView()
-    let trendingButtonView = TrendingButtonView()
-    var progressStatus: Int = -1
-    var timer = Timer()
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,7 +38,6 @@ class TrendingCategoryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configure()
         configureProgressStack()
         layoutUI()
@@ -44,7 +48,6 @@ class TrendingCategoryVC: UIViewController {
     func getArticles(params: NewsManager.networkParams) {
         NewsManager.Shared.getNews(params:params) { [weak self] result in
             guard let self = self else { return }
-            
             switch result {
             case .success(let newsArticles):
                 DispatchQueue.main.async {
@@ -64,16 +67,15 @@ class TrendingCategoryVC: UIViewController {
         
     }
    
+    
     private func configureProgressStack() {
-        
         for _ in 0...4 {
             let progressView = UIProgressView(progressViewStyle: .bar)
             progressView.translatesAutoresizingMaskIntoConstraints = false
-            progressView.backgroundColor = .systemGray3
+            progressView.backgroundColor   = .systemGray3
             progressView.progressTintColor = .orange
             progressViewArray.append(progressView)
         }
-        
         
         progressStack.translatesAutoresizingMaskIntoConstraints = false
         for view in progressViewArray {

@@ -44,7 +44,7 @@ class CollectionViewCell: UICollectionViewCell {
         collectionLabel.layer.cornerRadius = 10
         collectionLabel.layer.masksToBounds = true
         collectionLabel.textColor = .white
-        collectionLabel.font = UIFont.boldSystemFont(ofSize: 10)
+        collectionLabel.font = UIFont.boldSystemFont(ofSize: 12)
         collectionLabel.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         
         

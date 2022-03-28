@@ -11,6 +11,7 @@ class UserDefaultFuncs {
     
      static var visitedPagesArray = [Article]()
      static var savedPagesArray = [Article]()
+     let defaults = UserDefaults.standard
     
     enum pagesArray {
         case visited
@@ -18,7 +19,6 @@ class UserDefaultFuncs {
     }
     
     init() {
-        
         UserDefaultFuncs.visitedPagesArray = []
         UserDefaultFuncs.savedPagesArray = []
     }
@@ -26,29 +26,20 @@ class UserDefaultFuncs {
 
 extension UserDefaultFuncs {
     
-    func retrievePages(_ pagesArray: pagesArray) {
-        let defaults = UserDefaults.standard
-        
-        switch pagesArray {
-        case .visited:
+    func retrievePages() {
             if let data = defaults.object(forKey: "visited") as? Data {
                 UserDefaultFuncs.visitedPagesArray = try! JSONDecoder().decode([Article].self, from: data)
             }
-        case .saved:
+        
             if let data = defaults.object(forKey: "saved") as? Data {
                 UserDefaultFuncs.savedPagesArray = try! JSONDecoder().decode([Article].self, from: data)
             }
         }
-        
-        
-        
-    }
     
     
     // add filter for duplicate articles
     func savePages(_ pagesArray: pagesArray, article: Article) {
-        let defaults = UserDefaults.standard
-        
+        retrievePages()
         switch pagesArray {
         case .visited:
             UserDefaultFuncs.visitedPagesArray.append(article)
@@ -61,15 +52,22 @@ extension UserDefaultFuncs {
         case .saved:
             UserDefaultFuncs.savedPagesArray.append(article)
             if let array = try? JSONEncoder().encode(UserDefaultFuncs.savedPagesArray) {
-                defaults.set(array, forKey: "visited")
+                defaults.set(array, forKey: "saved")
             } else {
                 print("Failed to save articles.")
             }
-            
         }
-        
-        
     }
     
-    
+    func removeSavedPage(article: Article) {
+        retrievePages()
+       
+        UserDefaultFuncs.savedPagesArray.removeAll { $0.link == article.link }
+        if let array = try? JSONEncoder().encode(UserDefaultFuncs.savedPagesArray) {
+            defaults.set(array, forKey: "saved")
+        } else {
+            print("Failed to save articles.")
+        }
+        
+    }
 }

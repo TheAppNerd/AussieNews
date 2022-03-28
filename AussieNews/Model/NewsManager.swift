@@ -10,6 +10,7 @@ import UIKit
 class NewsManager {
     
     let baseURL = "https://api.newscatcherapi.com/v2/"
+    let homeURL = "latest_headlines?countries=au"
     let headlines = "latest_headlines?lang=en&countries=au"
     let trending = "latest_headlines?lang=en&countries=au&topic="
     let topicURL = "sources?countries=au&topic="
@@ -37,7 +38,7 @@ class NewsManager {
         
         switch params {
         case .home:
-            endpoint = baseURL + headlines
+            endpoint = baseURL + homeURL
         case .trending:
             endpoint = baseURL + trending + topic
         case .topic:

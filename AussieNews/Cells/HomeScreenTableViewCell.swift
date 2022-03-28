@@ -11,6 +11,8 @@ class HomeScreenTableViewCell: UITableViewCell {
     
     static let reuseIdentifier = "HomeScreenCell"
     
+    
+    var article: Article?
     let newsImage          = CustomImageView(frame: .zero)
     let topicLabel         = CustomLabel(.secondaryLabel)
     let headlineLabel      = CustomLabel(.label)
@@ -37,15 +39,14 @@ class HomeScreenTableViewCell: UITableViewCell {
         
         newsImage.contentMode = .scaleAspectFill
         
-        topicLabel.text = "Entertainment"
-        headlineLabel.text = "Something happened which was very interestimg but I wont tell you about it"
+        headlineLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        
         articleDateLabel.text = "1 hour ago"
-        articleAuthorLabel.text = "CNN"
     }
     
     private func configureButtons() {
         saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-        saveButton.addTarget(self, action: #selector(savePressed), for: .touchUpInside)
+       // saveButton.addTarget(self, action: #selector(savePressed), for: .touchUpInside)
         saveButton.tintColor = .secondaryLabel
         
         optionsButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
@@ -54,22 +55,38 @@ class HomeScreenTableViewCell: UITableViewCell {
         
     }
     
-    @objc func savePressed() {
-        
-    }
+//    @objc func savePressed() {
+//
+//        switch UserDefaultFuncs.savedPagesArray.contains(article!) {
+//        case true: UserDefaultFuncs().removeSavedPage(article: article!)
+//            saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
+//        case false: UserDefaultFuncs().savePages(.saved, article: article!)
+//            saveButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+//        }
+//
+//        print(UserDefaultFuncs.savedPagesArray.count)
+//    }
     
     @objc func optionsPressed() {
         
     }
     
     
+    
     func set(article: Article) {
+        self.article = article
+        
+        switch UserDefaultFuncs.savedPagesArray.contains(article) {
+        case true: saveButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        case false: saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
+        }
+        
         if let imageURL = article.media {
             newsImage.downloadImage(from: imageURL)
         }
-        topicLabel.text = article.topic
+        topicLabel.text = article.topic?.uppercased()
         headlineLabel.text = article.title
-        
+        articleAuthorLabel.text = article.rights
     }
     
     private func layoutUI() {
