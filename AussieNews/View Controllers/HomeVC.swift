@@ -27,6 +27,7 @@ class HomeVC: UIViewController {
     
     //MARK: - Caruables & Constants
     
+    
     var collectionView: UICollectionView!
     var newsArticles: [Article] = []
     
@@ -34,6 +35,8 @@ class HomeVC: UIViewController {
     let topicArray       = ["sport", "tech", "finance", "politics", "business", "economics", "entertainment", "beauty"]
     let userDefaultFuncs = UserDefaultFuncs()
     let tableViewRefresh = UIRefreshControl()
+    let generator = UIImpactFeedbackGenerator(style: .light)
+    var sizeBool: Bool = true
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,28 +61,35 @@ class HomeVC: UIViewController {
     func configureVC() {
         view.backgroundColor = .systemBackground
         title = "Home"
+        
+       
+        generator.prepare()
     }
     
     
     func configureBarButton() {
         let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchPressed))
-        navigationItem.rightBarButtonItem = searchButton
+        let switchCellButton = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(switchCellButtonPressed))
+        navigationItem.rightBarButtonItems = [searchButton, switchCellButton]
     }
     
     
     func configureTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(HomeScreenTableViewCell.self, forCellReuseIdentifier: HomeScreenTableViewCell.reuseIdentifier)
+        tableView.register(bigHomeCell.self, forCellReuseIdentifier: bigHomeCell.reuseIdentifier)
+        tableView.register(smallHomeCell.self, forCellReuseIdentifier: smallHomeCell.reuseIdentifier)
         tableView.delegate       = self
         tableView.dataSource     = self
         tableView.refreshControl = tableViewRefresh
         tableViewRefresh.addTarget(self, action: #selector(refreshStarted), for: .valueChanged)
+      
     }
     
     
     @objc func refreshStarted() {
         newsArticles.removeAll()
         getArticles(params: .home)
+        generator.impactOccurred()
     }
     
     
@@ -129,7 +139,7 @@ class HomeVC: UIViewController {
         self.tableViewRefresh.endRefreshing()
     }
     
-    
+    //reduce to one func 
     func showArticle(urlString: String) {
         if let url = URL(string: urlString) {
             let config = SFSafariViewController.Configuration()
@@ -147,6 +157,8 @@ class HomeVC: UIViewController {
         self.present(vc, animated: true)
     }
     
+    
+    //move back to cell as multiple pages will use this
     @objc func saveButtonPressed(sender: CustomButton) {
         
         let buttonPosition: CGPoint = sender.convert(CGPoint.zero, to: self.tableView)
@@ -156,18 +168,22 @@ class HomeVC: UIViewController {
         
         switch UserDefaultFuncs.savedPagesArray.contains(article) {
         case true: UserDefaultFuncs().removeSavedPage(article: article)
-            sender.setImage(UIImage(systemName: "bookmark"), for: .normal)
             self.saveLabel(.removing)
         case false: UserDefaultFuncs().savePages(.saved, article: article)
-            sender.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
             self.saveLabel(.saving)
         }
-       
+        tableView.reloadData()
         print(UserDefaultFuncs.savedPagesArray.count)
-        
     }
     
-}
+    @objc func switchCellButtonPressed() {
+        sizeBool.toggle()
+        tableView.reloadData()
+        tableView.reloadInputViews()
+    }
+    
+    }
+
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
 
@@ -178,17 +194,28 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeScreenTableViewCell.reuseIdentifier) as! HomeScreenTableViewCell
-    
         let article = newsArticles[indexPath.row]
-        cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
-        cell.set(article: article)
-        return cell
+        
+        switch sizeBool {
+        case true: let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
+            cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
+            cell.set(article: article)
+            return cell
+        case false: let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
+            cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
+            cell.set(article: article)
+            return cell
+        }
+        
+        
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.size.height / 3
+        switch sizeBool {
+        case true: return view.frame.size.height / 2.8
+        case false: return view.frame.size.height / 6
+        }
     }
     
     
@@ -210,7 +237,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as! CollectionViewCell
         let topic = topicArray[indexPath.item]
-        cell.set(topic: topic)
+            cell.set(topic: topic)
         return cell
     }
     
