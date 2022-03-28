@@ -19,7 +19,7 @@ class CategoriesVC: UIViewController {
     
     private func configure() {
         title = "Categories"
-        
+
     }
     
     

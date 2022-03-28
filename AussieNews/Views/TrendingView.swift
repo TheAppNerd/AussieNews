@@ -88,7 +88,7 @@ class TrendingView: UIView {
     }
     
     func set(_ article: Article) {
-        self.newsImage.downloadImage(from: article.media!)
+        self.newsImage.downloadImage(from: article.media ?? "")
         self.headlineLabel.text = article.title
         self.articleDateLabel.text = article.published_date
         self.articleAuthorLabel.text = article.author
