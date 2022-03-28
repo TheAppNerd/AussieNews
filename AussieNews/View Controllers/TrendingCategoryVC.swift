@@ -74,6 +74,8 @@ class TrendingCategoryVC: UIViewController {
             progressView.translatesAutoresizingMaskIntoConstraints = false
             progressView.backgroundColor   = .systemGray3
             progressView.progressTintColor = .orange
+            progressView.layer.cornerRadius = 5
+            progressView.layer.masksToBounds = true
             progressViewArray.append(progressView)
         }
         
@@ -98,7 +100,7 @@ class TrendingCategoryVC: UIViewController {
             progressStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             progressStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             progressStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            progressStack.heightAnchor.constraint(equalToConstant: padding / 2),
+            progressStack.heightAnchor.constraint(equalToConstant: 7),
             
             trendingView.topAnchor.constraint(equalTo: progressStack.bottomAnchor, constant: padding),
             trendingView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),

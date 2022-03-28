@@ -7,9 +7,9 @@
 
 import UIKit
 
-class HomeScreenTableViewCell: UITableViewCell {
+class bigHomeCell: UITableViewCell {
     
-    static let reuseIdentifier = "HomeScreenCell"
+    static let reuseIdentifier = "bigCell"
     
     
     var article: Article?
@@ -32,6 +32,7 @@ class HomeScreenTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     private func configureCell() {
         contentView.addSubviews(newsImage, topicLabel, headlineLabel, articleDateLabel, articleAuthorLabel, saveButton, optionsButton)
@@ -78,7 +79,9 @@ class HomeScreenTableViewCell: UITableViewCell {
         
         switch UserDefaultFuncs.savedPagesArray.contains(article) {
         case true: saveButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+            saveButton.tintColor = .orange
         case false: saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
+            saveButton.tintColor = .secondaryLabel
         }
         
         if let imageURL = article.media {
@@ -87,18 +90,20 @@ class HomeScreenTableViewCell: UITableViewCell {
         topicLabel.text = article.topic?.uppercased()
         headlineLabel.text = article.title
         articleAuthorLabel.text = article.rights
+
     }
     
     private func layoutUI() {
         
         let padding: CGFloat = 10
         
+
         NSLayoutConstraint.activate([
         
             newsImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
             newsImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             newsImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            newsImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.6),
+            newsImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5),
             
             topicLabel.topAnchor.constraint(equalTo: newsImage.bottomAnchor, constant: padding / 2),
             topicLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
@@ -113,24 +118,27 @@ class HomeScreenTableViewCell: UITableViewCell {
             articleDateLabel.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
             articleDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             articleDateLabel.trailingAnchor.constraint(equalTo: articleAuthorLabel.leadingAnchor, constant: -padding / 2),
-            articleDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
+            articleDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
             articleDateLabel.widthAnchor.constraint(equalToConstant: 100),
 
             articleAuthorLabel.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
             articleAuthorLabel.leadingAnchor.constraint(equalTo: articleDateLabel.trailingAnchor, constant: padding / 2),
             articleAuthorLabel.trailingAnchor.constraint(equalTo: saveButton.leadingAnchor, constant: -padding),
-            articleAuthorLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
+            articleAuthorLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
             
             saveButton.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
             saveButton.trailingAnchor.constraint(equalTo: optionsButton.leadingAnchor, constant: -padding),
-            saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
-            saveButton.widthAnchor.constraint(equalTo: saveButton.heightAnchor),
+            saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
+            saveButton.widthAnchor.constraint(equalTo: saveButton.heightAnchor, multiplier: 0.6),
             
             optionsButton.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
             optionsButton.leadingAnchor.constraint(equalTo: saveButton.trailingAnchor, constant: padding),
             optionsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            optionsButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
-            optionsButton.widthAnchor.constraint(equalTo: optionsButton.heightAnchor)
+            optionsButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
+            optionsButton.widthAnchor.constraint(equalTo: optionsButton.heightAnchor, multiplier: 0.6)
      ])
+        
+        
     }
+    
 }
