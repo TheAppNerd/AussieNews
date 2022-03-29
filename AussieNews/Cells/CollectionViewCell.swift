@@ -60,11 +60,7 @@ class CollectionViewCell: UICollectionViewCell {
         collectionImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
         collectionImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
         collectionImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-        //collectionImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8),
-        //collectionImageView.widthAnchor.constraint(equalTo: collectionImageView.heightAnchor),
         collectionImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        
-        //collectionLabel.topAnchor.constraint(equalTo: collectionImageView.bottomAnchor),
         collectionLabel.leadingAnchor.constraint(equalTo: collectionImageView.leadingAnchor),
         collectionLabel.trailingAnchor.constraint(equalTo: collectionImageView.trailingAnchor),
         collectionLabel.bottomAnchor.constraint(equalTo: collectionImageView.bottomAnchor),
