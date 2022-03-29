@@ -9,15 +9,15 @@ import UIKit
 
 enum UICollectionViewLayout {
     
-    static func collectionViewLayout(in view: UIView) -> UICollectionViewFlowLayout {
+    static func collectionViewLayout(in view: UIView, items: CGFloat) -> UICollectionViewFlowLayout {
         
         let width = view.bounds.width
         let padding: CGFloat = 10
-        let availableWidth = width - (padding * 2)
-        let itemWidth = availableWidth / 4
+        let edges: CGFloat = 10
+        let availableWidth = width - (padding * 2) - (edges * 2)
+        let itemWidth = availableWidth / items
         
         let flowLayout = UICollectionViewFlowLayout()
-        //flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
         flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
         flowLayout.scrollDirection = .horizontal
         return flowLayout

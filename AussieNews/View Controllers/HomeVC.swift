@@ -6,35 +6,15 @@
 //
 
 import UIKit
-import SafariServices
 
-
-//to do next - get all network parameters working with topics
-//finish design of trending and add gestures & button
-//build .map algorithm to filter out identical headlines
-//rework getNews to create new array when selecting collection view
-
-//    var uniqueArticles: [Article] = []
-//    for article in newsArticles {
-//        if !newsArticles.contains(where: {$0.topic == article.topic }) {
-//            uniqueArticles.append(article)
-//        }
-//    }
-//
-
-
-class HomeVC: UIViewController {
+class HomeVC: CustomViewController, SafariProtocol {
     
-    //MARK: - Caruables & Constants
-    
-    
+ 
     var collectionView: UICollectionView!
-    var newsArticles: [Article] = []
     
-    let tableView        = UITableView()
-    let topicArray       = ["sport", "tech", "finance", "politics", "business", "economics", "entertainment", "beauty"]
+    
     let userDefaultFuncs = UserDefaultFuncs()
-    let tableViewRefresh = UIRefreshControl()
+   // let tableViewRefresh = UIRefreshControl()
     let generator = UIImpactFeedbackGenerator(style: .light)
     var sizeBool: Bool = true
     
@@ -46,6 +26,7 @@ class HomeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         userDefaultFuncs.retrievePages()
         configureVC()
         configureCollectionView()
@@ -53,6 +34,7 @@ class HomeVC: UIViewController {
         configureBarButton()
         layoutUI()
         getArticles(params: .home)
+        initLoadingPage()
     }
 
     
@@ -85,6 +67,27 @@ class HomeVC: UIViewController {
       
     }
     
+    func initLoadingPage() {
+        
+        let loadingPageView = LoadingPageView()
+        view.addSubview(loadingPageView)
+        view.bringSubviewToFront(loadingPageView)
+        
+        NSLayoutConstraint.activate([
+            loadingPageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingPageView.topAnchor.constraint(equalTo: view.topAnchor),
+            loadingPageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingPageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        
+        ])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            loadingPageView.removeFromSuperview()
+            print("done")
+        }
+            
+        
+    }
+    
     
     @objc func refreshStarted() {
         newsArticles.removeAll()
@@ -94,7 +97,7 @@ class HomeVC: UIViewController {
     
     
     func configureCollectionView() {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.collectionViewLayout(in: view))
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.collectionViewLayout(in: view, items: 4))
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifier)
         collectionView.isScrollEnabled = true
@@ -119,38 +122,7 @@ class HomeVC: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-    
-    
-    func getArticles(params: NewsManager.networkParams) {
-        NewsManager.Shared.getNews(params: params) { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let newsArticles):
-                DispatchQueue.main.async {
-                    self.newsArticles.append(contentsOf: newsArticles.articles)
-                    self.tableView.reloadData()
-                    print(self.newsArticles.count)
-                }
-                
-            case.failure(let error): print(error.rawValue)
-            }
-        }
-        self.tableViewRefresh.endRefreshing()
-    }
-    
-    //reduce to one func 
-    func showArticle(urlString: String) {
-        if let url = URL(string: urlString) {
-            let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
-            
-            let vc = SFSafariViewController(url: url, configuration: config)
-            present(vc, animated: true)
-        }
-    }
-    
-    
+
     @objc func searchPressed() {
         let vc = SearchVC()
         vc.modalPresentationStyle = UIModalPresentationStyle.popover
@@ -222,7 +194,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article = newsArticles[indexPath.row]
         userDefaultFuncs.savePages(.visited, article: article)
-        showArticle(urlString: article.link!)
+        showArticle(self, urlString: article.link!)
     }
 }
 
