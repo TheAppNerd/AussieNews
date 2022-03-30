@@ -10,16 +10,14 @@ import UIKit
 class NewsManager {
     
     let baseURL = "https://api.newscatcherapi.com/v2/"
-    let homeURL = "latest_headlines?countries=au"
-    let headlines = "latest_headlines?lang=en&countries=au"
+    let homeURL = "latest_headlines?lang=en&countries=au"
+   
     let trending = "latest_headlines?lang=en&countries=au&topic="
-    let topicURL = "sources?countries=au&topic="
     var topic: String = ""
     
     enum networkParams {
         case home
         case trending
-        case topic
     }
     
     static let Shared = NewsManager()
@@ -40,9 +38,7 @@ class NewsManager {
         case .home:
             endpoint = baseURL + homeURL
         case .trending:
-            endpoint = baseURL + trending + topic
-        case .topic:
-            endpoint = baseURL + topicURL + topic
+            endpoint = baseURL + trending + topic.lowercased()
         }
 
 

@@ -7,10 +7,7 @@
 
 import UIKit
 
-//create 5 lines across top with 2 second animation left to right color fill - Complete
-//create view to fill with article data - complete
-//create func to make articles change every 3 seconds
-//add left and right tap gestures
+
 //create fab at bottom to go to page
 //create x top right to dismiss and return to home
 
@@ -105,12 +102,12 @@ class TrendingCategoryVC: UIViewController {
             trendingView.topAnchor.constraint(equalTo: progressStack.bottomAnchor, constant: padding),
             trendingView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             trendingView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            trendingView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
+            trendingView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
             
-            trendingButtonView.topAnchor.constraint(equalTo: trendingView.bottomAnchor, constant: 20),
+            trendingButtonView.topAnchor.constraint(equalTo: trendingView.bottomAnchor, constant: 5),
             trendingButtonView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             trendingButtonView.widthAnchor.constraint(equalTo: trendingView.widthAnchor),
-            trendingButtonView.heightAnchor.constraint(equalTo: trendingView.heightAnchor, multiplier: 0.3)
+            trendingButtonView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5)
         ])
     }
     
@@ -140,14 +137,19 @@ class TrendingCategoryVC: UIViewController {
 
     }
     
-    func animateProgressViews(startingNum: Int) {
+    func progressReset() {
+        
         for (index, view) in progressViewArray.enumerated() {
-            if index < startingNum {
-                view.progress = 1.0
+            if index < progressStatus {
+                view.setProgress(1.0, animated: false)
             } else {
               view.progress = 0.0
         }
         }
+    }
+    
+    func animateProgressViews(startingNum: Int) {
+        
         var num = startingNum
         let duration = 3.0
         timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: true) { timer in
@@ -161,13 +163,9 @@ class TrendingCategoryVC: UIViewController {
         }
     }
     
-    
-    func changeProgressViews() {
-        
-    }
+  
     
     @objc func gesturePressed(_ tap: UITapGestureRecognizer) {
-        print("tapped")
         timer.invalidate()
         let point = tap.location(in: trendingView)
         let leftArea = CGRect(x: 0, y: 0, width: trendingView.frame.width / 2, height: trendingView.frame.height)
@@ -180,12 +178,10 @@ class TrendingCategoryVC: UIViewController {
             progressStatus += 1
             }
         }
-        print(progressStatus)
-        
+        progressReset()
         let article = self.newsArticles[progressStatus]
         self.trendingView.set(article)
         animateProgressViews(startingNum: progressStatus)
-        
     }
     
 }

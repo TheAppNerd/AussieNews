@@ -198,4 +198,8 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         }
         showArticle(urlString: (article?.link)!)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        view.frame.size.height / 2.8
+    }
 }
