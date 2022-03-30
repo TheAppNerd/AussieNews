@@ -39,6 +39,7 @@ class bigHomeCell: UITableViewCell {
         contentView.isUserInteractionEnabled = true
         
         newsImage.contentMode = .scaleAspectFill
+        newsImage.image = UIImage(named: "placeholder")
         
         headlineLabel.font = UIFont.boldSystemFont(ofSize: 16)
         

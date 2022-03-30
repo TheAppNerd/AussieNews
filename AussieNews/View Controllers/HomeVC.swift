@@ -34,7 +34,7 @@ class HomeVC: CustomViewController, SafariProtocol {
         configureBarButton()
         layoutUI()
         getArticles(params: .home)
-        initLoadingPage()
+        //initLoadingPage()
     }
 
     
@@ -175,6 +175,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         case false: let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
             cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
+            print("media\(newsArticles[indexPath.row].media)")
             cell.set(article: article)
             return cell
         }
@@ -217,6 +218,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let topic = topicArray[indexPath.row]
         NewsManager.Shared.topic = topic
+        
         let vc = TrendingCategoryVC()
         vc.title = topic
         show(vc, sender: self)

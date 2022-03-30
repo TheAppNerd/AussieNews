@@ -52,7 +52,7 @@ class TrendingButtonView: UIView {
         NSLayoutConstraint.activate([
             openURLButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             openURLButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 60),
-            openURLButton.heightAnchor.constraint(equalToConstant: 60),
+            openURLButton.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5),
             openURLButton.widthAnchor.constraint(equalTo: openURLButton.heightAnchor, multiplier: 2.0),
             
             saveButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
