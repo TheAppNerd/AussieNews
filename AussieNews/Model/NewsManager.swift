@@ -9,52 +9,37 @@ import UIKit
 
 class NewsManager {
     
-    let baseURL = "https://api.newscatcherapi.com/v2/"
-    let homeURL = "latest_headlines?lang=en&countries=au"
-   
-    let trending = "latest_headlines?lang=en&countries=au&topic="
-    var topic: String = ""
+    let apiKey = "&apiKey=a1c9799d78c040df82b183e5ccae527f"
+    let baseURL = "https://newsapi.org/v2/top-headlines?country=au&pagesize=100&category="
     
-    enum networkParams {
-        case home
-        case trending
-    }
+    var newsArticles: [Article] = []
+    var businessArticles: [Article] = []
+    var entertainmentArticles: [Article] = []
+    var generalArticles: [Article] = []
+    var healthArticles: [Article] = []
+    var scienceArticles: [Article] = []
+    var sportsArticles: [Article] = []
+    var technologyArticles: [Article] = []
     
+    
+
     static let Shared = NewsManager()
     
     private init () {}
     
     let cache = NSCache<NSString, UIImage>()
-
     
     
-    ////v2/latest_headlines?countries=AU&topic=business&page_size=2
     
-    func getNews(params: networkParams, completed: @escaping (Result<Articles, NewsErrors>) -> Void) {
-        
-        var endpoint: String = ""
-        
-        switch params {
-        case .home:
-            endpoint = baseURL + homeURL
-        case .trending:
-            endpoint = baseURL + trending + topic.lowercased()
-        }
-
-
+    func getNews(topic: String, completed: @escaping (Result<Articles, NewsErrors>) -> Void) {
+        let endpoint: String = baseURL + topic + apiKey
+    
         guard let url = URL(string: endpoint) else {
             completed(.failure(.urlError))
             return
         }
 
-        var request = URLRequest(url: url)
-       
-        //hide this key
-        request.addValue("9IdSOBlQI3mUlrru9-qShsYwhy1qWjrPfcTRm9M7r10", forHTTPHeaderField: "x-api-key")
-
-
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
 
             if let _ = error {
                 completed(.failure(.urlError))

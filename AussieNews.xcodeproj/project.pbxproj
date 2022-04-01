@@ -35,7 +35,6 @@
 		FAA4711327E2DAB70039DC52 /* SavedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4711227E2DAB60039DC52 /* SavedVC.swift */; };
 		FAAE9B4327F2725E00918996 /* smallHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B4227F2725E00918996 /* smallHomeCell.swift */; };
 		FAAE9B4527F2987100918996 /* SafariProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B4427F2987000918996 /* SafariProtocol.swift */; };
-		FAAE9B4827F2A56700918996 /* NewsManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B4727F2A56700918996 /* NewsManagerProtocol.swift */; };
 		FAAE9B4A27F2AD6800918996 /* LoadingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B4927F2AD6800918996 /* LoadingPageView.swift */; };
 		FAAE9B4D27F2B83200918996 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B4C27F2B83200918996 /* CustomViewController.swift */; };
 		FAAE9B5127F2C83C00918996 /* TopicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5027F2C83C00918996 /* TopicVC.swift */; };
@@ -95,7 +94,6 @@
 		FAA4711227E2DAB60039DC52 /* SavedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVC.swift; sourceTree = "<group>"; };
 		FAAE9B4227F2725E00918996 /* smallHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smallHomeCell.swift; sourceTree = "<group>"; };
 		FAAE9B4427F2987000918996 /* SafariProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariProtocol.swift; sourceTree = "<group>"; };
-		FAAE9B4727F2A56700918996 /* NewsManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManagerProtocol.swift; sourceTree = "<group>"; };
 		FAAE9B4927F2AD6800918996 /* LoadingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPageView.swift; sourceTree = "<group>"; };
 		FAAE9B4C27F2B83200918996 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		FAAE9B5027F2C83C00918996 /* TopicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicVC.swift; sourceTree = "<group>"; };
@@ -267,7 +265,6 @@
 			isa = PBXGroup;
 			children = (
 				FAAE9B4427F2987000918996 /* SafariProtocol.swift */,
-				FAAE9B4727F2A56700918996 /* NewsManagerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -414,7 +411,6 @@
 				FA7E122027E4311F00E2D94C /* bigHomeCell.swift in Sources */,
 				FAAE9B4A27F2AD6800918996 /* LoadingPageView.swift in Sources */,
 				FACE42B527ED50D50057772F /* CustomLabel.swift in Sources */,
-				FAAE9B4827F2A56700918996 /* NewsManagerProtocol.swift in Sources */,
 				FA7E123527E81EDC00E2D94C /* BookMarkEmptyState.swift in Sources */,
 				FA7E123227E8069000E2D94C /* UICollectionViewLayout.swift in Sources */,
 				FA7E124D27EA7B4600E2D94C /* TrendingCategoryVC.swift in Sources */,
