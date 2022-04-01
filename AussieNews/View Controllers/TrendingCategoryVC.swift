@@ -29,7 +29,7 @@ class TrendingCategoryVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getArticles(params: .trending)
+//        getArticles(params: .trending)
     }
     
     
@@ -42,21 +42,21 @@ class TrendingCategoryVC: UIViewController {
     }
     
     
-    func getArticles(params: NewsManager.networkParams) {
-        NewsManager.Shared.getNews(params:params) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let newsArticles):
-                DispatchQueue.main.async {
-                    self.newsArticles.append(contentsOf: newsArticles.articles)
-                    self.trendingView.set(self.newsArticles[0])
-                    self.animateProgressViews(startingNum: 0)
-                }
-                
-            case.failure(let error): print(error.rawValue)
-            }
-        }
-    }
+//    func getArticles(params: NewsManager.networkParams) {
+//        NewsManager.Shared.getNews(params:params) { [weak self] result in
+//            guard let self = self else { return }
+//            switch result {
+//            case .success(let newsArticles):
+//                DispatchQueue.main.async {
+//                    self.newsArticles.append(contentsOf: newsArticles.articles)
+//                    self.trendingView.set(self.newsArticles[0])
+//                    self.animateProgressViews(startingNum: 0)
+//                }
+//                
+//            case.failure(let error): print(error.rawValue)
+//            }
+//        }
+//    }
     
     
     private func configure() {

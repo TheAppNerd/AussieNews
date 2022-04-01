@@ -12,10 +12,7 @@ class TopicVC: CustomViewController {
    
     var topic: String = ""
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        getArticles(params: .trending)
-    }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +38,12 @@ class TopicVC: CustomViewController {
 
 extension TopicVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsArticles.count
+        return NewsManager.Shared.newsArticles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
-        cell.set(article: newsArticles[indexPath.row])
+        cell.set(article: NewsManager.Shared.newsArticles[indexPath.row])
         return cell
     }
     

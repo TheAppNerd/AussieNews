@@ -85,12 +85,12 @@ class smallHomeCell: UITableViewCell {
             saveButton.tintColor = .secondaryLabel
         }
         
-        if let imageURL = article.media {
+        if let imageURL = article.urlToImage {
             newsImage.downloadImage(from: imageURL)
         }
-        topicLabel.text = article.topic?.uppercased()
+        //topicLabel.text = article.topic?.uppercased()
         headlineLabel.text = article.title
-        articleAuthorLabel.text = article.rights
+        articleAuthorLabel.text = article.source?.name
 
     }
     

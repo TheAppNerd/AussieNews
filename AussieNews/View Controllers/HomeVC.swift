@@ -33,7 +33,7 @@ class HomeVC: CustomViewController, SafariProtocol {
         configureTableView()
         configureBarButton()
         layoutUI()
-        getArticles(params: .home)
+        getArticles()
         //initLoadingPage()
     }
 
@@ -90,8 +90,8 @@ class HomeVC: CustomViewController, SafariProtocol {
     
     
     @objc func refreshStarted() {
-        newsArticles.removeAll()
-        getArticles(params: .home)
+        //newsArticles.removeAll()
+        //getArticles(params: .home)
         generator.impactOccurred()
     }
     
@@ -136,7 +136,7 @@ class HomeVC: CustomViewController, SafariProtocol {
         let buttonPosition: CGPoint = sender.convert(CGPoint.zero, to: self.tableView)
         guard let indexPath = self.tableView.indexPathForRow(at: buttonPosition) else { return }
         
-        let article = newsArticles[indexPath.row]
+        let article = NewsManager.Shared.newsArticles[indexPath.row]
         
         switch UserDefaultFuncs.savedPagesArray.contains(article) {
         case true: UserDefaultFuncs().removeSavedPage(article: article)
@@ -161,12 +161,12 @@ class HomeVC: CustomViewController, SafariProtocol {
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsArticles.count
+        return NewsManager.Shared.newsArticles.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let article = newsArticles[indexPath.row]
+        let article = NewsManager.Shared.newsArticles[indexPath.row]
         
         switch sizeBool {
         case true: let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
@@ -175,7 +175,6 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         case false: let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
             cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
-            print("media\(newsArticles[indexPath.row].media)")
             cell.set(article: article)
             return cell
         }
@@ -193,9 +192,10 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let article = newsArticles[indexPath.row]
+        let article = NewsManager.Shared.newsArticles[indexPath.row]
+        sortArticle(article)
         userDefaultFuncs.savePages(.visited, article: article)
-        showArticle(self, urlString: article.link!)
+        showArticle(self, urlString: article.url!)
     }
 }
 
@@ -217,7 +217,6 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let topic = topicArray[indexPath.row]
-        NewsManager.Shared.topic = topic
         
         let vc = TrendingCategoryVC()
         vc.title = topic

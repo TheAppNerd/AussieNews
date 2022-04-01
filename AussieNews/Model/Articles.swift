@@ -13,18 +13,19 @@ struct Articles: Codable {
 }
 
 struct Article: Codable, Hashable {
+        let author: String?
+        let title: String?
+        let description: String?
+        let content: String?
+        let url: String?
+        let urlToImage: String?
+        let publishedAt: String?
+        let source: Source?
+    }
+
     
-    let title: String?
-    let author: String?
-    let published_date: String?
-    let link: String?
-    let excerpt: String?
-    let summary: String?
-    let rights: String?
-    let topic: String?
-    let country: String?
-    let language: String?
-    let media: String?
-
-
+struct Source: Codable, Hashable {
+        let name: String?
 }
+
+
