@@ -12,7 +12,11 @@ class TopicVC: CustomViewController {
    
     var topic: String = ""
     
-   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NewsManager.Shared.topic = topic
+        getArticles(params: .topic)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +42,12 @@ class TopicVC: CustomViewController {
 
 extension TopicVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NewsManager.Shared.newsArticles.count
+        return newsArticles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
-        cell.set(article: NewsManager.Shared.newsArticles[indexPath.row])
+        cell.set(article: newsArticles[indexPath.row])
         return cell
     }
     

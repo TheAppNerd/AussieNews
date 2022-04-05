@@ -9,37 +9,49 @@ import UIKit
 
 class NewsManager {
     
-    let apiKey = "&apiKey=a1c9799d78c040df82b183e5ccae527f"
-    let baseURL = "https://newsapi.org/v2/top-headlines?country=au&pagesize=100&category="
+    let baseURL = "https://api.newscatcherapi.com/v2/"
+    let headlines = "latest_headlines?lang=en&countries=au"
+    let topicURL = "latest_headlines?lang=en&countries=au&topic="
+    var topic: String = ""
     
-    var newsArticles: [Article] = []
-    var businessArticles: [Article] = []
-    var entertainmentArticles: [Article] = []
-    var generalArticles: [Article] = []
-    var healthArticles: [Article] = []
-    var scienceArticles: [Article] = []
-    var sportsArticles: [Article] = []
-    var technologyArticles: [Article] = []
+    enum networkParams {
+        case home
+        case topic
+    }
     
-    
-
     static let Shared = NewsManager()
     
     private init () {}
     
+  
     let cache = NSCache<NSString, UIImage>()
     
+    func getNews(params: networkParams, completed: @escaping (Result<Articles, NewsErrors>) -> Void) {
+        
+        var endpoint: String = ""
+        
+        switch params {
+        case .home:
+            endpoint = baseURL + headlines
     
-    
-    func getNews(topic: String, completed: @escaping (Result<Articles, NewsErrors>) -> Void) {
-        let endpoint: String = baseURL + topic + apiKey
-    
+        case .topic:
+            endpoint = baseURL + topicURL + topic
+        }
+
+
         guard let url = URL(string: endpoint) else {
             completed(.failure(.urlError))
             return
         }
 
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        var request = URLRequest(url: url)
+       
+        //hide this key
+        request.addValue("-4JjtRyAm4l4Djwgl2VpVmsE1LXUtLBHeeUdaCOF41g", forHTTPHeaderField: "x-api-key")
+
+
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
 
             if let _ = error {
                 completed(.failure(.urlError))
@@ -61,6 +73,7 @@ class NewsManager {
                 let newsArticles = try decoder.decode(Articles.self, from: data)
                 completed(.success(newsArticles))
             } catch {
+               
                 completed(.failure(.decodeError))
             }
         }
@@ -105,3 +118,4 @@ class NewsManager {
 
     
 }
+

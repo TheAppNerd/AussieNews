@@ -20,16 +20,16 @@ class TrendingCategoryVC: UIViewController {
     let progressStack       = UIStackView()
     let trendingView        = TrendingView()
     let trendingButtonView  = TrendingButtonView()
-    
+    var newsArticles: [Article] = []
+    var topic: String = ""
     var progressStatus: Int = -1
     var timer               = Timer()
-    var newsArticles: [Article] = []
     var progressViewArray: [UIProgressView] = []
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        getArticles(params: .trending)
+        getArticles(params: .topic)
     }
     
     
@@ -41,22 +41,23 @@ class TrendingCategoryVC: UIViewController {
         setupGestures()
     }
     
-    
-//    func getArticles(params: NewsManager.networkParams) {
-//        NewsManager.Shared.getNews(params:params) { [weak self] result in
-//            guard let self = self else { return }
-//            switch result {
-//            case .success(let newsArticles):
-//                DispatchQueue.main.async {
-//                    self.newsArticles.append(contentsOf: newsArticles.articles)
-//                    self.trendingView.set(self.newsArticles[0])
-//                    self.animateProgressViews(startingNum: 0)
-//                }
-//                
-//            case.failure(let error): print(error.rawValue)
-//            }
-//        }
-//    }
+    //create in customvc
+    func getArticles(params: NewsManager.networkParams) {
+        NewsManager.Shared.topic = topic
+        NewsManager.Shared.getNews(params:params) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let newsArticles):
+                DispatchQueue.main.async {
+                    self.newsArticles.append(contentsOf: newsArticles.articles)
+                    self.trendingView.set(self.newsArticles[0])
+                    self.animateProgressViews(startingNum: 0)
+                }
+                
+            case.failure(let error): print(error.rawValue)
+            }
+        }
+    }
     
     
     private func configure() {
