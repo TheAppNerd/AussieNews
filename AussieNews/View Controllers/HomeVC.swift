@@ -152,6 +152,7 @@ class HomeVC: CustomViewController, SafariProtocol {
         sizeBool.toggle()
         tableView.reloadData()
         tableView.reloadInputViews()
+       
     }
     
     }
