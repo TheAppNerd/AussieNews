@@ -62,7 +62,7 @@ extension UserDefaultFuncs {
     func removeSavedPage(article: Article) {
         retrievePages()
        
-        UserDefaultFuncs.savedPagesArray.removeAll { $0.url == article.url }
+        UserDefaultFuncs.savedPagesArray.removeAll { $0.link == article.link }
         if let array = try? JSONEncoder().encode(UserDefaultFuncs.savedPagesArray) {
             defaults.set(array, forKey: "saved")
         } else {

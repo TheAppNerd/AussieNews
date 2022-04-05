@@ -33,7 +33,7 @@ class HomeVC: CustomViewController, SafariProtocol {
         configureTableView()
         configureBarButton()
         layoutUI()
-        getArticles()
+        getArticles(params: .home)
         //initLoadingPage()
     }
 
@@ -136,7 +136,7 @@ class HomeVC: CustomViewController, SafariProtocol {
         let buttonPosition: CGPoint = sender.convert(CGPoint.zero, to: self.tableView)
         guard let indexPath = self.tableView.indexPathForRow(at: buttonPosition) else { return }
         
-        let article = NewsManager.Shared.newsArticles[indexPath.row]
+        let article = newsArticles[indexPath.row]
         
         switch UserDefaultFuncs.savedPagesArray.contains(article) {
         case true: UserDefaultFuncs().removeSavedPage(article: article)
@@ -161,12 +161,12 @@ class HomeVC: CustomViewController, SafariProtocol {
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return NewsManager.Shared.newsArticles.count
+        return newsArticles.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let article = NewsManager.Shared.newsArticles[indexPath.row]
+        let article = newsArticles[indexPath.row]
         
         switch sizeBool {
         case true: let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
@@ -192,10 +192,10 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let article = NewsManager.Shared.newsArticles[indexPath.row]
-        sortArticle(article)
+        let article = newsArticles[indexPath.row]
+        //sortArticle(article)
         userDefaultFuncs.savePages(.visited, article: article)
-        showArticle(self, urlString: article.url!)
+        showArticle(self, urlString: article.link!)
     }
 }
 
@@ -220,6 +220,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         
         let vc = TrendingCategoryVC()
         vc.title = topic
+        vc.topic = topic
         show(vc, sender: self)
     }
 }

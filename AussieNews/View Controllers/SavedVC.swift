@@ -196,7 +196,7 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             article = UserDefaultFuncs.visitedPagesArray[indexPath.row]
         }
-        showArticle(urlString: (article?.url)!)
+        showArticle(urlString: (article?.link)!)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
