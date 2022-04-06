@@ -40,8 +40,8 @@
 		FAAE9B5127F2C83C00918996 /* TopicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5027F2C83C00918996 /* TopicVC.swift */; };
 		FAAE9B5327FBE1B400918996 /* SettingsSocialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5227FBE1B400918996 /* SettingsSocialCell.swift */; };
 		FAAE9B5527FBF58A00918996 /* SettingsSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5427FBF58A00918996 /* SettingsSegmentCell.swift */; };
-		FAAE9B5727FBF5D000918996 /* SettingsTintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5627FBF5D000918996 /* SettingsTintCell.swift */; };
 		FAAE9B5927FBF5E400918996 /* SettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5827FBF5E400918996 /* SettingsFooterView.swift */; };
+		FAAE9B5B27FD5ADD00918996 /* UserDefaultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5A27FD5ADD00918996 /* UserDefaultsVC.swift */; };
 		FACE42B127EBF1090057772F /* TrendingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE42B027EBF1090057772F /* TrendingButtonView.swift */; };
 		FACE42B327EC276E0057772F /* UserDefaultsFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE42B227EC276E0057772F /* UserDefaultsFuncs.swift */; };
 		FACE42B527ED50D50057772F /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE42B427ED50D50057772F /* CustomLabel.swift */; };
@@ -103,8 +103,8 @@
 		FAAE9B5027F2C83C00918996 /* TopicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicVC.swift; sourceTree = "<group>"; };
 		FAAE9B5227FBE1B400918996 /* SettingsSocialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSocialCell.swift; sourceTree = "<group>"; };
 		FAAE9B5427FBF58A00918996 /* SettingsSegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSegmentCell.swift; sourceTree = "<group>"; };
-		FAAE9B5627FBF5D000918996 /* SettingsTintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTintCell.swift; sourceTree = "<group>"; };
 		FAAE9B5827FBF5E400918996 /* SettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFooterView.swift; sourceTree = "<group>"; };
+		FAAE9B5A27FD5ADD00918996 /* UserDefaultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsVC.swift; sourceTree = "<group>"; };
 		FACE42B027EBF1090057772F /* TrendingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingButtonView.swift; sourceTree = "<group>"; };
 		FACE42B227EC276E0057772F /* UserDefaultsFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsFuncs.swift; sourceTree = "<group>"; };
 		FACE42B427ED50D50057772F /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
@@ -173,7 +173,6 @@
 				FAAE9B4227F2725E00918996 /* smallHomeCell.swift */,
 				FA7E122D27E494C200E2D94C /* CollectionViewCell.swift */,
 				FAAE9B5227FBE1B400918996 /* SettingsSocialCell.swift */,
-				FAAE9B5627FBF5D000918996 /* SettingsTintCell.swift */,
 				FAAE9B5427FBF58A00918996 /* SettingsSegmentCell.swift */,
 			);
 			path = Cells;
@@ -285,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				FAAE9B4C27F2B83200918996 /* CustomViewController.swift */,
+				FAAE9B5A27FD5ADD00918996 /* UserDefaultsVC.swift */,
 			);
 			path = CustomVCs;
 			sourceTree = "<group>";
@@ -430,6 +430,7 @@
 				FAAE9B4D27F2B83200918996 /* CustomViewController.swift in Sources */,
 				FAAE9B4527F2987100918996 /* SafariProtocol.swift in Sources */,
 				FA7E122E27E494C200E2D94C /* CollectionViewCell.swift in Sources */,
+				FAAE9B5B27FD5ADD00918996 /* UserDefaultsVC.swift in Sources */,
 				FAA470E527E298AE0039DC52 /* HomeVC.swift in Sources */,
 				FA7E123027E7FB0500E2D94C /* CustomButton.swift in Sources */,
 				FA7E123C27E845C300E2D94C /* CategoriesVC.swift in Sources */,
@@ -451,7 +452,6 @@
 				FAA470E127E298AE0039DC52 /* AppDelegate.swift in Sources */,
 				FA7E124327E9283800E2D94C /* Articles.swift in Sources */,
 				FAA470E327E298AE0039DC52 /* SceneDelegate.swift in Sources */,
-				FAAE9B5727FBF5D000918996 /* SettingsTintCell.swift in Sources */,
 				FA7E123E27E847F300E2D94C /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
