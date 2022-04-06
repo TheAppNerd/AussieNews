@@ -9,7 +9,7 @@ import UIKit
 
 class SettingsFooterView: UIView {
     
-    let iconImage = CustomImageView(frame: .zero)
+   
     let appNerdImage = CustomImageView(frame: .zero)
     let footerLabel = CustomLabel()
 
@@ -24,9 +24,9 @@ class SettingsFooterView: UIView {
     }
     
     private func configure() {
-        iconImage.image = UIImage(named: "aussieNewsIcon")
         appNerdImage.image = UIImage(named: "appNerdIcon")
         footerLabel.textAlignment = .center
+        footerLabel.textColor = .darkGray
         footerLabel.text = """
 Aussie News
 App made with 🤍 by
@@ -35,22 +35,19 @@ Alex Thompson
     }
     
     private func layoutUI() {
-        self.addSubviews(iconImage, appNerdImage, footerLabel)
+        self.addSubviews(appNerdImage, footerLabel)
         let padding: CGFloat = 10
         NSLayoutConstraint.activate([
-            iconImage.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
-            iconImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            iconImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
-            iconImage.heightAnchor.constraint(equalTo: iconImage.widthAnchor),
-            
-            footerLabel.topAnchor.constraint(equalTo: iconImage.bottomAnchor, constant: padding),
+        
+    
+            footerLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: padding * 5),
             footerLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            footerLabel.widthAnchor.constraint(equalTo: iconImage.widthAnchor, multiplier: 2.0),
-            footerLabel.heightAnchor.constraint(equalTo: iconImage.heightAnchor),
+            footerLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6),
+            footerLabel.heightAnchor.constraint(equalTo: footerLabel.heightAnchor),
             
             appNerdImage.topAnchor.constraint(equalTo: footerLabel.bottomAnchor, constant: padding),
             appNerdImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            appNerdImage.widthAnchor.constraint(equalTo: iconImage.widthAnchor),
+            appNerdImage.widthAnchor.constraint(equalTo: footerLabel.widthAnchor, multiplier: 0.5),
             appNerdImage.heightAnchor.constraint(equalTo: appNerdImage.widthAnchor)
                                                  
         ])

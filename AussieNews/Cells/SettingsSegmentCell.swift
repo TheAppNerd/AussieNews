@@ -26,9 +26,10 @@ class SettingsSegmentCell: UITableViewCell {
     private func configure() {
         contentView.backgroundColor = .secondarySystemBackground
             darkModeSegment.translatesAutoresizingMaskIntoConstraints = false
-            darkModeSegment.backgroundColor = .secondarySystemBackground
-            darkModeSegment.selectedSegmentTintColor = self.tintColor
-            let segmentArray = ["Device", "Dark", "Light"]
+            darkModeSegment.backgroundColor = .tertiarySystemBackground
+        
+        darkModeSegment.selectedSegmentTintColor = .orange
+            let segmentArray = ["Device", "Light Theme", "Dark Theme"]
             for num in 0...2  {
                 darkModeSegment.insertSegment(withTitle: segmentArray[num], at: num, animated: true)
             }

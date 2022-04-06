@@ -22,6 +22,7 @@ class HomeVC: CustomViewController, SafariProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        selectCurrentDarkMode()
     }
     
     override func viewDidLoad() {
@@ -88,6 +89,23 @@ class HomeVC: CustomViewController, SafariProtocol {
         
     }
     
+    private func selectCurrentDarkMode() {
+        let defaults = UserDefaults.standard
+        var mode = traitCollection.userInterfaceStyle
+        
+        switch defaults.object(forKey: "darkMode") as? String {
+        case "Device": mode = UIScreen.main.traitCollection.userInterfaceStyle
+        case "Light": mode = UIUserInterfaceStyle.light
+        case "Dark": mode = UIUserInterfaceStyle.dark
+        case nil: mode = UIScreen.main.traitCollection.userInterfaceStyle
+        default:
+            mode = UIScreen.main.traitCollection.userInterfaceStyle
+        }
+        UIApplication.shared.windows.forEach { window in
+            window.overrideUserInterfaceStyle = mode
+        }
+}
+    
     
     @objc func refreshStarted() {
         //newsArticles.removeAll()
@@ -152,7 +170,7 @@ class HomeVC: CustomViewController, SafariProtocol {
         sizeBool.toggle()
         tableView.reloadData()
         tableView.reloadInputViews()
-       
+        
     }
     
     }
