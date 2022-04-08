@@ -12,6 +12,7 @@ extension UIViewController {
     enum saveStatus {
         case saving
         case removing
+        case copied
     }
     
     func saveLabel(_ status: saveStatus) {
@@ -40,6 +41,9 @@ extension UIViewController {
         case .removing: imageView.image = UIImage(systemName: "bookmark")
             mainLabel.text = "Removed"
             secondLabel.text = "This story has been removed from bookmarks"
+        case .copied: imageView.image = UIImage(systemName: "link")
+            mainLabel.text = "Copied"
+            secondLabel.text = "Article copied & can now be shared"
         }
         
         saveView.translatesAutoresizingMaskIntoConstraints = false

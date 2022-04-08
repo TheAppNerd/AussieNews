@@ -47,7 +47,7 @@ extension TopicVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
-        cell.set(article: newsArticles[indexPath.row])
+        cell.set(article: newsArticles[indexPath.row], vc: self)
         return cell
     }
     
