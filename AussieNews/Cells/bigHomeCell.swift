@@ -7,26 +7,15 @@
 
 import UIKit
 
-class bigHomeCell: UITableViewCell {
+class bigHomeCell: DefaultCell {
     
     static let reuseIdentifier = "bigCell"
-    
-    
-    var article: Article?
-    let newsImage          = CustomImageView(frame: .zero)
-    let topicLabel         = CustomLabel(.secondaryLabel)
-    let headlineLabel      = CustomLabel(.label)
-    let articleDateLabel   = CustomLabel(.secondaryLabel)
-    let articleAuthorLabel = CustomLabel(.secondaryLabel)
-    let saveButton         = CustomButton()
-    let optionsButton      = CustomButton()
-
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureCell()
-        layoutUI()
         configureButtons()
+        layoutUI()
     }
     
     required init?(coder: NSCoder) {
@@ -34,65 +23,6 @@ class bigHomeCell: UITableViewCell {
     }
     
     
-    private func configureCell() {
-        contentView.addSubviews(newsImage, topicLabel, headlineLabel, articleDateLabel, articleAuthorLabel, saveButton, optionsButton)
-        contentView.isUserInteractionEnabled = true
-        
-        newsImage.contentMode = .scaleAspectFill
-        newsImage.image = UIImage(named: "placeholder")
-        
-        headlineLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        
-        articleDateLabel.text = "1 hour ago"
-    }
-    
-    private func configureButtons() {
-        saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-       // saveButton.addTarget(self, action: #selector(savePressed), for: .touchUpInside)
-        saveButton.tintColor = .secondaryLabel
-        
-        optionsButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
-        optionsButton.addTarget(self, action: #selector(optionsPressed), for: .touchUpInside)
-        optionsButton.tintColor = .secondaryLabel
-        
-    }
-    
-//    @objc func savePressed() {
-//
-//        switch UserDefaultFuncs.savedPagesArray.contains(article!) {
-//        case true: UserDefaultFuncs().removeSavedPage(article: article!)
-//            saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-//        case false: UserDefaultFuncs().savePages(.saved, article: article!)
-//            saveButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-//        }
-//
-//        print(UserDefaultFuncs.savedPagesArray.count)
-//    }
-    
-    @objc func optionsPressed() {
-        
-    }
-    
-    
-    
-    func set(article: Article) {
-        self.article = article
-        
-        switch UserDefaultFuncs.savedPagesArray.contains(article) {
-        case true: saveButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-            saveButton.tintColor = .orange
-        case false: saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-            saveButton.tintColor = .secondaryLabel
-        }
-        
-        if let imageURL = article.media {
-            newsImage.downloadImage(from: imageURL)
-        }
-        //topicLabel.text = article.topic?.uppercased()
-        headlineLabel.text = article.title
-        articleAuthorLabel.text = article.rights
-
-    }
     
     private func layoutUI() {
         
