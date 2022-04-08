@@ -182,9 +182,9 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
         cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         if bookmarkButton.isSelected {
-            cell.set(article: UserDefaultFuncs.savedPagesArray[indexPath.row])
+            cell.set(article: UserDefaultFuncs.savedPagesArray[indexPath.row], vc: self)
         } else {
-            cell.set(article: UserDefaultFuncs.visitedPagesArray[indexPath.row])
+            cell.set(article: UserDefaultFuncs.visitedPagesArray[indexPath.row], vc: self)
         }
         return cell
     }

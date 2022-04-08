@@ -190,11 +190,11 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         switch sizeBool {
         case true: let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
             cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
-            cell.set(article: article)
+            cell.set(article: article, vc: self)
             return cell
         case false: let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
             cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
-            cell.set(article: article)
+            cell.set(article: article, vc: self)
             return cell
         }
         
