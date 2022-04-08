@@ -48,6 +48,7 @@
 		FACE42B327EC276E0057772F /* UserDefaultsFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE42B227EC276E0057772F /* UserDefaultsFuncs.swift */; };
 		FACE42B527ED50D50057772F /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE42B427ED50D50057772F /* CustomLabel.swift */; };
 		FACE42B727F165C50057772F /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE42B627F165C50057772F /* UIViewController + Ext.swift */; };
+		FAD4655827FFDA3900E6CF7A /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD4655727FFDA3900E6CF7A /* DefaultCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		FACE42B227EC276E0057772F /* UserDefaultsFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsFuncs.swift; sourceTree = "<group>"; };
 		FACE42B427ED50D50057772F /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		FACE42B627F165C50057772F /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
+		FAD4655727FFDA3900E6CF7A /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 		FA7E122C27E43DE300E2D94C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				FAD4655727FFDA3900E6CF7A /* DefaultCell.swift */,
 				FA7E121F27E4311F00E2D94C /* bigHomeCell.swift */,
 				FAAE9B4227F2725E00918996 /* smallHomeCell.swift */,
 				FA7E122D27E494C200E2D94C /* CollectionViewCell.swift */,
@@ -435,6 +438,7 @@
 				FA7E123227E8069000E2D94C /* UICollectionViewLayout.swift in Sources */,
 				FA7E124D27EA7B4600E2D94C /* TrendingCategoryVC.swift in Sources */,
 				FAAE9B4D27F2B83200918996 /* CustomViewController.swift in Sources */,
+				FAD4655827FFDA3900E6CF7A /* DefaultCell.swift in Sources */,
 				FAAE9B4527F2987100918996 /* SafariProtocol.swift in Sources */,
 				FA7E122E27E494C200E2D94C /* CollectionViewCell.swift in Sources */,
 				FAAE9B5B27FD5ADD00918996 /* UserDefaultsVC.swift in Sources */,
