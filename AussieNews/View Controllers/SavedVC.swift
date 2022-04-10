@@ -8,7 +8,7 @@
 import UIKit
 import SafariServices
 
-class SavedVC: UIViewController{
+class SavedVC: UIViewController, SafariProtocol {
    
     //MARK: - variables & constants
     
@@ -72,16 +72,6 @@ class SavedVC: UIViewController{
         lineTwo.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    func showArticle(urlString: String) {
-        if let url = URL(string: urlString) {
-            let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
-            
-            let vc = SFSafariViewController(url: url, configuration: config)
-            present(vc, animated: true)
-        }
-    }
-    
     
     private func layoutUI(){
         view.addSubviews(bookmarkButton, recentButton, lineOne, lineTwo, tableView)
@@ -134,7 +124,21 @@ class SavedVC: UIViewController{
     //MARK: - @objc Funcs
     
     @objc func clearPressed() {
-        //build a user default func to clear arrays entirely
+        let alert = UIAlertController(title: "Clear Articles", message: "Are you sure you wish to clear this list?", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+            if self.bookmarkButton.isSelected == true {
+                self.userDefaultFuncs.clearArticles(.saved)
+            } else {
+                self.userDefaultFuncs.clearArticles(.visited)
+            }
+            self.bookmarkButton.setTitle("Saved \(self.userDefaultFuncs.savedArticleArray.count)", for: .normal)
+            self.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "No", style: .cancel)
+        alert.addAction(cancelAction)
+        alert.addAction(confirmAction)
+        
+        present(alert, animated: true)
     }
     
 
@@ -162,8 +166,7 @@ class SavedVC: UIViewController{
         userDefaultFuncs.retrieveArticles()
         tableView.reloadData()
         bookmarkButton.setTitle("Saved \(userDefaultFuncs.savedArticleArray.count)", for: .normal)
-        
-        
+
     }
 }
 
@@ -181,6 +184,7 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         userDefaultFuncs.retrieveArticles()
+        bookmarkButton.setTitle("Saved \(userDefaultFuncs.savedArticleArray.count)", for: .normal)
         let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
         cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         if bookmarkButton.isSelected {
@@ -198,8 +202,8 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             article = userDefaultFuncs.visitedArticleArray[indexPath.row]
         }
-        UserDefaultFuncs().saveArticle(.visited, article: article!)
-        showArticle(urlString: (article?.link)!)
+       
+        showArticle(self, article: article!)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

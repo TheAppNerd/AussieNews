@@ -68,6 +68,32 @@ class UserDefaultFuncs {
                 print("Failed to save articles.")
             }
         }
+    
+    
+    func clearArticles(_ articleArray: articleArray) {
+        retrieveArticles()
+        switch articleArray {
+        case .visited:
+            visitedArticleArray.removeAll()
+            if let data = try? JSONEncoder().encode(visitedArticleArray) {
+                defaults.set(data, forKey: "visited")
+            } else {
+                print("Failed to save articles.")
+            }
+        case .saved:
+            savedArticleArray.removeAll()
+            if let data = try? JSONEncoder().encode(savedArticleArray) {
+                defaults.set(data, forKey: "saved")
+            } else {
+                print("Failed to save articles.")
+            }
+        }
+        
     }
+    
+    
+    }
+
+
 
 

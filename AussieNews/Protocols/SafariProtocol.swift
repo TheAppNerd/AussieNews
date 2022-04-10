@@ -12,8 +12,9 @@ protocol SafariProtocol { }
 
 extension SafariProtocol {
     
-    func showArticle(_ vc: UIViewController, urlString: String) {
-        if let url = URL(string: urlString) {
+    func showArticle(_ vc: UIViewController, article: Article) {
+        UserDefaultFuncs().saveArticle(.visited, article: article)
+        if let url = URL(string: article.link!) {
             let config = SFSafariViewController.Configuration()
             config.entersReaderIfAvailable = true
             

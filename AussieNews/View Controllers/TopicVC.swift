@@ -58,7 +58,7 @@ extension TopicVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article = newsArticles[indexPath.row]
-        showArticle(self, urlString: article.link!)
+        showArticle(self, article: article)
     }
     
 }
