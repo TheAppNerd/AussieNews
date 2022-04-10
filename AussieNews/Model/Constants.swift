@@ -20,3 +20,8 @@ enum SocialMedia {
     static let githubUsername       = "AlexThompsonDevelopment"
     static let githubURL            = "https://github.com/\(SocialMedia.githubUsername)"
 }
+
+enum articleArray {
+    case visited
+    case saved
+}
