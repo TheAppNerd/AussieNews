@@ -189,8 +189,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article = newsArticles[indexPath.row]
         let userDefaultFuncs = UserDefaultFuncs()
-        userDefaultFuncs.saveArticle(.visited, article: article)
-        showArticle(self, urlString: article.link!)
+        showArticle(self, article: article)
     }
 }
 
