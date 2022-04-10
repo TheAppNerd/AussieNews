@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SafariServices
 
-class TopicVC: CustomViewController {
+class TopicVC: CustomViewController, SafariProtocol {
     
    
     var topic: String = ""
@@ -47,7 +48,7 @@ extension TopicVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
-        cell.set(article: newsArticles[indexPath.row], vc: self)
+        cell.set(article: newsArticles[indexPath.row], vc: self, tableView: tableView)
         return cell
     }
     
@@ -55,5 +56,9 @@ extension TopicVC: UITableViewDataSource, UITableViewDelegate {
         return view.frame.size.height / 6
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let article = newsArticles[indexPath.row]
+        showArticle(self, urlString: article.link!)
+    }
     
 }

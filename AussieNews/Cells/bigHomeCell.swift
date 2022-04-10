@@ -16,6 +16,7 @@ class bigHomeCell: DefaultCell {
         configureCell()
         configureButtons()
         layoutUI()
+        
     }
     
     required init?(coder: NSCoder) {

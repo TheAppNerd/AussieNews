@@ -12,8 +12,6 @@ class HomeVC: CustomViewController, SafariProtocol {
  
     var collectionView: UICollectionView!
     
-    
-    let userDefaultFuncs = UserDefaultFuncs()
    // let tableViewRefresh = UIRefreshControl()
     let generator = UIImpactFeedbackGenerator(style: .light)
     var sizeBool: Bool = true
@@ -27,8 +25,6 @@ class HomeVC: CustomViewController, SafariProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        userDefaultFuncs.retrievePages()
         configureVC()
         configureCollectionView()
         configureTableView()
@@ -148,24 +144,6 @@ class HomeVC: CustomViewController, SafariProtocol {
     }
     
     
-    //move back to cell as multiple pages will use this
-    @objc func saveButtonPressed(sender: CustomButton) {
-        
-        let buttonPosition: CGPoint = sender.convert(CGPoint.zero, to: self.tableView)
-        guard let indexPath = self.tableView.indexPathForRow(at: buttonPosition) else { return }
-        
-        let article = newsArticles[indexPath.row]
-        
-        switch UserDefaultFuncs.savedPagesArray.contains(article) {
-        case true: UserDefaultFuncs().removeSavedPage(article: article)
-            self.saveLabel(.removing)
-        case false: UserDefaultFuncs().savePages(.saved, article: article)
-            self.saveLabel(.saving)
-        }
-        tableView.reloadData()
-        print(UserDefaultFuncs.savedPagesArray.count)
-    }
-    
     @objc func switchCellButtonPressed() {
         sizeBool.toggle()
         tableView.reloadData()
@@ -189,12 +167,10 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         
         switch sizeBool {
         case true: let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
-            cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
-            cell.set(article: article, vc: self)
+            cell.set(article: article, vc: self, tableView: tableView)
             return cell
         case false: let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
-            cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
-            cell.set(article: article, vc: self)
+            cell.set(article: article, vc: self, tableView: tableView)
             return cell
         }
         
@@ -212,8 +188,8 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article = newsArticles[indexPath.row]
-        //sortArticle(article)
-        userDefaultFuncs.savePages(.visited, article: article)
+        let userDefaultFuncs = UserDefaultFuncs()
+        userDefaultFuncs.saveArticle(.visited, article: article)
         showArticle(self, urlString: article.link!)
     }
 }
@@ -243,6 +219,5 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         show(vc, sender: self)
     }
 }
-
 
 

@@ -8,8 +8,8 @@
 import UIKit
 import SafariServices
 
-class SavedVC: UIViewController {
-    
+class SavedVC: UIViewController{
+   
     //MARK: - variables & constants
     
     let emptyState       = BookMarkEmptyState()
@@ -30,10 +30,9 @@ class SavedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        
         configureTableView()
         layoutUI()
-        userDefaultFuncs.retrievePages()
+      
     }
     
     //MARK: - Funcs
@@ -56,7 +55,8 @@ class SavedVC: UIViewController {
     }
     
     private func configureButtons() {
-        bookmarkButton.setTitle("Saved \(UserDefaultFuncs.savedPagesArray.count)", for: .normal)
+        userDefaultFuncs.retrieveArticles()
+        bookmarkButton.setTitle("Saved \(userDefaultFuncs.savedArticleArray.count)", for: .normal)
         bookmarkButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         bookmarkButton.setTitleColor(.secondaryLabel, for: .normal)
         
@@ -159,8 +159,9 @@ class SavedVC: UIViewController {
     }
     
     @objc func saveButtonPressed() {
+        userDefaultFuncs.retrieveArticles()
         tableView.reloadData()
-        bookmarkButton.setTitle("Saved \(UserDefaultFuncs.savedPagesArray.count)", for: .normal)
+        bookmarkButton.setTitle("Saved \(userDefaultFuncs.savedArticleArray.count)", for: .normal)
         
         
     }
@@ -172,19 +173,20 @@ class SavedVC: UIViewController {
 extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if bookmarkButton.isSelected {
-            return UserDefaultFuncs.savedPagesArray.count
+            return userDefaultFuncs.savedArticleArray.count
         } else {
-            return UserDefaultFuncs.visitedPagesArray.count
+            return userDefaultFuncs.visitedArticleArray.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        userDefaultFuncs.retrieveArticles()
         let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
         cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         if bookmarkButton.isSelected {
-            cell.set(article: UserDefaultFuncs.savedPagesArray[indexPath.row], vc: self)
+            cell.set(article: userDefaultFuncs.savedArticleArray[indexPath.row], vc: self, tableView: tableView)
         } else {
-            cell.set(article: UserDefaultFuncs.visitedPagesArray[indexPath.row], vc: self)
+            cell.set(article: userDefaultFuncs.visitedArticleArray[indexPath.row], vc: self, tableView: tableView)
         }
         return cell
     }
@@ -192,10 +194,11 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article: Article?
         if bookmarkButton.isSelected {
-            article = UserDefaultFuncs.savedPagesArray[indexPath.row]
+            article = userDefaultFuncs.savedArticleArray[indexPath.row]
         } else {
-            article = UserDefaultFuncs.visitedPagesArray[indexPath.row]
+            article = userDefaultFuncs.visitedArticleArray[indexPath.row]
         }
+        UserDefaultFuncs().saveArticle(.visited, article: article!)
         showArticle(urlString: (article?.link)!)
     }
     
@@ -203,3 +206,4 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         view.frame.size.height / 2.8
     }
 }
+

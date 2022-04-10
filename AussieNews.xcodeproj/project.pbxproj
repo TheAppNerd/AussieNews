@@ -39,16 +39,15 @@
 		FAAE9B5327FBE1B400918996 /* SettingsSocialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5227FBE1B400918996 /* SettingsSocialCell.swift */; };
 		FAAE9B5527FBF58A00918996 /* SettingsSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5427FBF58A00918996 /* SettingsSegmentCell.swift */; };
 		FAAE9B5927FBF5E400918996 /* SettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5827FBF5E400918996 /* SettingsFooterView.swift */; };
-		FAAE9B5B27FD5ADD00918996 /* UserDefaultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5A27FD5ADD00918996 /* UserDefaultsVC.swift */; };
 		FAAE9B5F27FFC58800918996 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5E27FFC58800918996 /* Constants.swift */; };
 		FAAE9B6127FFC87A00918996 /* EmailFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B6027FFC87A00918996 /* EmailFeedback.swift */; };
 		FAAE9B6327FFC8BC00918996 /* UIApplication + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B6227FFC8BC00918996 /* UIApplication + Ext.swift */; };
 		FAAE9B6527FFC8EC00918996 /* UIDevice + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B6427FFC8EC00918996 /* UIDevice + Ext.swift */; };
 		FACE42B127EBF1090057772F /* TrendingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE42B027EBF1090057772F /* TrendingButtonView.swift */; };
-		FACE42B327EC276E0057772F /* UserDefaultsFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE42B227EC276E0057772F /* UserDefaultsFuncs.swift */; };
 		FACE42B527ED50D50057772F /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE42B427ED50D50057772F /* CustomLabel.swift */; };
 		FACE42B727F165C50057772F /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE42B627F165C50057772F /* UIViewController + Ext.swift */; };
 		FAD4655827FFDA3900E6CF7A /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD4655727FFDA3900E6CF7A /* DefaultCell.swift */; };
+		FAD4655A280041D200E6CF7A /* UserDefaultFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46559280041D200E6CF7A /* UserDefaultFuncs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,16 +105,15 @@
 		FAAE9B5227FBE1B400918996 /* SettingsSocialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSocialCell.swift; sourceTree = "<group>"; };
 		FAAE9B5427FBF58A00918996 /* SettingsSegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSegmentCell.swift; sourceTree = "<group>"; };
 		FAAE9B5827FBF5E400918996 /* SettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFooterView.swift; sourceTree = "<group>"; };
-		FAAE9B5A27FD5ADD00918996 /* UserDefaultsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsVC.swift; sourceTree = "<group>"; };
 		FAAE9B5E27FFC58800918996 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FAAE9B6027FFC87A00918996 /* EmailFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailFeedback.swift; sourceTree = "<group>"; };
 		FAAE9B6227FFC8BC00918996 /* UIApplication + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + Ext.swift"; sourceTree = "<group>"; };
 		FAAE9B6427FFC8EC00918996 /* UIDevice + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice + Ext.swift"; sourceTree = "<group>"; };
 		FACE42B027EBF1090057772F /* TrendingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingButtonView.swift; sourceTree = "<group>"; };
-		FACE42B227EC276E0057772F /* UserDefaultsFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsFuncs.swift; sourceTree = "<group>"; };
 		FACE42B427ED50D50057772F /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		FACE42B627F165C50057772F /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
 		FAD4655727FFDA3900E6CF7A /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
+		FAD46559280041D200E6CF7A /* UserDefaultFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultFuncs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,7 +215,6 @@
 			children = (
 				FA7E124227E9283800E2D94C /* Articles.swift */,
 				FA7E124427E92D3A00E2D94C /* NewsManager.swift */,
-				FACE42B227EC276E0057772F /* UserDefaultsFuncs.swift */,
 				FAAE9B5E27FFC58800918996 /* Constants.swift */,
 				FAAE9B6027FFC87A00918996 /* EmailFeedback.swift */,
 				FAAE9B6227FFC8BC00918996 /* UIApplication + Ext.swift */,
@@ -287,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				FAAE9B4427F2987000918996 /* SafariProtocol.swift */,
+				FAD46559280041D200E6CF7A /* UserDefaultFuncs.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -295,7 +293,6 @@
 			isa = PBXGroup;
 			children = (
 				FAAE9B4C27F2B83200918996 /* CustomViewController.swift */,
-				FAAE9B5A27FD5ADD00918996 /* UserDefaultsVC.swift */,
 			);
 			path = CustomVCs;
 			sourceTree = "<group>";
@@ -441,12 +438,10 @@
 				FAD4655827FFDA3900E6CF7A /* DefaultCell.swift in Sources */,
 				FAAE9B4527F2987100918996 /* SafariProtocol.swift in Sources */,
 				FA7E122E27E494C200E2D94C /* CollectionViewCell.swift in Sources */,
-				FAAE9B5B27FD5ADD00918996 /* UserDefaultsVC.swift in Sources */,
 				FAA470E527E298AE0039DC52 /* HomeVC.swift in Sources */,
 				FA7E123027E7FB0500E2D94C /* CustomButton.swift in Sources */,
 				FA7E123C27E845C300E2D94C /* CategoriesVC.swift in Sources */,
 				FAAE9B6127FFC87A00918996 /* EmailFeedback.swift in Sources */,
-				FACE42B327EC276E0057772F /* UserDefaultsFuncs.swift in Sources */,
 				FACE42B127EBF1090057772F /* TrendingButtonView.swift in Sources */,
 				FA7E122627E436C100E2D94C /* View + Ext.swift in Sources */,
 				FAA4711127E2A11B0039DC52 /* TabBarController.swift in Sources */,
@@ -464,6 +459,7 @@
 				FA7E124727E92E3400E2D94C /* NewsErrors.swift in Sources */,
 				FAA470E127E298AE0039DC52 /* AppDelegate.swift in Sources */,
 				FA7E124327E9283800E2D94C /* Articles.swift in Sources */,
+				FAD4655A280041D200E6CF7A /* UserDefaultFuncs.swift in Sources */,
 				FAA470E327E298AE0039DC52 /* SceneDelegate.swift in Sources */,
 				FA7E123E27E847F300E2D94C /* SettingsVC.swift in Sources */,
 				FAAE9B5F27FFC58800918996 /* Constants.swift in Sources */,
