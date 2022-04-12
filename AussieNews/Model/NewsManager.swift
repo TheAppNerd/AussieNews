@@ -12,11 +12,14 @@ class NewsManager {
     let baseURL = "https://api.newscatcherapi.com/v2/"
     let headlines = "latest_headlines?lang=en&countries=au"
     let topicURL = "latest_headlines?lang=en&countries=au&topic="
+    let searchURL = "&countries=au&lang=en"
     var topic: String = ""
+    var searchString: String = ""
     
     enum networkParams {
         case home
         case topic
+        case search
     }
     
     static let Shared = NewsManager()
@@ -36,8 +39,10 @@ class NewsManager {
     
         case .topic:
             endpoint = baseURL + topicURL + topic
+        
+        case .search:
+        endpoint = baseURL + "search?q=" + searchString + searchURL
         }
-
 
         guard let url = URL(string: endpoint) else {
             completed(.failure(.urlError))

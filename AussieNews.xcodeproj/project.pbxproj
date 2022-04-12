@@ -12,7 +12,7 @@
 		FA7E122E27E494C200E2D94C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E122D27E494C200E2D94C /* CollectionViewCell.swift */; };
 		FA7E123027E7FB0500E2D94C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E122F27E7FB0500E2D94C /* CustomButton.swift */; };
 		FA7E123227E8069000E2D94C /* UICollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E123127E8069000E2D94C /* UICollectionViewLayout.swift */; };
-		FA7E123527E81EDC00E2D94C /* BookMarkEmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E123427E81EDC00E2D94C /* BookMarkEmptyState.swift */; };
+		FA7E123527E81EDC00E2D94C /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E123427E81EDC00E2D94C /* EmptyStateView.swift */; };
 		FA7E123A27E8405000E2D94C /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E123927E8405000E2D94C /* SearchVC.swift */; };
 		FA7E123C27E845C300E2D94C /* CategoriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E123B27E845C300E2D94C /* CategoriesVC.swift */; };
 		FA7E123E27E847F300E2D94C /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E123D27E847F300E2D94C /* SettingsVC.swift */; };
@@ -48,6 +48,7 @@
 		FACE42B727F165C50057772F /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACE42B627F165C50057772F /* UIViewController + Ext.swift */; };
 		FAD4655827FFDA3900E6CF7A /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD4655727FFDA3900E6CF7A /* DefaultCell.swift */; };
 		FAD4655A280041D200E6CF7A /* UserDefaultFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46559280041D200E6CF7A /* UserDefaultFuncs.swift */; };
+		FAD4655C2803AF1600E6CF7A /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD4655B2803AF1600E6CF7A /* SearchTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +75,7 @@
 		FA7E122D27E494C200E2D94C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		FA7E122F27E7FB0500E2D94C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		FA7E123127E8069000E2D94C /* UICollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewLayout.swift; sourceTree = "<group>"; };
-		FA7E123427E81EDC00E2D94C /* BookMarkEmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkEmptyState.swift; sourceTree = "<group>"; };
+		FA7E123427E81EDC00E2D94C /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		FA7E123927E8405000E2D94C /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		FA7E123B27E845C300E2D94C /* CategoriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesVC.swift; sourceTree = "<group>"; };
 		FA7E123D27E847F300E2D94C /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -114,6 +115,7 @@
 		FACE42B627F165C50057772F /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
 		FAD4655727FFDA3900E6CF7A /* DefaultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		FAD46559280041D200E6CF7A /* UserDefaultFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultFuncs.swift; sourceTree = "<group>"; };
+		FAD4655B2803AF1600E6CF7A /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				FA7E123127E8069000E2D94C /* UICollectionViewLayout.swift */,
 				FA7E124627E92E3400E2D94C /* NewsErrors.swift */,
 				FA7E124827E96C2B00E2D94C /* CustomImageView.swift */,
+				FAD4655B2803AF1600E6CF7A /* SearchTextField.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -186,7 +189,7 @@
 		FA7E123327E81EC400E2D94C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FA7E123427E81EDC00E2D94C /* BookMarkEmptyState.swift */,
+				FA7E123427E81EDC00E2D94C /* EmptyStateView.swift */,
 				FA7E124F27EA9E3700E2D94C /* TrendingView.swift */,
 				FAAE9B4927F2AD6800918996 /* LoadingPageView.swift */,
 				FACE42B027EBF1090057772F /* TrendingButtonView.swift */,
@@ -431,7 +434,7 @@
 				FAAE9B5927FBF5E400918996 /* SettingsFooterView.swift in Sources */,
 				FAAE9B4A27F2AD6800918996 /* LoadingPageView.swift in Sources */,
 				FACE42B527ED50D50057772F /* CustomLabel.swift in Sources */,
-				FA7E123527E81EDC00E2D94C /* BookMarkEmptyState.swift in Sources */,
+				FA7E123527E81EDC00E2D94C /* EmptyStateView.swift in Sources */,
 				FA7E123227E8069000E2D94C /* UICollectionViewLayout.swift in Sources */,
 				FA7E124D27EA7B4600E2D94C /* TrendingCategoryVC.swift in Sources */,
 				FAAE9B4D27F2B83200918996 /* CustomViewController.swift in Sources */,
@@ -455,6 +458,7 @@
 				FACE42B727F165C50057772F /* UIViewController + Ext.swift in Sources */,
 				FAAE9B5527FBF58A00918996 /* SettingsSegmentCell.swift in Sources */,
 				FAAE9B6527FFC8EC00918996 /* UIDevice + Ext.swift in Sources */,
+				FAD4655C2803AF1600E6CF7A /* SearchTextField.swift in Sources */,
 				FAAE9B5327FBE1B400918996 /* SettingsSocialCell.swift in Sources */,
 				FA7E124727E92E3400E2D94C /* NewsErrors.swift in Sources */,
 				FAA470E127E298AE0039DC52 /* AppDelegate.swift in Sources */,

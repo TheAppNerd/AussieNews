@@ -25,3 +25,9 @@ enum articleArray {
     case visited
     case saved
 }
+
+enum emptyState {
+    case search
+    case saved
+    case visited
+}
