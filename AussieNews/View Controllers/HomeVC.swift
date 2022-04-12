@@ -139,10 +139,13 @@ class HomeVC: CustomViewController, SafariProtocol {
 
     @objc func searchPressed() {
         let vc = SearchVC()
-        vc.modalPresentationStyle = UIModalPresentationStyle.popover
+        vc.modalPresentationStyle = .popover
         self.present(vc, animated: true)
     }
     
+    @objc func didTapClose(_ sender: Any) {
+       dismiss(animated: true)
+    }
     
     @objc func switchCellButtonPressed() {
         sizeBool.toggle()

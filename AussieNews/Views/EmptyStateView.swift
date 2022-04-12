@@ -7,7 +7,9 @@
 
 import UIKit
 
-class BookMarkEmptyState: UIView {
+class EmptyStateView: UIView {
+    
+    
     
     let emptyImage = UIImageView()
     let emptyTitleLabel = CustomLabel()
@@ -19,27 +21,47 @@ class BookMarkEmptyState: UIView {
         layoutUI()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func set(state: emptyState) {
+        switch state {
+        case .search:
+            emptyImage.image = UIImage(systemName: "magnifyingglass")
+            emptyTitleLabel.text = "No Search Results"
+            emptySecondaryLabel.text = """
+            Looks like you havent searched anything yet.
+            Use the text field above to swarch for anything you want.
+            """
+        case .saved:
+            emptyImage.image = UIImage(systemName: "bookmark")
+            emptyTitleLabel.text = "No Saved Content"
+            emptySecondaryLabel.text = """
+            Looks like you havent saved anything yet.
+            Tap on bookmark to start saving content.
+            """
+        case .visited:
+            emptyImage.image = UIImage(systemName: "list.bullet.rectangle.portrait")
+            emptyTitleLabel.text = "No Visited Pages"
+            emptySecondaryLabel.text = """
+            Looks like you havent ready any articles yet.
+            Read some news articles to fill this list.
+            """
+        }
+        
+    }
     
     private func configure() {
         self.translatesAutoresizingMaskIntoConstraints = false
-       
         emptyImage.translatesAutoresizingMaskIntoConstraints = false
         emptyImage.tintColor = .secondaryLabel
-        emptyImage.image = UIImage(systemName: "bookmark")
         
-        emptyTitleLabel.text = "No Saved Content"
         emptyTitleLabel.textAlignment = .center
         emptyTitleLabel.textColor = .secondaryLabel
         emptyTitleLabel.font = UIFont.systemFont(ofSize: 20)
         
-        emptySecondaryLabel.text = """
-        Looks like you havent saved anything yet.
-        Tap on bookmark to start saving content.
-        """
         emptySecondaryLabel.textAlignment = .center
         emptySecondaryLabel.textColor = .secondaryLabel
         emptySecondaryLabel.font = UIFont.systemFont(ofSize: 20)

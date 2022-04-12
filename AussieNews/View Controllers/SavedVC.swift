@@ -8,14 +8,13 @@
 import UIKit
 import SafariServices
 
-class SavedVC: UIViewController, SafariProtocol {
+class SavedVC: CustomViewController, SafariProtocol {
    
     //MARK: - variables & constants
     
-    let emptyState       = BookMarkEmptyState()
+    let emptyState       = EmptyStateView()
     let bookmarkButton   = CustomButton()
     let recentButton     = CustomButton()
-    let tableView        = UITableView()
     let lineOne          = UIView()
     let lineTwo          = UIView()
     let userDefaultFuncs = UserDefaultFuncs()
@@ -59,7 +58,6 @@ class SavedVC: UIViewController, SafariProtocol {
         bookmarkButton.setTitle("Saved \(userDefaultFuncs.savedArticleArray.count)", for: .normal)
         bookmarkButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         bookmarkButton.setTitleColor(.secondaryLabel, for: .normal)
-        
         
         recentButton.setTitle("Recently Viewed", for: .normal)
         recentButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
@@ -108,15 +106,6 @@ class SavedVC: UIViewController, SafariProtocol {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        
-        
-//        view.addSubview(emptyState)
-//        NSLayoutConstraint.activate([
-//            emptyState.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            emptyState.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            emptyState.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            emptyState.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-//        ])
     }
     
     
@@ -128,8 +117,10 @@ class SavedVC: UIViewController, SafariProtocol {
         let confirmAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
             if self.bookmarkButton.isSelected == true {
                 self.userDefaultFuncs.clearArticles(.saved)
+                self.addEmptyState(array: self.userDefaultFuncs.savedArticleArray, state: .saved)
             } else {
                 self.userDefaultFuncs.clearArticles(.visited)
+                self.addEmptyState(array: self.userDefaultFuncs.visitedArticleArray, state: .visited)
             }
             self.bookmarkButton.setTitle("Saved \(self.userDefaultFuncs.savedArticleArray.count)", for: .normal)
             self.tableView.reloadData()
@@ -155,9 +146,11 @@ class SavedVC: UIViewController, SafariProtocol {
         if sender == bookmarkButton {
             lineOne.backgroundColor = .orange
             bookmarkButton.setTitleColor(.orange, for: .normal)
+            addEmptyState(array: userDefaultFuncs.savedArticleArray, state: .saved)
         } else if sender ==  recentButton {
             recentButton.setTitleColor(.orange, for: .normal)
             lineTwo.backgroundColor = .orange
+            addEmptyState(array: userDefaultFuncs.visitedArticleArray, state: .visited)
         }
         tableView.reloadData()
     }
@@ -192,6 +185,7 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.set(article: userDefaultFuncs.visitedArticleArray[indexPath.row], vc: self, tableView: tableView)
         }
+
         return cell
     }
     
