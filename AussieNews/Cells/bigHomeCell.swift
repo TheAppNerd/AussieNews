@@ -35,7 +35,7 @@ class bigHomeCell: DefaultCell {
             newsImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
             newsImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             newsImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            newsImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.5),
+            newsImage.heightAnchor.constraint(equalTo: newsImage.widthAnchor, multiplier: 0.5),
             
             topicLabel.topAnchor.constraint(equalTo: newsImage.bottomAnchor, constant: padding / 2),
             topicLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),

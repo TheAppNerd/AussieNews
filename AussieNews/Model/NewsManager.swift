@@ -30,7 +30,7 @@ class NewsManager {
     let cache = NSCache<NSString, UIImage>()
     
     func getNews(params: networkParams, completed: @escaping (Result<Articles, NewsErrors>) -> Void) {
-        
+        let urlString = searchString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         var endpoint: String = ""
         
         switch params {
@@ -41,7 +41,7 @@ class NewsManager {
             endpoint = baseURL + topicURL + topic
         
         case .search:
-        endpoint = baseURL + "search?q=" + searchString + searchURL
+        endpoint = baseURL + "search?q=" + urlString! + searchURL
         }
 
         guard let url = URL(string: endpoint) else {
