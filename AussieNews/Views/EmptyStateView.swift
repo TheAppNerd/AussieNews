@@ -32,8 +32,8 @@ class EmptyStateView: UIView {
             emptyImage.image = UIImage(systemName: "magnifyingglass")
             emptyTitleLabel.text = "No Search Results"
             emptySecondaryLabel.text = """
-            Looks like you havent searched anything yet.
-            Use the text field above to swarch for anything you want.
+            There are no search results here.
+            Use the text field above to search.
             """
         case .saved:
             emptyImage.image = UIImage(systemName: "bookmark")
@@ -65,6 +65,7 @@ class EmptyStateView: UIView {
         emptySecondaryLabel.textAlignment = .center
         emptySecondaryLabel.textColor = .secondaryLabel
         emptySecondaryLabel.font = UIFont.systemFont(ofSize: 20)
+        emptySecondaryLabel.numberOfLines = 0
     }
     
     
@@ -75,7 +76,7 @@ class EmptyStateView: UIView {
         NSLayoutConstraint.activate([
         
             emptyImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            emptyImage.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            emptyImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
             emptyImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.3),
             emptyImage.heightAnchor.constraint(equalTo: emptyImage.widthAnchor),
             
@@ -86,7 +87,7 @@ class EmptyStateView: UIView {
             
             emptySecondaryLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             emptySecondaryLabel.topAnchor.constraint(equalTo: emptyTitleLabel.bottomAnchor, constant: padding),
-            emptySecondaryLabel.heightAnchor.constraint(equalToConstant: 50)
+            emptySecondaryLabel.heightAnchor.constraint(equalToConstant: 90)
             
         ])
         
