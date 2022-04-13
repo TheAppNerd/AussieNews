@@ -31,7 +31,6 @@ class SavedVC: CustomViewController, SafariProtocol {
         configure()
         configureTableView()
         layoutUI()
-      
     }
     
     //MARK: - Funcs
@@ -48,7 +47,7 @@ class SavedVC: CustomViewController, SafariProtocol {
     
     private func configureTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(bigHomeCell.self, forCellReuseIdentifier: bigHomeCell.reuseIdentifier)
+        tableView.register(smallHomeCell.self, forCellReuseIdentifier: smallHomeCell.reuseIdentifier)
         tableView.delegate   = self
         tableView.dataSource = self
     }
@@ -178,7 +177,7 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         userDefaultFuncs.retrieveArticles()
         bookmarkButton.setTitle("Saved \(userDefaultFuncs.savedArticleArray.count)", for: .normal)
-        let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
         cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         if bookmarkButton.isSelected {
             cell.set(article: userDefaultFuncs.savedArticleArray[indexPath.row], vc: self, tableView: tableView)
@@ -201,7 +200,8 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        view.frame.size.height / 2.8
+        //moce to constant
+        view.frame.size.height / 6
     }
 }
 

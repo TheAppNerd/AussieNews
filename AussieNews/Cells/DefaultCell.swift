@@ -100,13 +100,6 @@ class DefaultCell: UITableViewCell {
         parentTableView.reloadData()
     }
     
-    func stringToDate(for dateStr: String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        dateFormatter.timeZone = TimeZone.current
-        dateFormatter.locale = Locale.current
-        return dateFormatter.date(from: dateStr)
-    }
     
     
     func set(article: Article, vc: UIViewController, tableView: UITableView) {
@@ -127,7 +120,25 @@ class DefaultCell: UITableViewCell {
         //topicLabel.text = article.topic?.uppercased()
         headlineLabel.text = article.title
         articleAuthorLabel.text = article.rights
-        articleDateLabel.text = article.published_date
+        articleDateLabel.text = timeSinceDate(dateStr: article.published_date!)
+    }
+    
+    
+    //move to extenstion or class?
+    func convertStringToDate(dateStr: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.date(from: dateStr)
+        return date!
+    }
+    
+    
+    func timeSinceDate(dateStr: String) -> String {
+        let date = convertStringToDate(dateStr: dateStr)
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
+        return relativeDate
     }
     
 }
