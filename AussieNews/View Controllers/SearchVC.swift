@@ -14,7 +14,8 @@ class SearchVC: CustomViewController {
 
     let textField = SearchTextField()
     let searchButton = CustomButton()
-    
+    let topView = UIView()
+    let line = UIView()
     
      
     override func viewDidLoad() {
@@ -32,6 +33,12 @@ class SearchVC: CustomViewController {
         searchButton.tintColor = .label
         searchButton.backgroundColor = .orange
         searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
+        
+        topView.translatesAutoresizingMaskIntoConstraints = false
+        topView.backgroundColor = .secondarySystemBackground
+        
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.backgroundColor = .tertiarySystemBackground
     }
     
     private func configureTableView() {
@@ -47,18 +54,29 @@ class SearchVC: CustomViewController {
     
     
     private func layoutUI() {
-        view.addSubviews(textField, searchButton, tableView)
-        
+        view.addSubviews(textField, searchButton, tableView, topView)
+        topView.addSubview(line)
         let padding: CGFloat = 20
         
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
+            
+            topView.topAnchor.constraint(equalTo: view.topAnchor),
+            topView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topView.heightAnchor.constraint(equalToConstant: 40),
+            
+            line.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
+            line.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
+            line.heightAnchor.constraint(equalToConstant: 2),
+            line.widthAnchor.constraint(equalToConstant: 30),
+            
+            textField.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: padding),
             textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             textField.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: -padding / 2),
             textField.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -padding),
             textField.heightAnchor.constraint(equalToConstant: 50),
             
-            searchButton.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
+            searchButton.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: padding),
             searchButton.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: padding / 2),
             searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             searchButton.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: -padding),
