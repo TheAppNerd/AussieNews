@@ -23,11 +23,13 @@ class TopicVC: CustomViewController, SafariProtocol {
         super.viewDidLoad()
         configure()
         layoutUI()
+        configureBarButton()
         
     }
     
     private func configure() {
         tableView.register(smallHomeCell.self, forCellReuseIdentifier: smallHomeCell.reuseIdentifier)
+        tableView.register(bigHomeCell.self, forCellReuseIdentifier: bigHomeCell.reuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -47,13 +49,13 @@ extension TopicVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
-        cell.set(article: newsArticles[indexPath.row], vc: self, tableView: tableView)
+        let article = newsArticles[indexPath.row]
+        let cell = bigSmallCell(article: article)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return view.frame.size.height / 6
+        cellHeight()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

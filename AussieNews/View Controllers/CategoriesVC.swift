@@ -18,6 +18,7 @@ class CategoriesVC: CustomViewController, SafariProtocol {
         configure()
         configureCollectionView()
         layoutUI()
+    
     }
     
     

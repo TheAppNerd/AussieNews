@@ -14,8 +14,6 @@ class HomeVC: CustomViewController, SafariProtocol {
     
    // let tableViewRefresh = UIRefreshControl()
     let generator = UIImpactFeedbackGenerator(style: .light)
-    var sizeBool: Bool = true
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,11 +44,7 @@ class HomeVC: CustomViewController, SafariProtocol {
     }
     
     
-    func configureBarButton() {
-        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchPressed))
-        let switchCellButton = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(switchCellButtonPressed))
-        navigationItem.rightBarButtonItems = [searchButton, switchCellButton]
-    }
+   
     
     
     func configureTableView() {
@@ -137,22 +131,7 @@ class HomeVC: CustomViewController, SafariProtocol {
         ])
     }
 
-    @objc func searchPressed() {
-        let vc = SearchVC()
-        vc.modalPresentationStyle = .popover
-        self.present(vc, animated: true)
-    }
     
-    @objc func didTapClose(_ sender: Any) {
-       dismiss(animated: true)
-    }
-    
-    @objc func switchCellButtonPressed() {
-        sizeBool.toggle()
-        tableView.reloadData()
-        tableView.reloadInputViews()
-        
-    }
     
     }
 
@@ -167,31 +146,18 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let article = newsArticles[indexPath.row]
-        
-        switch sizeBool {
-        case true: let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
-            cell.set(article: article, vc: self, tableView: tableView)
-            return cell
-        case false: let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
-            cell.set(article: article, vc: self, tableView: tableView)
-            return cell
-        }
-        
-        
+        let cell = bigSmallCell(article: article)
+        return cell
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch sizeBool {
-        case true: return view.frame.size.height / 2.8
-        case false: return view.frame.size.height / 6
-        }
+        cellHeight()
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article = newsArticles[indexPath.row]
-        let userDefaultFuncs = UserDefaultFuncs()
         showArticle(self, article: article)
     }
 }
