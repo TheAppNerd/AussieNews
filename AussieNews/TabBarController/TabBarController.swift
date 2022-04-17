@@ -25,10 +25,23 @@ class TabBarController: UITabBarController {
     
     func configureAppearance() {
         let appearance = UITabBar.appearance()
-        appearance.backgroundColor = .black
+        appearance.backgroundColor = .systemBackground
         appearance.tintColor = .orange
-        appearance.unselectedItemTintColor = .white
+        appearance.unselectedItemTintColor = .systemGray2
     }
+//
+//    func roundedTabBar() {
+//        let x: CGFloat = 10
+//        let y: CGFloat = 15
+//        let layer = CAShapeLayer()
+//        let width = self.tabBar.bounds.width - x * 2
+//        let height = self.tabBar.bounds.height + y * 1.5
+//        layer.fillColor = UIColor.darkGray.cgColor
+//        layer.path = UIBezierPath(roundedRect: CGRect(x: 10, y: self.tabBar.bounds.minY - y, width: width, height: height), cornerRadius: height / 2).cgPath
+//        self.tabBar.layer.insertSublayer(layer, at: 0)
+//
+//
+//    }
     
     
     func createHomeScreenVC() -> UINavigationController {

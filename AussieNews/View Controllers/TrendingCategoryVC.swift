@@ -7,15 +7,12 @@
 
 import UIKit
 
-
-//create fab at bottom to go to page
-//create x top right to dismiss and return to home
-
-
 class TrendingCategoryVC: UIViewController {
     
     //MARK: - Variables & Constants
     
+    
+    // TODO: make articles random order. 
     
     let progressStack       = UIStackView()
     let trendingView        = TrendingView()
@@ -39,6 +36,7 @@ class TrendingCategoryVC: UIViewController {
         configureProgressStack()
         layoutUI()
         setupGestures()
+        configureTrendingButtons()
     }
     
     //create in customvc
@@ -88,6 +86,26 @@ class TrendingCategoryVC: UIViewController {
         
     }
     
+    func configureTrendingButtons() {
+        trendingButtonView.shareButton.addTarget(self, action: #selector(shareButtonPressed), for: .touchUpInside)
+    }
+    
+    
+    @objc func shareButtonPressed() {
+        
+        // TODO: remove share and save. just have open
+        let article = newsArticles[progressStatus + 1]
+        
+        if let urlString = NSURL(string: (article.link)!) {
+            let activityItems = [urlString]
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        
+        activityViewController.isModalInPresentation = true
+            self.present(activityViewController, animated: true, completion: nil)
+        }
+        
+    }
+    
     private func layoutUI() {
        
         view.addSubviews(progressStack, trendingView, trendingButtonView)
@@ -108,7 +126,7 @@ class TrendingCategoryVC: UIViewController {
             trendingButtonView.topAnchor.constraint(equalTo: trendingView.bottomAnchor, constant: 5),
             trendingButtonView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             trendingButtonView.widthAnchor.constraint(equalTo: trendingView.widthAnchor),
-            trendingButtonView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5)
+            trendingButtonView.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
     
