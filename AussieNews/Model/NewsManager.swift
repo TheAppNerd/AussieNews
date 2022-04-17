@@ -10,7 +10,7 @@ import UIKit
 class NewsManager {
     
     let baseURL = "https://api.newscatcherapi.com/v2/"
-    let headlines = "latest_headlines?lang=en&countries=au"
+    let headlines = "latest_headlines?lang=en&countries=au&topic=entertainment"
     let topicURL = "latest_headlines?lang=en&countries=au&topic="
     let searchURL = "&countries=au&lang=en"
     var topic: String = ""

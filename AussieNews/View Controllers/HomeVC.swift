@@ -12,7 +12,7 @@ class HomeVC: CustomViewController, SafariProtocol {
  
     var collectionView: UICollectionView!
     
-   // let tableViewRefresh = UIRefreshControl()
+
     let generator = UIImpactFeedbackGenerator(style: .light)
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,8 +98,8 @@ class HomeVC: CustomViewController, SafariProtocol {
     
     
     @objc func refreshStarted() {
-        //newsArticles.removeAll()
-        //getArticles(params: .home)
+        newsArticles.removeAll()
+        getArticles(params: .home)
         generator.impactOccurred()
     }
     
@@ -127,7 +127,7 @@ class HomeVC: CustomViewController, SafariProtocol {
             tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
@@ -184,7 +184,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let vc = TrendingCategoryVC()
         vc.title = topic
         vc.topic = topic
-        show(vc, sender: self)
+        present(vc, animated: true)
     }
 }
 
