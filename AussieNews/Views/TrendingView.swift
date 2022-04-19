@@ -14,7 +14,7 @@ class TrendingView: UIView {
     let articleLabel         = CustomLabel(.label)
     let articleDateLabel   = CustomLabel(.secondaryLabel)
     let articleAuthorLabel = CustomLabel(.secondaryLabel)
-    
+    var article: Article?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,6 +54,7 @@ class TrendingView: UIView {
         self.articleLabel.text = article.summary
         self.articleDateLabel.text = timeSinceDate(dateStr: article.published_date!)
         self.articleAuthorLabel.text = article.rights
+        self.article = article
         self.layoutIfNeeded()
         
     }

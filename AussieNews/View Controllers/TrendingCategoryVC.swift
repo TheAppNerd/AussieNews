@@ -19,7 +19,7 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
     let readArticleButton  = CustomButton()
     var newsArticles: [Article] = []
     var topic: String = ""
-    var progressStatus: Int = -1
+    var progressStatus: Int = 0
     var timer               = Timer()
     var progressViewArray: [UIProgressView] = []
     var topicLabel = CustomLabel()
@@ -30,6 +30,7 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getArticles(params: .topic)
+        
     }
     
     
@@ -51,8 +52,8 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
             case .success(let newsArticles):
                 DispatchQueue.main.async {
                     self.newsArticles.append(contentsOf: newsArticles.articles)
-                    self.trendingView.set(self.newsArticles[0])
-                    self.animateProgressViews(startingNum: 0)
+                    self.trendingView.set(self.newsArticles[self.progressStatus])
+                    self.animateProgressViews(startingNum: self.progressStatus)
                 }
                 
             case.failure(let error): print(error.rawValue)
@@ -100,6 +101,7 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
     func configureReadButton() {
         readArticleButton.backgroundColor = .systemBlue
         readArticleButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+        readArticleButton.tintColor = .label
         readArticleButton.setTitle("Read Article", for: .normal)
         readArticleButton.setTitleColor(.label, for: .normal)
         readArticleButton.addTarget(self, action: #selector(readButtonPressed), for: .touchUpInside)
@@ -107,8 +109,9 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
     
     
     @objc func readButtonPressed() {
-        let article = newsArticles[progressStatus + 1]
-        showArticle(self, article: article)
+        let article = newsArticles[progressStatus]
+        showArticle(self, article: trendingView.article!)
+        timer.invalidate()
     }
     
     private func layoutUI() {
@@ -160,11 +163,9 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
         trendingView.isUserInteractionEnabled = true
     }
     
-    
-    private func setupButtons() {
-        
-        
-    }
+    //goal change animation to start loadfing immediately on button press
+    //dismiss after completion
+    //have article button line up with current article
     
     
     func animate(num: Int, duration: Double) {
@@ -194,18 +195,17 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
         
         var num = startingNum
         let duration = 3.0
-        timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: true) { timer in
+        timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: true) { [weak self] timer in
+            guard let self = self else { return }
             self.animate(num: num, duration: duration)
             num += 1
             self.progressStatus += 1
             print(self.progressStatus)
-            if num == 5 {
+            if num >= 5 {
                 timer.invalidate()
             }
         }
     }
-    
-  
     
     @objc func gesturePressed(_ tap: UITapGestureRecognizer) {
         timer.invalidate()
@@ -225,5 +225,8 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
         self.trendingView.set(article)
         animateProgressViews(startingNum: progressStatus)
     }
+
+    
+  
     
 }
