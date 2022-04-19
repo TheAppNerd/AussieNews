@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TrendingCategoryVC: UIViewController {
+class TrendingCategoryVC: UIViewController, SafariProtocol {
     
     //MARK: - Variables & Constants
     
@@ -16,12 +16,15 @@ class TrendingCategoryVC: UIViewController {
     
     let progressStack       = UIStackView()
     let trendingView        = TrendingView()
-    let trendingButtonView  = TrendingButtonView()
+    let readArticleButton  = CustomButton()
     var newsArticles: [Article] = []
     var topic: String = ""
     var progressStatus: Int = -1
     var timer               = Timer()
     var progressViewArray: [UIProgressView] = []
+    var topicLabel = CustomLabel()
+    let topView = UIView()
+    let line = UIView()
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +39,7 @@ class TrendingCategoryVC: UIViewController {
         configureProgressStack()
         layoutUI()
         setupGestures()
-        configureTrendingButtons()
+        configureReadButton()
     }
     
     //create in customvc
@@ -60,6 +63,14 @@ class TrendingCategoryVC: UIViewController {
     
     private func configure() {
         view.backgroundColor = .systemBackground
+        topView.translatesAutoresizingMaskIntoConstraints = false
+        topView.backgroundColor = .secondarySystemBackground
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.backgroundColor = .tertiarySystemBackground
+        
+        topicLabel.text = topic.uppercased()
+        topicLabel.textAlignment = .center
+        
         
     }
    
@@ -69,7 +80,7 @@ class TrendingCategoryVC: UIViewController {
             let progressView = UIProgressView(progressViewStyle: .bar)
             progressView.translatesAutoresizingMaskIntoConstraints = false
             progressView.backgroundColor   = .systemGray3
-            progressView.progressTintColor = .orange
+            progressView.progressTintColor = .systemBlue
             progressView.layer.cornerRadius = 5
             progressView.layer.masksToBounds = true
             progressViewArray.append(progressView)
@@ -86,47 +97,59 @@ class TrendingCategoryVC: UIViewController {
         
     }
     
-    func configureTrendingButtons() {
-        trendingButtonView.shareButton.addTarget(self, action: #selector(shareButtonPressed), for: .touchUpInside)
+    func configureReadButton() {
+        readArticleButton.backgroundColor = .systemBlue
+        readArticleButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+        readArticleButton.setTitle("Read Article", for: .normal)
+        readArticleButton.setTitleColor(.label, for: .normal)
+        readArticleButton.addTarget(self, action: #selector(readButtonPressed), for: .touchUpInside)
     }
     
     
-    @objc func shareButtonPressed() {
-        
-        // TODO: remove share and save. just have open
+    @objc func readButtonPressed() {
         let article = newsArticles[progressStatus + 1]
-        
-        if let urlString = NSURL(string: (article.link)!) {
-            let activityItems = [urlString]
-        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        
-        activityViewController.isModalInPresentation = true
-            self.present(activityViewController, animated: true, completion: nil)
-        }
-        
+        showArticle(self, article: article)
     }
     
     private func layoutUI() {
+        topView.addSubview(line)
        
-        view.addSubviews(progressStack, trendingView, trendingButtonView)
+        view.addSubviews(topView, topicLabel, progressStack, trendingView, readArticleButton)
        
         let padding: CGFloat = 20
         
         NSLayoutConstraint.activate([
-            progressStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            
+            topView.topAnchor.constraint(equalTo: view.topAnchor),
+            topView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topView.heightAnchor.constraint(equalToConstant: 40),
+            
+            line.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
+            line.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
+            line.heightAnchor.constraint(equalToConstant: 2),
+            line.widthAnchor.constraint(equalToConstant: 30),
+            
+            topicLabel.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 5),
+            topicLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            topicLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topicLabel.heightAnchor.constraint(equalToConstant: 40),
+            
+            progressStack.topAnchor.constraint(equalTo: topicLabel.bottomAnchor, constant: 5),
             progressStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             progressStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             progressStack.heightAnchor.constraint(equalToConstant: 7),
             
             trendingView.topAnchor.constraint(equalTo: progressStack.bottomAnchor, constant: padding),
-            trendingView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            trendingView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            trendingView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
+            trendingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            trendingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            trendingView.bottomAnchor.constraint(equalTo: readArticleButton.topAnchor, constant: -5),
             
-            trendingButtonView.topAnchor.constraint(equalTo: trendingView.bottomAnchor, constant: 5),
-            trendingButtonView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            trendingButtonView.widthAnchor.constraint(equalTo: trendingView.widthAnchor),
-            trendingButtonView.heightAnchor.constraint(equalToConstant: 60)
+            readArticleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            readArticleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            readArticleButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5),
+            readArticleButton.heightAnchor.constraint(equalToConstant: 40)
+           
         ])
     }
     

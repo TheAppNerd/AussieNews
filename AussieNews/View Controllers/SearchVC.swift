@@ -31,7 +31,7 @@ class SearchVC: CustomViewController {
         textField.delegate = self
         searchButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         searchButton.tintColor = .label
-        searchButton.backgroundColor = .orange
+        searchButton.backgroundColor = .systemBlue
         searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
         
         topView.translatesAutoresizingMaskIntoConstraints = false

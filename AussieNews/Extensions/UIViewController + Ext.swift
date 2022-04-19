@@ -31,7 +31,7 @@ extension UIViewController {
         
         secondLabel.textAlignment = .left
         secondLabel.adjustsFontSizeToFitWidth = true
-        imageView.tintColor = .orange
+        imageView.tintColor = .systemBlue
         
 
         switch status {
