@@ -26,7 +26,7 @@ class TabBarController: UITabBarController {
     func configureAppearance() {
         let appearance = UITabBar.appearance()
         appearance.backgroundColor = .systemBackground
-        appearance.tintColor = .orange
+        appearance.tintColor = .systemBlue
         appearance.unselectedItemTintColor = .systemGray2
     }
 //

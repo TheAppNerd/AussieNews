@@ -28,7 +28,7 @@ class SettingsSegmentCell: UITableViewCell {
             darkModeSegment.translatesAutoresizingMaskIntoConstraints = false
             darkModeSegment.backgroundColor = .tertiarySystemBackground
         
-        darkModeSegment.selectedSegmentTintColor = .orange
+        darkModeSegment.selectedSegmentTintColor = .systemBlue
             let segmentArray = ["Device", "Light Theme", "Dark Theme"]
             for num in 0...2  {
                 darkModeSegment.insertSegment(withTitle: segmentArray[num], at: num, animated: true)

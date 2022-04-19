@@ -41,7 +41,7 @@ class SavedVC: CustomViewController, SafariProtocol {
         view.backgroundColor              = .systemBackground
         
         let clearButton                   = UIBarButtonItem(title: "Clear All", style: .done, target: self, action: #selector(clearPressed))
-        clearButton.tintColor             = .orange
+        clearButton.tintColor             = .systemBlue
         navigationItem.rightBarButtonItem = clearButton
     }
     
@@ -143,12 +143,12 @@ class SavedVC: CustomViewController, SafariProtocol {
             lineTwo.backgroundColor = .secondaryLabel
             
         if sender == bookmarkButton {
-            lineOne.backgroundColor = .orange
-            bookmarkButton.setTitleColor(.orange, for: .normal)
+            lineOne.backgroundColor = .systemBlue
+            bookmarkButton.setTitleColor(.systemBlue, for: .normal)
             addEmptyState(array: userDefaultFuncs.savedArticleArray, state: .saved)
         } else if sender ==  recentButton {
-            recentButton.setTitleColor(.orange, for: .normal)
-            lineTwo.backgroundColor = .orange
+            recentButton.setTitleColor(.systemBlue, for: .normal)
+            lineTwo.backgroundColor = .systemBlue
             addEmptyState(array: userDefaultFuncs.visitedArticleArray, state: .visited)
         }
         tableView.reloadData()

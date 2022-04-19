@@ -9,6 +9,7 @@ import UIKit
 
 class HomeVC: CustomViewController, SafariProtocol {
     
+    // TODO: remove all !
  
     var collectionView: UICollectionView!
     
@@ -182,7 +183,8 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let topic = topicArray[indexPath.row]
         
         let vc = TrendingCategoryVC()
-        vc.title = topic
+        vc.modalPresentationStyle = .popover
+        vc.topicLabel.text = topic // TODO: do this in vc
         vc.topic = topic
         present(vc, animated: true)
     }

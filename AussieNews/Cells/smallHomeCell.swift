@@ -29,12 +29,7 @@ class smallHomeCell: DefaultCell {
         
        
             NSLayoutConstraint.activate([
-                topicLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-                topicLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-                topicLabel.trailingAnchor.constraint(equalTo: newsImage.leadingAnchor),
-                topicLabel.heightAnchor.constraint(equalToConstant: padding * 2),
-                
-                headlineLabel.topAnchor.constraint(equalTo: topicLabel.bottomAnchor, constant: padding),
+                headlineLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
                 headlineLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
                 headlineLabel.trailingAnchor.constraint(equalTo: newsImage.leadingAnchor, constant: -padding * 2),
                 headlineLabel.bottomAnchor.constraint(equalTo: articleDateLabel.topAnchor, constant: -padding),

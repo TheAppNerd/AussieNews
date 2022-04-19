@@ -108,7 +108,8 @@ class NewsManager {
                   let response = response as? HTTPURLResponse, response.statusCode == 200,
                   let data = data,
                   let image = UIImage(data: data) else {
-                completed(nil)
+                  let defaultImage = UIImage(named: "placeholder")
+                completed(defaultImage)
                 return
             }
             

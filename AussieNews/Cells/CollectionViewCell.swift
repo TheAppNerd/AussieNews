@@ -50,7 +50,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         contentView.layer.cornerRadius = 10
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.orange.cgColor
+        contentView.layer.borderColor = UIColor.systemBlue.cgColor
        
     }
     

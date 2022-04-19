@@ -12,7 +12,6 @@ class DefaultCell: UITableViewCell {
 
     var article: Article?
     let newsImage          = CustomImageView(frame: .zero)
-    let topicLabel         = CustomLabel(.secondaryLabel)
     let headlineLabel      = CustomLabel(.label)
     let articleDateLabel   = CustomLabel(.secondaryLabel)
     let articleAuthorLabel = CustomLabel(.secondaryLabel)
@@ -40,7 +39,7 @@ class DefaultCell: UITableViewCell {
     
      func configureCell() {
          
-        contentView.addSubviews(newsImage, topicLabel, headlineLabel, articleDateLabel, articleAuthorLabel, saveButton, optionsButton)
+        contentView.addSubviews(newsImage, headlineLabel, articleDateLabel, articleAuthorLabel, saveButton, optionsButton)
         contentView.isUserInteractionEnabled = true
         
         newsImage.contentMode = .scaleAspectFill
@@ -73,17 +72,7 @@ class DefaultCell: UITableViewCell {
     }
         
 
-    func calculateDates(from fromDate: Date) -> Date {
-        let today = Date()
-        let timeFrame = today.timeIntervalSince(fromDate)
-        
-        
-        if timeFrame < 0 {
-            return today
-        } else {
-            return today.addingTimeInterval(timeFrame)
-        }
-    }
+   
         
     
 
@@ -109,7 +98,7 @@ class DefaultCell: UITableViewCell {
         parentTableView = tableView
         switch userDefaultFuncs.savedArticleArray.contains(article) {
         case true: saveButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-            saveButton.tintColor = .orange
+            saveButton.tintColor = .systemBlue
         case false: saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
             saveButton.tintColor = .secondaryLabel
         }
@@ -117,7 +106,7 @@ class DefaultCell: UITableViewCell {
         if let imageURL = article.media {
             newsImage.downloadImage(from: imageURL)
         }
-        //topicLabel.text = article.topic?.uppercased()
+     
         headlineLabel.text = article.title
         articleAuthorLabel.text = article.rights
         articleDateLabel.text = timeSinceDate(dateStr: article.published_date!)
