@@ -65,7 +65,7 @@ class DefaultCell: UITableViewCell {
         if let urlString = NSURL(string: (article?.link)!) {
             let activityItems = [urlString]
         let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        
+         
         activityViewController.isModalInPresentation = true
         parentVC.present(activityViewController, animated: true, completion: nil)
         }
