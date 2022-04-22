@@ -9,6 +9,7 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
+    //MARK: - View Functions
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -23,25 +24,14 @@ class TabBarController: UITabBarController {
     }
     
     
+    //MARK: - Functions
+    
     func configureAppearance() {
-        let appearance = UITabBar.appearance()
-        appearance.backgroundColor = .systemBackground
-        appearance.tintColor = .systemBlue
+        let appearance                     = UITabBar.appearance()
+        appearance.backgroundColor         = .systemBackground
+        appearance.tintColor               = .systemBlue
         appearance.unselectedItemTintColor = .systemGray2
     }
-//
-//    func roundedTabBar() {
-//        let x: CGFloat = 10
-//        let y: CGFloat = 15
-//        let layer = CAShapeLayer()
-//        let width = self.tabBar.bounds.width - x * 2
-//        let height = self.tabBar.bounds.height + y * 1.5
-//        layer.fillColor = UIColor.darkGray.cgColor
-//        layer.path = UIBezierPath(roundedRect: CGRect(x: 10, y: self.tabBar.bounds.minY - y, width: width, height: height), cornerRadius: height / 2).cgPath
-//        self.tabBar.layer.insertSublayer(layer, at: 0)
-//
-//
-//    }
     
     
     func createHomeScreenVC() -> UINavigationController {
@@ -70,6 +60,5 @@ class TabBarController: UITabBarController {
         settingsVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gearshape"), selectedImage: UIImage(systemName: "gearshape.fill"))
         return UINavigationController(rootViewController: settingsVC)
     }
-    
-    
+
 }

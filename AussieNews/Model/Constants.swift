@@ -19,6 +19,9 @@ enum SocialMedia {
     
     static let githubUsername       = "AlexThompsonDevelopment"
     static let githubURL            = "https://github.com/\(SocialMedia.githubUsername)"
+    
+    static let emailAddress         = "Alex@appNerd.com.au"
+    static let emailHeader          = "Aussie News Feedback"
 }
 
 enum articleArray {
@@ -31,3 +34,22 @@ enum emptyState {
     case saved
     case visited
 }
+
+enum topics: String, CaseIterable {
+    case business      = "business"
+    case beauty        = "beauty"
+    case economics     = "economics"
+    case energy        = "energy"
+    case entertainment = "entertainment"
+    case finance       = "finance"
+    case food          = "food"
+    case gaming        = "gaming"
+    case music         = "music"
+    case politics      = "politics"
+    case science       = "science"
+    case sport         = "sport"
+    case tech          = "tech"
+    case travel        = "travel"
+    case world         = "world"
+}
+

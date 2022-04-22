@@ -8,9 +8,9 @@
 import Foundation
 
 struct Articles: Codable {
-    
     let articles: [Article]
 }
+
 
 struct Article: Codable, Hashable {
     let title: String?

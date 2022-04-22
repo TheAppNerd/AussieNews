@@ -13,8 +13,8 @@ class SavedVC: CustomViewController, SafariProtocol {
     //MARK: - variables & constants
     
     let emptyState       = EmptyStateView()
-    let bookmarkButton   = CustomButton()
-    let recentButton     = CustomButton()
+    let bookmarkButton   = UIButton()
+    let recentButton     = UIButton()
     let lineOne          = UIView()
     let lineTwo          = UIView()
     let userDefaultFuncs = UserDefaultFuncs()
@@ -29,7 +29,7 @@ class SavedVC: CustomViewController, SafariProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        configureTableView()
+        configureTableView(vc: self)
         layoutUI()
     }
     
@@ -45,22 +45,17 @@ class SavedVC: CustomViewController, SafariProtocol {
         navigationItem.rightBarButtonItem = clearButton
     }
     
-    private func configureTableView() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(smallHomeCell.self, forCellReuseIdentifier: smallHomeCell.reuseIdentifier)
-        tableView.delegate   = self
-        tableView.dataSource = self
-    }
+ 
     
     private func configureButtons() {
         userDefaultFuncs.retrieveArticles()
+        
+        bookmarkButton.setButtonPurpose(.bookmark)
         bookmarkButton.setTitle("Saved \(userDefaultFuncs.savedArticleArray.count)", for: .normal)
         bookmarkButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        bookmarkButton.setTitleColor(.secondaryLabel, for: .normal)
         
-        recentButton.setTitle("Recently Viewed", for: .normal)
+        recentButton.setButtonPurpose(.recent)
         recentButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
-        recentButton.setTitleColor(.secondaryLabel, for: .normal)
         
         lineOne.backgroundColor = .secondaryLabel
         lineOne.translatesAutoresizingMaskIntoConstraints = false
@@ -132,7 +127,7 @@ class SavedVC: CustomViewController, SafariProtocol {
     }
     
 
-    @objc func buttonPressed(sender: CustomButton) {
+    @objc func buttonPressed(sender: UIButton) {
         let buttonArray = [bookmarkButton, recentButton]
         for button in buttonArray {
             button.isSelected = false

@@ -1,13 +1,13 @@
 //
-//  CustomButton.swift
+//  TrendingProgressView.swift
 //  AussieNews
 //
-//  Created by Alexander Thompson on 21/3/2022.
+//  Created by Alexander Thompson on 22/4/2022.
 //
 
 import UIKit
 
-class CustomButton: UIButton {
+class TrendingProgressView: UIProgressView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,18 +19,13 @@ class CustomButton: UIButton {
     }
     
     
+    
     private func configure() {
-        layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
-        
+        progressViewStyle   = .bar
+        backgroundColor     = .systemGray3
+        progressTintColor   = .systemBlue
+        layer.cornerRadius  = 5
+        layer.masksToBounds = true
     }
-
-}
-
-extension CustomButton {
-    
-    func savePressed() {
-        
-    }
-    
 }

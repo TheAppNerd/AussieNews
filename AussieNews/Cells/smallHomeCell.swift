@@ -54,10 +54,10 @@ class smallHomeCell: DefaultCell {
                 saveButton.widthAnchor.constraint(equalTo: saveButton.heightAnchor),
                 saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
                 
-                optionsButton.topAnchor.constraint(equalTo: newsImage.bottomAnchor, constant: padding / 2),
-                optionsButton.trailingAnchor.constraint(equalTo: newsImage.trailingAnchor, constant: -padding),
-                optionsButton.widthAnchor.constraint(equalTo: optionsButton.heightAnchor),
-                optionsButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
+                shareButton.topAnchor.constraint(equalTo: newsImage.bottomAnchor, constant: padding / 2),
+                shareButton.trailingAnchor.constraint(equalTo: newsImage.trailingAnchor, constant: -padding),
+                shareButton.widthAnchor.constraint(equalTo: shareButton.heightAnchor),
+                shareButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
             ])
             
         

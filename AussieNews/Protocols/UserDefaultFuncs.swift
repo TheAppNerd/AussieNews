@@ -7,92 +7,95 @@
 
 import UIKit
 
-//each cell needs to load arrays to check if saved or visited
-//savedpagesvc needs for count and to show
-//tableview needs it at did select row at
-
 
 class UserDefaultFuncs {
     
+    //MARK: - Properties
+    
+    let defaults = UserDefaults.standard
     var savedArticleArray: [Article]
     var visitedArticleArray: [Article]
-    let defaults = UserDefaults.standard
     
+    ///Creates new empty arrays.
     init() {
         savedArticleArray = []
         visitedArticleArray = []
     }
     
     
+    //MARK: - Functions
+    
+    ///Retrieve all articles saved via user defaults to populate saved & visited article arrays.
     func retrieveArticles() {
-        if let data = defaults.object(forKey: "visited") as? Data {
-            let array = try! JSONDecoder().decode([Article].self, from: data)
+        if let visitedData = defaults.object(forKey: "visited") as? Data {
+            let array = try! JSONDecoder().decode([Article].self, from: visitedData)
             visitedArticleArray = []
             visitedArticleArray.append(contentsOf: array)
         }
         
-        if let data = defaults.object(forKey: "saved") as? Data {
-            let array = try! JSONDecoder().decode([Article].self, from: data)
+        if let savedData = defaults.object(forKey: "saved") as? Data {
+            let array = try! JSONDecoder().decode([Article].self, from: savedData)
             savedArticleArray = []
             savedArticleArray.append(contentsOf: array)
         }
     }
-        
     
+    
+    ///Save article to either visited or saved article arrays & store via UserDefaults.
     func saveArticle(_ articleArray: articleArray, article: Article) {
         retrieveArticles()
         switch articleArray {
         case .visited: visitedArticleArray.append(article)
-            if let data = try? JSONEncoder().encode(visitedArticleArray) {
-                defaults.set(data, forKey: "visited")
+            if let visitedData = try? JSONEncoder().encode(visitedArticleArray) {
+                defaults.set(visitedData, forKey: "visited")
             } else {
                 print("Failed to save articles.")
             }
             
         case .saved: savedArticleArray.append(article)
-            if let data = try? JSONEncoder().encode(savedArticleArray) {
-                defaults.set(data, forKey: "saved")
+            if let savedData = try? JSONEncoder().encode(savedArticleArray) {
+                defaults.set(savedData, forKey: "saved")
             } else {
                 print("Failed to save articles.")
             }
         }
     }
     
-
+    
+    ///Removes article from saved article array.
     func removeSavedArticle(article: Article) {
         retrieveArticles()
         savedArticleArray.removeAll { $0.link == article.link }
-            if let data = try? JSONEncoder().encode(savedArticleArray) {
-                defaults.set(data, forKey: "saved")
-            } else {
-                print("Failed to save articles.")
-            }
+        if let data = try? JSONEncoder().encode(savedArticleArray) {
+            defaults.set(data, forKey: "saved")
+        } else {
+            print("Failed to save articles.")
         }
+    }
     
     
+    ///empties either saved or visited article arrays & clears UserDefaults data.
     func clearArticles(_ articleArray: articleArray) {
         retrieveArticles()
         switch articleArray {
         case .visited:
             visitedArticleArray.removeAll()
-            if let data = try? JSONEncoder().encode(visitedArticleArray) {
-                defaults.set(data, forKey: "visited")
+            if let visitedData = try? JSONEncoder().encode(visitedArticleArray) {
+                defaults.set(visitedData, forKey: "visited")
             } else {
                 print("Failed to save articles.")
             }
         case .saved:
             savedArticleArray.removeAll()
-            if let data = try? JSONEncoder().encode(savedArticleArray) {
-                defaults.set(data, forKey: "saved")
+            if let savedData = try? JSONEncoder().encode(savedArticleArray) {
+                defaults.set(savedData, forKey: "saved")
             } else {
                 print("Failed to save articles.")
             }
         }
-        
     }
     
-    
-    }
+}
 
 
 

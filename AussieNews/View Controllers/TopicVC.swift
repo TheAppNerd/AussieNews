@@ -21,19 +21,11 @@ class TopicVC: CustomViewController, SafariProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        configureTableView(vc: self)
         layoutUI()
         configureBarButton()
-        
     }
-    
-    private func configure() {
-        tableView.register(smallHomeCell.self, forCellReuseIdentifier: smallHomeCell.reuseIdentifier)
-        tableView.register(bigHomeCell.self, forCellReuseIdentifier: bigHomeCell.reuseIdentifier)
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-    }
+  
     
     private func layoutUI() {
         view.addSubview(tableView)

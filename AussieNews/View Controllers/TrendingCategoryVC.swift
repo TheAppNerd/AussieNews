@@ -9,28 +9,28 @@ import UIKit
 
 class TrendingCategoryVC: UIViewController, SafariProtocol {
     
-    //MARK: - Variables & Constants
     
+    //MARK: - Properties
     
-    // TODO: make articles random order. 
-    
-    let progressStack       = UIStackView()
+    let progressStack       = TrendingStackView()
     let trendingView        = TrendingView()
-    let readArticleButton  = CustomButton()
+    let readArticleButton   = UIButton()
+    let topView = UIView()
+    let line = UIView()
+    
     var newsArticles: [Article] = []
     var topic: String = ""
     var progressStatus: Int = 0
     var timer               = Timer()
     var progressViewArray: [UIProgressView] = []
     var topicLabel = CustomLabel()
-    let topView = UIView()
-    let line = UIView()
+   
     
+    //MARK: - View Funcs
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getArticles(params: .topic)
-        
     }
     
     
@@ -43,7 +43,10 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
         configureReadButton()
     }
     
-    //create in customvc
+   
+    //MARK: - Functions
+    
+    ///Parses news to instagram style view.
     func getArticles(params: NewsManager.networkParams) {
         NewsManager.Shared.topic = topic
         NewsManager.Shared.getNews(params:params) { [weak self] result in
@@ -55,7 +58,6 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
                     self.trendingView.set(self.newsArticles[self.progressStatus])
                     self.animateProgressViews(startingNum: self.progressStatus)
                 }
-                
             case.failure(let error): print(error.rawValue)
             }
         }
@@ -66,44 +68,27 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
         view.backgroundColor = .systemBackground
         topView.translatesAutoresizingMaskIntoConstraints = false
         topView.backgroundColor = .secondarySystemBackground
+        
         line.translatesAutoresizingMaskIntoConstraints = false
         line.backgroundColor = .tertiarySystemBackground
         
         topicLabel.text = topic.uppercased()
         topicLabel.textAlignment = .center
-        
-        
     }
    
     
+    ///Appends progressViews to stacj & to array for easy management.
     private func configureProgressStack() {
         for _ in 0...4 {
-            let progressView = UIProgressView(progressViewStyle: .bar)
-            progressView.translatesAutoresizingMaskIntoConstraints = false
-            progressView.backgroundColor   = .systemGray3
-            progressView.progressTintColor = .systemBlue
-            progressView.layer.cornerRadius = 5
-            progressView.layer.masksToBounds = true
+            let progressView = TrendingProgressView()
             progressViewArray.append(progressView)
+            progressStack.addArrangedSubview(progressView)
         }
-        
-        progressStack.translatesAutoresizingMaskIntoConstraints = false
-        for view in progressViewArray {
-            progressStack.addArrangedSubview(view)
-        }
-        progressStack.alignment = .fill
-        progressStack.spacing = 10
-        progressStack.distribution = .fillEqually
-        progressStack.axis = .horizontal
-        
     }
     
+    
     func configureReadButton() {
-        readArticleButton.backgroundColor = .systemBlue
-        readArticleButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
-        readArticleButton.tintColor = .label
-        readArticleButton.setTitle("Read Article", for: .normal)
-        readArticleButton.setTitleColor(.label, for: .normal)
+        readArticleButton.setButtonPurpose(.readArticle)
         readArticleButton.addTarget(self, action: #selector(readButtonPressed), for: .touchUpInside)
     }
     
