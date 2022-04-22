@@ -9,8 +9,7 @@ import UIKit
 
 class EmptyStateView: UIView {
     
-    
-    
+
     let emptyImage = UIImageView()
     let emptyTitleLabel = CustomLabel()
     let emptySecondaryLabel = CustomLabel()

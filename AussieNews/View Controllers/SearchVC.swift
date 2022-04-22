@@ -13,7 +13,7 @@ import UIKit
 class SearchVC: CustomViewController {
 
     let textField = SearchTextField()
-    let searchButton = CustomButton()
+    let searchButton = UIButton()
     let topView = UIView()
     let line = UIView()
     
@@ -21,7 +21,7 @@ class SearchVC: CustomViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        configureTableView()
+        configureTableView(vc: self)
         layoutUI()
         addEmptyState(array: newsArticles, state: .search)
     }
@@ -29,9 +29,8 @@ class SearchVC: CustomViewController {
     private func configure() {
         view.backgroundColor = .systemBackground
         textField.delegate = self
-        searchButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        searchButton.tintColor = .label
-        searchButton.backgroundColor = .systemBlue
+        
+        searchButton.setButtonPurpose(.search)
         searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
         
         topView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,12 +40,6 @@ class SearchVC: CustomViewController {
         line.backgroundColor = .tertiarySystemBackground
     }
     
-    private func configureTableView() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(smallHomeCell.self, forCellReuseIdentifier: smallHomeCell.reuseIdentifier)
-    }
     
     
     

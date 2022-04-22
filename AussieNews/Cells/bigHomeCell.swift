@@ -54,15 +54,15 @@ class bigHomeCell: DefaultCell {
             articleAuthorLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
             
             saveButton.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
-            saveButton.trailingAnchor.constraint(equalTo: optionsButton.leadingAnchor, constant: -padding),
+            saveButton.trailingAnchor.constraint(equalTo: shareButton.leadingAnchor, constant: -padding),
             saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
             saveButton.widthAnchor.constraint(equalTo: saveButton.heightAnchor, multiplier: 0.6),
             
-            optionsButton.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
-            optionsButton.leadingAnchor.constraint(equalTo: saveButton.trailingAnchor, constant: padding),
-            optionsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            optionsButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
-            optionsButton.widthAnchor.constraint(equalTo: optionsButton.heightAnchor, multiplier: 0.6)
+            shareButton.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
+            shareButton.leadingAnchor.constraint(equalTo: saveButton.trailingAnchor, constant: padding),
+            shareButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            shareButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
+            shareButton.widthAnchor.constraint(equalTo: shareButton.heightAnchor, multiplier: 0.6)
      ])
         
         

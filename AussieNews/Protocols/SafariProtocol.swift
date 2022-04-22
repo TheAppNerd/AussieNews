@@ -22,9 +22,5 @@ extension SafariProtocol {
             vc.present(safariVC, animated: true)
         }
     }
-    
 }
 
-//what other funcs can be protocols?
-//json parsing
-//

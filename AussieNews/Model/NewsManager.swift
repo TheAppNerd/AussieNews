@@ -9,6 +9,9 @@ import UIKit
 
 class NewsManager {
     
+    //MARK: - Properties
+    
+ 
     let baseURL = "https://api.newscatcherapi.com/v2/"
     let headlines = "latest_headlines?lang=en&countries=au&topic=entertainment"
     let topicURL = "latest_headlines?lang=en&countries=au&topic="
@@ -16,19 +19,26 @@ class NewsManager {
     var topic: String = ""
     var searchString: String = ""
     
+    
+    
     enum networkParams {
         case home
         case topic
         case search
     }
     
-    static let Shared = NewsManager()
+    //MARK: - Singleton
     
+    static let Shared = NewsManager()
     private init () {}
     
-  
-    let cache = NSCache<NSString, UIImage>()
     
+    //MARK: - Functions
+    
+    
+    ///method to parse news data depending on specified endoints
+    ///
+    /// - Parameter: networkParams: the specific type of use the user is after. Eg/ home page, specific topic or search query
     func getNews(params: networkParams, completed: @escaping (Result<Articles, NewsErrors>) -> Void) {
         let urlString = searchString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
         var endpoint: String = ""
@@ -36,60 +46,52 @@ class NewsManager {
         switch params {
         case .home:
             endpoint = baseURL + headlines
-    
         case .topic:
             endpoint = baseURL + topicURL + topic
-        
         case .search:
-        endpoint = baseURL + "search?q=" + urlString! + searchURL
+            endpoint = baseURL + "search?q=" + urlString! + searchURL
         }
-
+        
         guard let url = URL(string: endpoint) else {
             completed(.failure(.urlError))
             return
         }
-
+        
         var request = URLRequest(url: url)
-       
-        //hide this key
-        request.addValue("-4JjtRyAm4l4Djwgl2VpVmsE1LXUtLBHeeUdaCOF41g", forHTTPHeaderField: "x-api-key")
-
-
-
+        request.addValue(APIKey().apiKey, forHTTPHeaderField: "x-api-key")
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-
             if let _ = error {
                 completed(.failure(.urlError))
                 return
             }
-
+            
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                 completed(.failure(.urlError))
                 return
             }
-
+            
             guard let data = data else {
                 completed(.failure(.responseError))
                 return
             }
-
+            
             do {
                 let decoder = JSONDecoder()
                 let newsArticles = try decoder.decode(Articles.self, from: data)
                 completed(.success(newsArticles))
             } catch {
-               
                 completed(.failure(.decodeError))
             }
         }
         task.resume()
-}
+    }
     
     
     
-    //fix this up
+///Method to cache downloaded images.
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
-        
+        let cache    = NSCache<NSString, UIImage>()
         let cacheKey = NSString(string: urlString)
         
         if let image = cache.object(forKey: cacheKey) {
@@ -104,24 +106,22 @@ class NewsManager {
         
         let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             guard let self = self,
-                  error == nil,
-                  let response = response as? HTTPURLResponse, response.statusCode == 200,
-                  let data = data,
-                  let image = UIImage(data: data) else {
-                  let defaultImage = UIImage(named: "placeholder")
+                  error          == nil,
+                  let response   = response as? HTTPURLResponse, response.statusCode == 200,
+                  let data       = data,
+                  let image      = UIImage(data: data) else {
+                let defaultImage = UIImage(named: "placeholder")
                 completed(defaultImage)
                 return
             }
             
-            self.cache.setObject(image, forKey: cacheKey)
+            cache.setObject(image, forKey: cacheKey)
             DispatchQueue.main.async {
                 completed(image)
             }
         }
-        
         task.resume()
     }
-
     
 }
 

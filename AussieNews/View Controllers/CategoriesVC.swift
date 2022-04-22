@@ -30,7 +30,7 @@ class CategoriesVC: CustomViewController, SafariProtocol {
     
     private func configureCollectionView() {
         
-        categoriesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout.collectionViewLayout(in: view, items: 3))
+        categoriesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout.collectionViewLayout(in: view, items: 3))
         categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         categoriesCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifier)
         categoriesCollectionView.isScrollEnabled = false
@@ -55,24 +55,24 @@ class CategoriesVC: CustomViewController, SafariProtocol {
 
 extension CategoriesVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return topicArray.count
+        return topics.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = categoriesCollectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as! CollectionViewCell
-        cell.collectionImageView.image = UIImage(named: topicArray[indexPath.item])
-        cell.collectionLabel.text = topicArray[indexPath.item]
+        cell.collectionImageView.image = UIImage(named: topics.allCases[indexPath.item].rawValue)
+        cell.collectionLabel.text = topics.allCases[indexPath.item].rawValue
         
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let topic = topicArray[indexPath.item]
+        let topic = topics.allCases[indexPath.item]
         let vc = TopicVC()
-        vc.topic = topic
-        vc.title = topic
+        vc.topic = topic.rawValue
+        vc.title = topic.rawValue
         show(vc, sender: self)
         
     }

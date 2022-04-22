@@ -15,8 +15,8 @@ class DefaultCell: UITableViewCell {
     let headlineLabel      = CustomLabel(.label)
     let articleDateLabel   = CustomLabel(.secondaryLabel)
     let articleAuthorLabel = CustomLabel(.secondaryLabel)
-    let saveButton         = CustomButton()
-    let optionsButton      = CustomButton()
+    let saveButton         = UIButton()
+    let shareButton        = UIButton()
     var parentVC           = UIViewController()
     var parentTableView    = UITableView()
     let userDefaultFuncs = UserDefaultFuncs()
@@ -39,7 +39,7 @@ class DefaultCell: UITableViewCell {
     
      func configureCell() {
          
-        contentView.addSubviews(newsImage, headlineLabel, articleDateLabel, articleAuthorLabel, saveButton, optionsButton)
+        contentView.addSubviews(newsImage, headlineLabel, articleDateLabel, articleAuthorLabel, saveButton, shareButton)
         contentView.isUserInteractionEnabled = true
         
         newsImage.contentMode = .scaleAspectFill
@@ -50,15 +50,12 @@ class DefaultCell: UITableViewCell {
     }
     
      func configureButtons() {
-        saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-        saveButton.addTarget(self, action: #selector(savePressed), for: .touchUpInside)
-        saveButton.tintColor = .secondaryLabel
+         saveButton.setButtonPurpose(.save)
+         saveButton.addTarget(self, action: #selector(savePressed), for: .touchUpInside)
         
-        optionsButton.setImage(UIImage(systemName: "ellipsis"), for: .normal)
-        optionsButton.tintColor = .secondaryLabel
-         
-         optionsButton.menu = menu
-         optionsButton.showsMenuAsPrimaryAction = true
+         shareButton.setButtonPurpose(.share)
+         shareButton.menu = menu
+         shareButton.showsMenuAsPrimaryAction = true
     }
     
     func shareArticle() {

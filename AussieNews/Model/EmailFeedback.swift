@@ -9,18 +9,19 @@ import UIKit
 
 struct EmailFeedback {
     
+    
+    ///Method to open users main email app to send feedback to me personally.
+    ///Utilises UI device to determine current system version to provide me with more in depth information when feedback is provided.
     func newEmail() {
-        //move to constants
-        let address = "Alex@appNerd.com.au"
-        let subject = "Habit Builder Feedback"
+        let address           = SocialMedia.emailAddress
+        let subject           = SocialMedia.emailHeader
         
-        let appVersion = UIApplication.appVersion
-        let systemVersion = UIDevice.current.systemVersion
-        let locale = Locale.current
-        let modelNumber = UIDevice().modelIdentifier()
+        let appVersion        = UIApplication.appVersion
+        let systemVersion     = UIDevice.current.systemVersion
+        let locale            = Locale.current
+        let modelNumber       = UIDevice().modelIdentifier()
         
-        
-        let body = """
+        let body              = """
 
 
 
@@ -31,9 +32,9 @@ Location: \(locale)
 
 """
         
-        var components = URLComponents()
-        components.scheme = "mailto"
-        components.path = address
+        var components        = URLComponents()
+        components.scheme     = "mailto"
+        components.path       = address
         components.queryItems = [
             URLQueryItem(name: "subject", value: subject),
             URLQueryItem(name: "body", value: body)
