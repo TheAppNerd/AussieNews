@@ -51,12 +51,12 @@ class HomeVC: CustomViewController, SafariProtocol {
         let defaults = UserDefaults.standard
         var mode = traitCollection.userInterfaceStyle
         
-        switch defaults.object(forKey: "darkMode") as? String {
-        case "Device": mode = UIScreen.main.traitCollection.userInterfaceStyle
-        case "Light":  mode = UIUserInterfaceStyle.light
-        case "Dark":   mode = UIUserInterfaceStyle.dark
-        case nil:      mode = UIScreen.main.traitCollection.userInterfaceStyle
-        default:       mode = UIScreen.main.traitCollection.userInterfaceStyle
+        switch defaults.object(forKey: darkMode.key) as? String {
+        case darkMode.device: mode = UIScreen.main.traitCollection.userInterfaceStyle
+        case darkMode.light:  mode = UIUserInterfaceStyle.light
+        case darkMode.dark:   mode = UIUserInterfaceStyle.dark
+        case nil:             mode = UIScreen.main.traitCollection.userInterfaceStyle
+        default:              mode = UIScreen.main.traitCollection.userInterfaceStyle
         }
         UIApplication.shared.windows.forEach { window in
             window.overrideUserInterfaceStyle = mode
@@ -130,14 +130,14 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return topics.allCases.count
+        return topics.topicsArray.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as! CollectionViewCell
-        let topic = topics.allCases[indexPath.item]
-        cell.set(topic: topic.rawValue)
+        let topic = topics.topicsArray[indexPath.item]
+        cell.set(topic: topic)
         return cell
     }
     
@@ -145,7 +145,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = TrendingCategoryVC()
         vc.modalPresentationStyle = .popover
-        vc.topic = topics.allCases[indexPath.row].rawValue
+        vc.topic = topics.topicsArray[indexPath.row]
         present(vc, animated: true)
     }
 }

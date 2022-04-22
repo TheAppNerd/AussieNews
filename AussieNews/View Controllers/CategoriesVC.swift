@@ -10,17 +10,20 @@ import SafariServices
 
 class CategoriesVC: CustomViewController, SafariProtocol {
     
+    //MARK: - Properties
+    
     var categoriesCollectionView: UICollectionView!
     
+    //MARK: - View Funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         configureCollectionView()
         layoutUI()
-    
     }
     
+    //MARK: - Funcs
     
     private func configure() {
         title = "Categories"
@@ -29,7 +32,6 @@ class CategoriesVC: CustomViewController, SafariProtocol {
     
     
     private func configureCollectionView() {
-        
         categoriesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout.collectionViewLayout(in: view, items: 3))
         categoriesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         categoriesCollectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifier)
@@ -41,7 +43,6 @@ class CategoriesVC: CustomViewController, SafariProtocol {
     
     
     private func layoutUI() {
-        
         NSLayoutConstraint.activate([
             categoriesCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             categoriesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
@@ -50,34 +51,30 @@ class CategoriesVC: CustomViewController, SafariProtocol {
         ])
     }
     
-    
 }
+
+//MARK: - CollectionView - UICollectionViewDelegate, UICollectionViewDataSource
 
 extension CategoriesVC: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return topics.allCases.count
+        return topics.topicsArray.count
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = categoriesCollectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as! CollectionViewCell
-        cell.collectionImageView.image = UIImage(named: topics.allCases[indexPath.item].rawValue)
-        cell.collectionLabel.text = topics.allCases[indexPath.item].rawValue
-        
-        
+        let topic = topics.topicsArray[indexPath.item]
+        cell.collectionImageView.image = UIImage(named: topic)
+        cell.collectionLabel.text = topic
         return cell
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let topic = topics.allCases[indexPath.item]
-        let vc = TopicVC()
-        vc.topic = topic.rawValue
-        vc.title = topic.rawValue
+        let topic = topics.topicsArray[indexPath.item]
+        let vc    = TopicVC()
+        vc.topic  = topic
         show(vc, sender: self)
-        
     }
-    
-    
-    
     
 }

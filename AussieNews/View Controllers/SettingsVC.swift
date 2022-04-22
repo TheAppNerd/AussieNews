@@ -10,18 +10,19 @@ import UIKit
 class SettingsVC: UIViewController {
     
     
+    //MARK: - Properties
+    
     var tableView = UITableView()
     var darkModeSegment: Int = 0
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
+   //MARK: - View Funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         configureTableview()
     }
+    
     
     private func configure() {
         view.backgroundColor = .secondarySystemBackground
@@ -57,14 +58,13 @@ class SettingsVC: UIViewController {
     
     private func selectCurrentDarkMode() {
         let defaults = UserDefaults.standard
-
-        switch defaults.object(forKey: "darkMode") as? String {
-        case "Device": darkModeSegment = 0
-        case "Light": darkModeSegment = 1
-        case "Dark": darkModeSegment = 2
-        case nil: darkModeSegment = 0
+        switch defaults.object(forKey: darkMode.key) as? String {
+        case darkMode.device: darkModeSegment = 0
+        case darkMode.light: darkModeSegment  = 1
+        case darkMode.dark: darkModeSegment   = 2
+        case nil: darkModeSegment             = 0
         default:
-            darkModeSegment = 0
+            darkModeSegment                   = 0
         }
         tableView.reloadSections([0,0], with: .none)
     }
@@ -76,13 +76,13 @@ class SettingsVC: UIViewController {
 
     switch sender.selectedSegmentIndex {
     case 0: mode = UIScreen.main.traitCollection.userInterfaceStyle
-        defaults.set("Device", forKey: "darkMode")
+        defaults.set(darkMode.device, forKey: darkMode.key)
 
     case 1: mode = UIUserInterfaceStyle.light
-        defaults.set("Light", forKey: "darkMode")
+        defaults.set(darkMode.light, forKey: darkMode.key)
 
     case 2: mode = UIUserInterfaceStyle.dark
-        defaults.set("Dark", forKey: "darkMode")
+        defaults.set(darkMode.dark, forKey: darkMode.key)
 
     default: mode = UITraitCollection.current.userInterfaceStyle
     }
