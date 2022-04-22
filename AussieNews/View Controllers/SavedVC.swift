@@ -9,8 +9,8 @@ import UIKit
 import SafariServices
 
 class SavedVC: CustomViewController, SafariProtocol {
-   
-    //MARK: - variables & constants
+    
+    //MARK: - Properties
     
     let emptyState       = EmptyStateView()
     let bookmarkButton   = UIButton()
@@ -19,7 +19,8 @@ class SavedVC: CustomViewController, SafariProtocol {
     let lineTwo          = UIView()
     let userDefaultFuncs = UserDefaultFuncs()
     
-
+    //MARK: - View Funcs
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureButtons()
@@ -33,25 +34,21 @@ class SavedVC: CustomViewController, SafariProtocol {
         layoutUI()
     }
     
-    //MARK: - Funcs
-    
+    //MARK: - Functions
     
     private func configure() {
         title = "Saved"
         view.backgroundColor              = .systemBackground
-        
         let clearButton                   = UIBarButtonItem(title: "Clear All", style: .done, target: self, action: #selector(clearPressed))
         clearButton.tintColor             = .systemBlue
         navigationItem.rightBarButtonItem = clearButton
     }
     
- 
     
     private func configureButtons() {
-        userDefaultFuncs.retrieveArticles()
-        
+        updateLabel()
         bookmarkButton.setButtonPurpose(.bookmark)
-        bookmarkButton.setTitle("Saved \(userDefaultFuncs.savedArticleArray.count)", for: .normal)
+        
         bookmarkButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
         
         recentButton.setButtonPurpose(.recent)
@@ -62,6 +59,11 @@ class SavedVC: CustomViewController, SafariProtocol {
         
         lineTwo.backgroundColor = .secondaryLabel
         lineTwo.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func updateLabel() {
+        userDefaultFuncs.retrieveArticles()
+        bookmarkButton.setTitle("Saved \(userDefaultFuncs.savedArticleArray.count)", for: .normal)
     }
     
     
@@ -103,9 +105,9 @@ class SavedVC: CustomViewController, SafariProtocol {
     }
     
     
-    
     //MARK: - @objc Funcs
     
+    ///Generates an alert to clear all articles from either saved or visited articles in UserDefaults.
     @objc func clearPressed() {
         let alert = UIAlertController(title: "Clear Articles", message: "Are you sure you wish to clear this list?", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
@@ -116,7 +118,7 @@ class SavedVC: CustomViewController, SafariProtocol {
                 self.userDefaultFuncs.clearArticles(.visited)
                 self.addEmptyState(array: self.userDefaultFuncs.visitedArticleArray, state: .visited)
             }
-            self.bookmarkButton.setTitle("Saved \(self.userDefaultFuncs.savedArticleArray.count)", for: .normal)
+            self.updateLabel()
             self.tableView.reloadData()
         }
         let cancelAction = UIAlertAction(title: "No", style: .cancel)
@@ -126,7 +128,8 @@ class SavedVC: CustomViewController, SafariProtocol {
         present(alert, animated: true)
     }
     
-
+    
+    //Alternates between displaying saved articles & visited Articles
     @objc func buttonPressed(sender: UIButton) {
         let buttonArray = [bookmarkButton, recentButton]
         for button in buttonArray {
@@ -134,9 +137,9 @@ class SavedVC: CustomViewController, SafariProtocol {
             button.setTitleColor(.secondaryLabel, for: .normal)
         }
         sender.isSelected = true
-            lineOne.backgroundColor = .secondaryLabel
-            lineTwo.backgroundColor = .secondaryLabel
-            
+        lineOne.backgroundColor = .secondaryLabel
+        lineTwo.backgroundColor = .secondaryLabel
+        
         if sender == bookmarkButton {
             lineOne.backgroundColor = .systemBlue
             bookmarkButton.setTitleColor(.systemBlue, for: .normal)
@@ -149,16 +152,15 @@ class SavedVC: CustomViewController, SafariProtocol {
         tableView.reloadData()
     }
     
+    
     @objc func saveButtonPressed() {
-        userDefaultFuncs.retrieveArticles()
+        self.updateLabel()
         tableView.reloadData()
-        bookmarkButton.setTitle("Saved \(userDefaultFuncs.savedArticleArray.count)", for: .normal)
-
     }
 }
 
 
-//MARK: - TableViewDelegate, TableViewDataSource
+//MARK: - TableView - TableViewDelegate, TableViewDataSource
 
 extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -169,9 +171,8 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        userDefaultFuncs.retrieveArticles()
-        bookmarkButton.setTitle("Saved \(userDefaultFuncs.savedArticleArray.count)", for: .normal)
         let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
         cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         if bookmarkButton.isSelected {
@@ -179,9 +180,10 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.set(article: userDefaultFuncs.visitedArticleArray[indexPath.row], vc: self, tableView: tableView)
         }
-
+        
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article: Article?
@@ -190,13 +192,13 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             article = userDefaultFuncs.visitedArticleArray[indexPath.row]
         }
-       
+        
         showArticle(self, article: article!)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        //moce to constant
         view.frame.size.height / 6
     }
+    
 }
 

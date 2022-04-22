@@ -7,17 +7,19 @@
 
 import UIKit
 
-//goals: enter text into search field to search params
-//save previous searches?
 
 class SearchVC: CustomViewController {
 
-    let textField = SearchTextField()
+    //MARK: - Properties
+    
+    let textField    = SearchTextField()
     let searchButton = UIButton()
-    let topView = UIView()
-    let line = UIView()
+    let topView      = UIView()
+    let line         = UIView()
     
      
+    //MARK: - View Funcs
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -25,6 +27,8 @@ class SearchVC: CustomViewController {
         layoutUI()
         addEmptyState(array: newsArticles, state: .search)
     }
+    
+    //MARK: - Functions
 
     private func configure() {
         view.backgroundColor = .systemBackground
@@ -41,18 +45,12 @@ class SearchVC: CustomViewController {
     }
     
     
-    
-    
-        
-    
-    
     private func layoutUI() {
         view.addSubviews(textField, searchButton, tableView, topView)
         topView.addSubview(line)
         let padding: CGFloat = 20
         
         NSLayoutConstraint.activate([
-            
             topView.topAnchor.constraint(equalTo: view.topAnchor),
             topView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             topView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -79,17 +77,19 @@ class SearchVC: CustomViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding)
-
         ])
     }
+    
+    
+    //MARK: - @objc funcs
     
     @objc func searchButtonPressed() {
         textFieldDidEndEditing(textField)
     }
-
+    
 }
 
-//MARK: - UItextFieldDelegate
+//MARK: - UITextFieldDelegate
 
 extension SearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -102,6 +102,7 @@ extension SearchVC: UITextFieldDelegate {
         newsArticles.removeAll()
         NewsManager.Shared.searchString = textField.text!
         getArticles(params: .search)
+        textField.resignFirstResponder()
     }
     
 }
@@ -111,12 +112,11 @@ extension SearchVC: UITextFieldDelegate {
 extension SearchVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsArticles.count
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let article = newsArticles[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
+        let cell    = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
         
         cell.set(article: article, vc: self, tableView: tableView)
         return cell

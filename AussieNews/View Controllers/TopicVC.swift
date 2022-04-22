@@ -21,6 +21,7 @@ class TopicVC: CustomViewController, SafariProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = topic
         configureTableView(vc: self)
         layoutUI()
         configureBarButton()

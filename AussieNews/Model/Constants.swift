@@ -35,21 +35,14 @@ enum emptyState {
     case visited
 }
 
-enum topics: String, CaseIterable {
-    case business      = "business"
-    case beauty        = "beauty"
-    case economics     = "economics"
-    case energy        = "energy"
-    case entertainment = "entertainment"
-    case finance       = "finance"
-    case food          = "food"
-    case gaming        = "gaming"
-    case music         = "music"
-    case politics      = "politics"
-    case science       = "science"
-    case sport         = "sport"
-    case tech          = "tech"
-    case travel        = "travel"
-    case world         = "world"
+enum topics {
+    static let topicsArray = ["business", "beauty", "economics", "energy", "entertainment", "finance", "food", "gaming", "music", "politics", "science", "sport", "tech", "travel", "world"]
+}
+
+enum darkMode {
+    static let device      = "Device"
+    static let light       = "Light"
+    static let dark        = "Dark"
+    static let key = "darkMode"
 }
 
