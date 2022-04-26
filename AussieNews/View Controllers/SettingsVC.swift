@@ -29,7 +29,7 @@ class SettingsVC: UIViewController {
     private func configure() {
         view.backgroundColor          = .secondarySystemBackground
         let icon                      = UIImage(named: "aussieNewsIcon")
-        let iconImageView             = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        let iconImageView             = CustomImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         iconImageView.contentMode     = .scaleAspectFit
         iconImageView.image           = icon
         self.navigationItem.titleView = iconImageView

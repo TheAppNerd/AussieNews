@@ -1,5 +1,5 @@
 //
-//  TrendingStackView().swift
+//  TrendingStackView.swift
 //  AussieNews
 //
 //  Created by Alexander Thompson on 22/4/2022.

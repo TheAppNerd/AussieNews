@@ -12,7 +12,7 @@ class CollectionViewCell: UICollectionViewCell {
     //MARK: - Properties
     
     static let reuseIdentifier = "CollectionViewCell"
-    let collectionImageView    = UIImageView()
+    let collectionImageView    = CustomImageView(frame: .zero)
     let collectionLabel        = CustomLabel()
     
     //MARK: - Class Funcs
@@ -37,7 +37,6 @@ class CollectionViewCell: UICollectionViewCell {
     
     
     private func configure() {
-        collectionImageView.translatesAutoresizingMaskIntoConstraints = false
         collectionImageView.addSubview(collectionLabel)
         collectionImageView.layer.cornerRadius  = 10
         collectionImageView.layer.masksToBounds = true

@@ -60,8 +60,8 @@ class CustomViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(bigHomeCell.self, forCellReuseIdentifier: bigHomeCell.reuseIdentifier)
         tableView.register(smallHomeCell.self, forCellReuseIdentifier: smallHomeCell.reuseIdentifier)
-        tableView.delegate       = vc as! UITableViewDelegate
-        tableView.dataSource     = vc as! UITableViewDataSource
+        tableView.delegate       = vc as? UITableViewDelegate
+        tableView.dataSource     = vc as? UITableViewDataSource
     }
     
     

@@ -8,8 +8,7 @@
 import UIKit
 
 class HomeVC: CustomViewController, SafariProtocol {
-    
-    // TODO: remove all !
+
     
     //MARK: - View Funcs
     

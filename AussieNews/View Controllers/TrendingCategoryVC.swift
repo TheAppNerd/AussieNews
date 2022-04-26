@@ -205,8 +205,10 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
     
     ///Loads SFSafari browser and pauses timer while in there.
     @objc func readButtonPressed() {
-        showArticle(self, article: trendingView.article!)
-        timer.invalidate()
+        if let article = trendingView.article {
+            showArticle(self, article: article)
+            timer.invalidate()
+        }
     }
     
 }
