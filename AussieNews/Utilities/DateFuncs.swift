@@ -12,8 +12,8 @@ struct DateFuncs {
     func convertStringToDate(dateStr: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let date = dateFormatter.date(from: dateStr)
-        return date!
+        guard let date = dateFormatter.date(from: dateStr) else { return Date() }
+        return date
     }
     
     ///Takes a date string, converts it to Date, determines the amount of time between that date and now and presents it in a simple format.

@@ -57,9 +57,11 @@ class TrendingView: UIView {
         self.newsImage.downloadImage(from: article.media ?? "")
         self.headlineLabel.text      = article.title
         self.articleLabel.text       = article.summary
-        self.articleDateLabel.text   = DateFuncs().timeSinceDate(dateStr: article.published_date!)
         self.articleAuthorLabel.text = article.rights
         self.article                 = article
+        if let publishedDate = article.published_date {
+            self.articleDateLabel.text   = DateFuncs().timeSinceDate(dateStr: publishedDate)
+        }
         self.layoutIfNeeded()
     }
     

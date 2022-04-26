@@ -193,7 +193,9 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
             article = userDefaultFuncs.visitedArticleArray[indexPath.row]
         }
         
-        showArticle(self, article: article!)
+        if let article = article {
+            showArticle(self, article: article)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

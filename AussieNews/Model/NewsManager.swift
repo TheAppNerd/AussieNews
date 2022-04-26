@@ -11,7 +11,7 @@ class NewsManager {
     
     //MARK: - Properties
     
- 
+    
     let baseURL = "https://api.newscatcherapi.com/v2/"
     let headlines = "latest_headlines?lang=en&countries=au&topic=entertainment"
     let topicURL = "latest_headlines?lang=en&countries=au&topic="
@@ -20,12 +20,13 @@ class NewsManager {
     var searchString: String = ""
     
     
-    
     enum networkParams {
         case home
         case topic
         case search
     }
+    
+// TODO: remove singleton
     
     //MARK: - Singleton
     
@@ -40,7 +41,7 @@ class NewsManager {
     ///
     /// - Parameter: networkParams: the specific type of use the user is after. Eg/ home page, specific topic or search query
     func getNews(params: networkParams, completed: @escaping (Result<Articles, NewsErrors>) -> Void) {
-        let urlString = searchString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+        let urlString = searchString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         var endpoint: String = ""
         
         switch params {
@@ -49,7 +50,7 @@ class NewsManager {
         case .topic:
             endpoint = baseURL + topicURL + topic
         case .search:
-            endpoint = baseURL + "search?q=" + urlString! + searchURL
+            endpoint = baseURL + "search?q=" + urlString + searchURL
         }
         
         guard let url = URL(string: endpoint) else {
@@ -89,7 +90,7 @@ class NewsManager {
     
     
     
-///Method to cache downloaded images.
+    ///Method to cache downloaded images.
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
         let cache    = NSCache<NSString, UIImage>()
         let cacheKey = NSString(string: urlString)
@@ -110,7 +111,7 @@ class NewsManager {
                   let response   = response as? HTTPURLResponse, response.statusCode == 200,
                   let data       = data,
                   let image      = UIImage(data: data) else {
-                let defaultImage = UIImage(named: "placeholder")
+                let defaultImage = images.placeholder
                 completed(defaultImage)
                 return
             }
@@ -122,6 +123,5 @@ class NewsManager {
         }
         task.resume()
     }
-    
 }
 

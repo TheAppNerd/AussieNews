@@ -32,8 +32,7 @@ class SearchVC: CustomViewController {
 
     private func configure() {
         view.backgroundColor = .systemBackground
-        textField.delegate = self
-        
+        textField.delegate   = self
         searchButton.setButtonPurpose(.search)
         searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
         
@@ -100,7 +99,7 @@ extension SearchVC: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard textField.text != "" else { return }
         newsArticles.removeAll()
-        NewsManager.Shared.searchString = textField.text!
+        NewsManager.Shared.searchString = textField.text ?? ""
         getArticles(params: .search)
         textField.resignFirstResponder()
     }
