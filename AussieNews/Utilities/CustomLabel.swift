@@ -10,6 +10,8 @@ import UIKit
 
 class CustomLabel: UILabel {
  
+    //MARK: - Class Funcs
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -23,6 +25,9 @@ class CustomLabel: UILabel {
         self.init(frame: .zero)
         self.textColor = textColor
     }
+    
+    
+    //MARK: - Functions
     
     private func configure() {
         self.translatesAutoresizingMaskIntoConstraints = false

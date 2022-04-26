@@ -9,10 +9,7 @@ import UIKit
 
 
 enum NewsErrors: String, Error {
-  
     case urlError = "URL Error"
     case responseError = "Response Error"
     case decodeError = "Failed to decode"
-    
-    
 }

@@ -9,6 +9,8 @@ import UIKit
 
 class TrendingStackView: UIStackView {
     
+    //MARK: -  Class Funcs
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -17,6 +19,8 @@ class TrendingStackView: UIStackView {
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Functions
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false

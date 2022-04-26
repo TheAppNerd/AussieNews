@@ -9,11 +9,13 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     
+    //MARK: - Properties
+    
     static let reuseIdentifier = "CollectionViewCell"
+    let collectionImageView    = UIImageView()
+    let collectionLabel        = CustomLabel()
     
-    let collectionImageView = UIImageView()
-    let collectionLabel = CustomLabel()
-    
+    //MARK: - Class Funcs
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,49 +28,47 @@ class CollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Functions
+    
     func set(topic: String) {
         collectionImageView.image = UIImage(named: topic)
-        collectionLabel.text = topic
+        collectionLabel.text      = topic
     }
     
     
     private func configure() {
         collectionImageView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubviews(collectionImageView)
-        collectionImageView.layer.cornerRadius = 10
-        collectionImageView.layer.masksToBounds = true
         collectionImageView.addSubview(collectionLabel)
-        collectionImageView.contentMode = .scaleAspectFill
+        collectionImageView.layer.cornerRadius  = 10
+        collectionImageView.layer.masksToBounds = true
+        collectionImageView.contentMode         = .scaleAspectFill
         
-        collectionLabel.textAlignment = .center
-        collectionLabel.layer.cornerRadius = 10
-        collectionLabel.layer.masksToBounds = true
-        collectionLabel.textColor = .white
-        collectionLabel.font = UIFont.boldSystemFont(ofSize: 12)
-        collectionLabel.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        collectionLabel.textAlignment           = .center
+        collectionLabel.layer.cornerRadius      = 10
+        collectionLabel.layer.masksToBounds     = true
+        collectionLabel.textColor               = .white
+        collectionLabel.font                    = UIFont.boldSystemFont(ofSize: 12)
+        collectionLabel.backgroundColor         = UIColor.black.withAlphaComponent(0.5)
         
-        
-        contentView.layer.cornerRadius = 10
-        contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.systemBlue.cgColor
-       
+        contentView.layer.cornerRadius          = 10
+        contentView.layer.borderWidth           = 1
+        contentView.layer.borderColor           = UIColor.systemBlue.cgColor
     }
+    
     
     private func layoutUI() {
+        contentView.addSubviews(collectionImageView)
         
         NSLayoutConstraint.activate([
-        collectionImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-        collectionImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-        collectionImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-        collectionImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-        collectionLabel.leadingAnchor.constraint(equalTo: collectionImageView.leadingAnchor),
-        collectionLabel.trailingAnchor.constraint(equalTo: collectionImageView.trailingAnchor),
-        collectionLabel.bottomAnchor.constraint(equalTo: collectionImageView.bottomAnchor),
-        collectionLabel.heightAnchor.constraint(equalToConstant: 30)
+            collectionImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            collectionImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            collectionImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            collectionImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            collectionLabel.leadingAnchor.constraint(equalTo: collectionImageView.leadingAnchor),
+            collectionLabel.trailingAnchor.constraint(equalTo: collectionImageView.trailingAnchor),
+            collectionLabel.bottomAnchor.constraint(equalTo: collectionImageView.bottomAnchor),
+            collectionLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
-        
     }
-    
-    
     
 }

@@ -15,6 +15,7 @@ extension UIViewController {
         case copied
     }
     
+    ///Creates a toast label which can display one of 3 messages depending on where it is called.
     func saveLabel(_ status: saveStatus) {
         
         let saveView    = UIView()
@@ -22,34 +23,32 @@ extension UIViewController {
         let mainLabel   = CustomLabel(.label)
         let secondLabel = CustomLabel(.secondaryLabel)
         
-        saveView.layer.cornerRadius = 10
-        saveView.layer.masksToBounds = true
+        saveView.translatesAutoresizingMaskIntoConstraints = false
+        saveView.backgroundColor              = .secondarySystemBackground
+        saveView.layer.cornerRadius           = 10
+        saveView.layer.masksToBounds          = true
         
-        mainLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        mainLabel.textAlignment = .left
-        mainLabel.adjustsFontSizeToFitWidth = true
+        mainLabel.font                        = UIFont.boldSystemFont(ofSize: 16)
+        mainLabel.textAlignment               = .left
+        mainLabel.adjustsFontSizeToFitWidth   = true
         
-        secondLabel.textAlignment = .left
+        secondLabel.textAlignment             = .left
         secondLabel.adjustsFontSizeToFitWidth = true
-        imageView.tintColor = .systemBlue
         
-
+        imageView.tintColor                   = .systemBlue
+        
         switch status {
-        case .saving: imageView.image = UIImage(systemName: "bookmark.fill")
-            mainLabel.text = "Saved"
-            secondLabel.text = "You can find this story in bookmarks"
-        case .removing: imageView.image = UIImage(systemName: "bookmark")
-            mainLabel.text = "Removed"
-            secondLabel.text = "This story has been removed from bookmarks"
-        case .copied: imageView.image = UIImage(systemName: "link")
-            mainLabel.text = "Copied"
-            secondLabel.text = "Article copied & can now be shared"
+        case .saving: imageView.image = images.bookMarkFill
+            mainLabel.text = saveLabelText.saveMain
+            secondLabel.text = saveLabelText.saveSecond
+        case .removing: imageView.image = images.bookmark
+            mainLabel.text = saveLabelText.removingMain
+            secondLabel.text = saveLabelText.removingSecond
+        case .copied: imageView.image = images.link
+            mainLabel.text = saveLabelText.copiedMain
+            secondLabel.text = saveLabelText.copiedSecond
         }
         
-        saveView.translatesAutoresizingMaskIntoConstraints = false
-
-        saveView.backgroundColor = .secondarySystemBackground
-       
         self.view.addSubview(saveView)
         saveView.addSubviews(imageView, mainLabel, secondLabel)
         
@@ -74,17 +73,15 @@ extension UIViewController {
             secondLabel.heightAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.5),
             secondLabel.trailingAnchor.constraint(equalTo: saveView.trailingAnchor)
         ])
-
+        
         self.view.addSubview(saveView)
         self.view.bringSubviewToFront(saveView)
-
+        
         UIView.animate(withDuration: 4.0, delay: 0.0, options: .curveEaseIn) {
             saveView.alpha = 0.0
         } completion: { _ in
             saveView.removeFromSuperview()
         }
-
-        
     }
     
 }

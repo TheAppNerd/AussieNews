@@ -9,6 +9,8 @@ import UIKit
 
 class TrendingProgressView: UIProgressView {
 
+    //MARK: - Class Funcs
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -18,7 +20,7 @@ class TrendingProgressView: UIProgressView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    //MARK: - Functions
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false

@@ -16,13 +16,13 @@ extension UIButton {
         case recent
         case save
         case share
-        
     }
     
+    ///Func created to simplify style of all the buttons used throughout the app.
     func setButtonPurpose(_ purpose: buttonPurpose) {
-        layer.cornerRadius = 10
         translatesAutoresizingMaskIntoConstraints = false
-        tintColor = .label
+        layer.cornerRadius = 10
+        tintColor          = .label
         setTitleColor(.label, for: .normal)
         
         switch purpose {

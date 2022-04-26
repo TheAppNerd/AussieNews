@@ -8,13 +8,18 @@
 import UIKit
 
 class TrendingView: UIView {
-    //use matching names across all cells and views
+    
+    //MARK: - Properties
+
     let newsImage          = CustomImageView(frame: .zero)
     let headlineLabel      = CustomLabel(.label)
-    let articleLabel         = CustomLabel(.label)
+    let articleLabel       = CustomLabel(.label)
     let articleDateLabel   = CustomLabel(.secondaryLabel)
     let articleAuthorLabel = CustomLabel(.secondaryLabel)
     var article: Article?
+    
+    
+    //MARK: - Class Funcs
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,61 +31,40 @@ class TrendingView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    //MARK: - Functions
+    
     private func configure() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.layer.cornerRadius = 10
-        self.backgroundColor = .secondarySystemBackground
+        self.layer.cornerRadius          = 10
+        self.backgroundColor             = .secondarySystemBackground
         
+        newsImage.contentMode            = .scaleToFill
         
+        headlineLabel.textAlignment      = .left
+        headlineLabel.textColor          = .label
+        headlineLabel.font               = UIFont.boldSystemFont(ofSize: 20)
+        headlineLabel.numberOfLines      = 3
         
-        newsImage.contentMode = .scaleToFill
-        
-        headlineLabel.textAlignment = .left
-        headlineLabel.textColor = .label
-        headlineLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        headlineLabel.numberOfLines = 3
-        
-        
-        articleLabel.textAlignment = .left
-        articleDateLabel.textAlignment = .left
+        articleLabel.textAlignment       = .left
+        articleDateLabel.textAlignment   = .left
         articleAuthorLabel.textAlignment = .left
-        
     }
     
     
+    ///updates the displayed news article on this view.
     func set(_ article: Article) {
         self.newsImage.downloadImage(from: article.media ?? "")
-        self.headlineLabel.text = article.title
-        self.articleLabel.text = article.summary
-        self.articleDateLabel.text = timeSinceDate(dateStr: article.published_date!)
+        self.headlineLabel.text      = article.title
+        self.articleLabel.text       = article.summary
+        self.articleDateLabel.text   = DateFuncs().timeSinceDate(dateStr: article.published_date!)
         self.articleAuthorLabel.text = article.rights
-        self.article = article
+        self.article                 = article
         self.layoutIfNeeded()
-        
-    }
-    
-    
-    func convertStringToDate(dateStr: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let date = dateFormatter.date(from: dateStr)
-        return date!
-    }
-    
-    
-    func timeSinceDate(dateStr: String) -> String {
-        let date = convertStringToDate(dateStr: dateStr)
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .full
-        let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
-        return relativeDate
     }
     
     private func layoutUI() {
-        
-        
         self.addSubviews(newsImage, headlineLabel, articleLabel, articleDateLabel, articleAuthorLabel)
-        
         let padding: CGFloat = 10
         
         NSLayoutConstraint.activate([
@@ -109,12 +93,7 @@ class TrendingView: UIView {
             articleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             articleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
             articleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -padding),
-            
-            
         ])
-        
-        
     }
-    
-    
+
 }
