@@ -9,18 +9,20 @@ import UIKit
 
 class DefaultCell: UITableViewCell {
 
+    //MARK: - Properties
 
-    var article: Article?
     let newsImage          = CustomImageView(frame: .zero)
     let headlineLabel      = CustomLabel(.label)
     let articleDateLabel   = CustomLabel(.secondaryLabel)
     let articleAuthorLabel = CustomLabel(.secondaryLabel)
     let saveButton         = UIButton()
     let shareButton        = UIButton()
+    let userDefaultFuncs   = UserDefaultFuncs()
     var parentVC           = UIViewController()
     var parentTableView    = UITableView()
-    let userDefaultFuncs = UserDefaultFuncs()
+    var article: Article?
     
+    ///Creates a menu list for each article to either share it or copy the url link to pasteboard.
     var menuItems: [UIAction] {
         return [
             UIAction(title: "Share To...", image: UIImage(systemName: "square.and.arrow.up"), attributes: .destructive, handler: { (_) in
@@ -32,31 +34,36 @@ class DefaultCell: UITableViewCell {
             }),
         ]
     }
-        var menu: UIMenu {
-            return UIMenu(title: "", image: nil, children: menuItems)
+    
+    var menu: UIMenu {
+        return UIMenu(title: "", image: nil, children: menuItems)
         }
     
     
+    //MARK: - Functions
+    
      func configureCell() {
-         
         contentView.addSubviews(newsImage, headlineLabel, articleDateLabel, articleAuthorLabel, saveButton, shareButton)
         contentView.isUserInteractionEnabled = true
         
         newsImage.contentMode = .scaleAspectFill
-        newsImage.image = UIImage(named: "placeholder")
+         newsImage.image       = images.placeholder
         
-        headlineLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        
+        headlineLabel.font    = UIFont.boldSystemFont(ofSize: 16)
     }
+    
     
      func configureButtons() {
          saveButton.setButtonPurpose(.save)
+         saveButton.translatesAutoresizingMaskIntoConstraints = false
          saveButton.addTarget(self, action: #selector(savePressed), for: .touchUpInside)
         
          shareButton.setButtonPurpose(.share)
+         shareButton.translatesAutoresizingMaskIntoConstraints = false
          shareButton.menu = menu
          shareButton.showsMenuAsPrimaryAction = true
     }
+    
     
     func shareArticle() {
         if let urlString = NSURL(string: (article?.link)!) {
@@ -69,34 +76,17 @@ class DefaultCell: UITableViewCell {
     }
         
 
-   
-        
-    
-
-    @objc func savePressed() {
-        guard let article = article else { return }
-        switch userDefaultFuncs.savedArticleArray.contains(article) {
-        case true: userDefaultFuncs.removeSavedArticle(article: article)
-            saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
-            parentVC.saveLabel(.removing)
-        case false: userDefaultFuncs.saveArticle(.saved, article: article)
-            saveButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-            parentVC.saveLabel(.saving)
-        }
-        parentTableView.reloadData()
-    }
-    
-    
-    
+    ///Called from primary VC to fill each cell with data. The switch confirms whether the article has been saved or not.
     func set(article: Article, vc: UIViewController, tableView: UITableView) {
         self.article = article
         userDefaultFuncs.retrieveArticles()
-        parentVC = vc
-        parentTableView = tableView
+        parentVC = vc //Allocated to perform various actions in primary VC
+        parentTableView = tableView //Allocated to refresh VC from func inside cell
+        
         switch userDefaultFuncs.savedArticleArray.contains(article) {
-        case true: saveButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        case true: saveButton.setImage(images.bookMarkFill, for: .normal)
             saveButton.tintColor = .systemBlue
-        case false: saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
+        case false: saveButton.setImage(images.bookmark, for: .normal)
             saveButton.tintColor = .secondaryLabel
         }
         
@@ -106,25 +96,23 @@ class DefaultCell: UITableViewCell {
      
         headlineLabel.text = article.title
         articleAuthorLabel.text = article.rights
-        articleDateLabel.text = timeSinceDate(dateStr: article.published_date!)
+        articleDateLabel.text = DateFuncs().timeSinceDate(dateStr: article.published_date!)
     }
     
-    
-    //move to extenstion or class?
-    func convertStringToDate(dateStr: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let date = dateFormatter.date(from: dateStr)
-        return date!
-    }
-    
-    
-    func timeSinceDate(dateStr: String) -> String {
-        let date = convertStringToDate(dateStr: dateStr)
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .full
-        let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
-        return relativeDate
-    }
+    //MARK: - @objc Funcs
+
+     @objc func savePressed() {
+         guard let article = article else { return }
+         
+         switch userDefaultFuncs.savedArticleArray.contains(article) {
+         case true: userDefaultFuncs.removeSavedArticle(article: article)
+             saveButton.setImage(images.bookmark, for: .normal)
+             parentVC.saveLabel(.removing)
+         case false: userDefaultFuncs.saveArticle(.saved, article: article)
+             saveButton.setImage(images.bookMarkFill, for: .normal)
+             parentVC.saveLabel(.saving)
+         }
+         parentTableView.reloadData()
+     }
     
 }

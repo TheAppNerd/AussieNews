@@ -8,10 +8,15 @@
 import UIKit
 import SafariServices
 
+
 class TopicVC: CustomViewController, SafariProtocol {
     
-   
+    //MARK: - Properties
+    
     var topic: String = ""
+    
+    
+    //Class Funcs
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -28,18 +33,21 @@ class TopicVC: CustomViewController, SafariProtocol {
     }
   
     
+    //MARK: - Functions
+    
     private func layoutUI() {
         view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.frame = view.bounds
     }
-
 }
 
-extension TopicVC: UITableViewDataSource, UITableViewDelegate {
+//MARK: - TableView - UITableViewDelegate, UITableViewDataSource
+
+extension TopicVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return newsArticles.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let article = newsArticles[indexPath.row]
@@ -47,9 +55,11 @@ extension TopicVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         cellHeight()
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article = newsArticles[indexPath.row]

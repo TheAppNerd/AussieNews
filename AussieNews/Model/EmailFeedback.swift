@@ -13,8 +13,8 @@ struct EmailFeedback {
     ///Method to open users main email app to send feedback to me personally.
     ///Utilises UI device to determine current system version to provide me with more in depth information when feedback is provided.
     func newEmail() {
-        let address           = SocialMedia.emailAddress
-        let subject           = SocialMedia.emailHeader
+        let address           = socialMedia.emailAddress
+        let subject           = socialMedia.emailHeader
         
         let appVersion        = UIApplication.appVersion
         let systemVersion     = UIDevice.current.systemVersion
