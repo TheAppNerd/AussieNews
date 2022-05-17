@@ -53,6 +53,8 @@ class TrendingView: UIView {
     
     
     ///updates the displayed news article on this view.
+    ///
+    ///// TODO: - remove self?
     func set(_ article: Article) {
         self.newsImage.downloadImage(from: article.media ?? "")
         self.headlineLabel.text      = article.title
@@ -73,8 +75,7 @@ class TrendingView: UIView {
             newsImage.topAnchor.constraint(equalTo: self.topAnchor),
             newsImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             newsImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            newsImage.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4),
-            
+            newsImage.heightAnchor.constraint(equalToConstant: self.frame.size.height / 4),
             articleDateLabel.topAnchor.constraint(equalTo: newsImage.bottomAnchor, constant: 5),
             articleDateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
             articleDateLabel.heightAnchor.constraint(equalToConstant: 50),
