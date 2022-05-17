@@ -19,11 +19,12 @@ struct Article: Codable, Hashable {
         let link: String?
         let excerpt: String?
         let summary: String?
-        let rights: String?
+        let clean_url: String?
         let topic: String?
         let country: String?
         let language: String?
         let media: String?
     }
 
+// TODO: - implenment key codes
 

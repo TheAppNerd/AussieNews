@@ -31,6 +31,8 @@ class SearchTextField: UITextField {
         clearButtonMode    = .whileEditing
         backgroundColor    = .systemGray3
         placeholder        = "Search Here..."
+        leftView           = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 0))
+        leftViewMode       = .always
     }
 
 }

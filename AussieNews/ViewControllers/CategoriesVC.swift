@@ -14,7 +14,7 @@ class CategoriesVC: CustomViewController, SafariProtocol {
     
     var categoriesCollectionView: UICollectionView!
     
-    //MARK: - View Funcs
+    //MARK: - Class Funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()

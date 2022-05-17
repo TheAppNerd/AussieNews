@@ -27,11 +27,11 @@ extension UIButton {
         
         switch purpose {
         case .readArticle:
-            backgroundColor = .systemBlue
+            backgroundColor = color.aussieGreen
             setImage(UIImage(systemName: "chevron.up"), for: .normal)
             setTitle("Read Article", for: .normal)
         case .search:
-            backgroundColor = .systemBlue
+            backgroundColor = color.aussieGreen
             setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         case .bookmark:
             setTitleColor(.secondaryLabel, for: .normal)

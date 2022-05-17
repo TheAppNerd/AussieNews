@@ -19,7 +19,7 @@ class SavedVC: CustomViewController, SafariProtocol {
     let lineTwo          = UIView()
     let userDefaultFuncs = UserDefaultFuncs()
     
-    //MARK: - View Funcs
+    //MARK: - Class Funcs
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,7 +40,7 @@ class SavedVC: CustomViewController, SafariProtocol {
         title = "Saved"
         view.backgroundColor              = .systemBackground
         let clearButton                   = UIBarButtonItem(title: "Clear All", style: .done, target: self, action: #selector(clearPressed))
-        clearButton.tintColor             = .systemBlue
+        clearButton.tintColor             = color.aussieGreen
         navigationItem.rightBarButtonItem = clearButton
     }
     
@@ -141,12 +141,12 @@ class SavedVC: CustomViewController, SafariProtocol {
         lineTwo.backgroundColor = .secondaryLabel
         
         if sender == bookmarkButton {
-            lineOne.backgroundColor = .systemBlue
-            bookmarkButton.setTitleColor(.systemBlue, for: .normal)
+            lineOne.backgroundColor = color.aussieGreen
+            bookmarkButton.setTitleColor(color.aussieGreen, for: .normal)
             addEmptyState(array: userDefaultFuncs.savedArticleArray, state: .saved)
         } else if sender ==  recentButton {
-            recentButton.setTitleColor(.systemBlue, for: .normal)
-            lineTwo.backgroundColor = .systemBlue
+            recentButton.setTitleColor(color.aussieGreen, for: .normal)
+            lineTwo.backgroundColor = color.aussieGreen
             addEmptyState(array: userDefaultFuncs.visitedArticleArray, state: .visited)
         }
         tableView.reloadData()

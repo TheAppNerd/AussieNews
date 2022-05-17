@@ -51,7 +51,7 @@ class CollectionViewCell: UICollectionViewCell {
         
         contentView.layer.cornerRadius          = 10
         contentView.layer.borderWidth           = 1
-        contentView.layer.borderColor           = UIColor.systemBlue.cgColor
+        contentView.layer.borderColor           = color.aussieGreen.cgColor
     }
     
     

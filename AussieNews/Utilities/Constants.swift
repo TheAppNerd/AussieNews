@@ -98,5 +98,8 @@ enum saveLabelText {
     
     static let copiedMain = "Copied"
     static let copiedSecond = "Article copied & can now be shared"
-    
+}
+
+enum color {
+    static let aussieGreen = UIColor(red: 0.00, green: 0.52, blue: 0.24, alpha: 1.00)
 }
