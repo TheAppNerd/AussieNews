@@ -36,7 +36,7 @@ class HomeVC: CustomViewController, SafariProtocol {
     func configureVC() {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.tintColor = color.aussieGreen
-        title = "Home" // TODO: Change this to Aussie News Logo
+        title = "Home"
         generator.prepare()
     }
     
@@ -145,9 +145,8 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = TrendingCategoryVC()
-        vc.modalPresentationStyle = .popover
         vc.topic = topics.topicsArray[indexPath.row]
-        present(vc, animated: true)
+        show(vc, sender: self)
     }
 }
 

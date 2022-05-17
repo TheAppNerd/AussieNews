@@ -12,18 +12,12 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
     
     //MARK: - Properties
     
-    let progressStack           = TrendingStackView()
-    let trendingView            = TrendingView()
-    let readArticleButton       = UIButton()
-    let topView                 = UIView()
-    let line                    = UIView()
-    
+    let pageControl = UIPageControl()
+    let scrollView = UIScrollView()
     var topicLabel              = CustomLabel()
     var newsArticles: [Article] = []
     var topic: String           = ""
-    var progressStatus: Int     = 0
-    var timer                   = Timer()
-    var progressViewArray: [UIProgressView] = []
+    var array: [CardView] = []
     
     
     
@@ -31,6 +25,7 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        NewsManager.Shared.topic = topic
         getArticles(params: .topic)
     }
     
@@ -38,14 +33,52 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        configureProgressStack()
+        configurePageControl()
+        configureScrollView()
         layoutUI()
-        setupGestures()
-        configureReadButton()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        configureScrollView()
+        addScrollViewPages()
+    }
     
     //MARK: - Functions
+    
+    private func configure() {
+        view.backgroundColor = .systemBackground
+        topicLabel.text = topic.uppercased()
+        topicLabel.textAlignment = .center
+    }
+    
+    private func configurePageControl() {
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.layer.cornerRadius = 15
+        pageControl.numberOfPages = 6
+        pageControl.pageIndicatorTintColor = .secondaryLabel
+        pageControl.currentPageIndicatorTintColor = .label
+        pageControl.backgroundColor = color.aussieGreen
+        pageControl.addTarget(self, action: #selector(pageControlChanged(_:)), for: .valueChanged)
+    }
+    
+    private func configureScrollView() {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.isPagingEnabled = true
+        scrollView.delegate = self
+        
+        let numberOfPages = 6
+        scrollView.contentSize     = CGSize(width: scrollView.frame.size.width * CGFloat(numberOfPages), height: scrollView.frame.size.height)
+    }
+    
+    func addScrollViewPages() {
+        for num in 0...5 {
+            let page = CardView(frame: CGRect(x: CGFloat(num) * view.frame.size.width, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
+            array.append(page)
+            scrollView.addSubview(page)
+        }
+
+    }
     
     ///Parses news to instagram style view.
     func getArticles(params: NewsManager.networkParams) {
@@ -54,10 +87,13 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
             guard let self = self else { return }
             switch result {
             case .success(let newsArticles):
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [self] in
                     self.newsArticles.append(contentsOf: newsArticles.articles)
-                    self.trendingView.set(self.newsArticles[self.progressStatus])
-                    self.animateProgressViews(startingNum: self.progressStatus)
+                    for (index, views) in self.array.enumerated() {
+                    views.set(article: newsArticles.articles[index])
+                        views.card.backgroundColor = .secondarySystemBackground
+                    }
+                    //self.addScrollViewPages()
                 }
             case.failure(let error): print(error.rawValue)
             }
@@ -65,150 +101,44 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
     }
     
     
-    private func configure() {
-        view.backgroundColor = .systemBackground
-        topView.translatesAutoresizingMaskIntoConstraints = false
-        topView.backgroundColor = .secondarySystemBackground
-        
-        line.translatesAutoresizingMaskIntoConstraints = false
-        line.backgroundColor = .tertiarySystemBackground
-        
-        topicLabel.text = topic.uppercased()
-        topicLabel.textAlignment = .center
-    }
-    
-    
-    ///Appends progressViews to stacj & to array for easy management.
-    private func configureProgressStack() {
-        for _ in 0...4 {
-            let progressView = TrendingProgressView()
-            progressViewArray.append(progressView)
-            progressStack.addArrangedSubview(progressView)
-        }
-    }
-    
-    
-    func configureReadButton() {
-        readArticleButton.setButtonPurpose(.readArticle)
-        readArticleButton.addTarget(self, action: #selector(readButtonPressed), for: .touchUpInside)
-    }
-    
-    
     private func layoutUI() {
-        topView.addSubview(line)
-        view.addSubviews(topView, topicLabel, progressStack, trendingView, readArticleButton)
-        
-        let padding: CGFloat = 20
+        view.addSubviews(pageControl, scrollView)
         
         NSLayoutConstraint.activate([
-            topView.topAnchor.constraint(equalTo: view.topAnchor),
-            topView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            topView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            topView.heightAnchor.constraint(equalToConstant: 40),
             
-            line.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
-            line.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
-            line.heightAnchor.constraint(equalToConstant: 2),
-            line.widthAnchor.constraint(equalToConstant: 30),
+            pageControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pageControl.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.05),
+            pageControl.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            topicLabel.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 5),
-            topicLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            topicLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            topicLabel.heightAnchor.constraint(equalToConstant: 40),
+            scrollView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.8),
+            scrollView.topAnchor.constraint(equalTo: pageControl.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            //scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        
             
-            progressStack.topAnchor.constraint(equalTo: topicLabel.bottomAnchor, constant: 5),
-            progressStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            progressStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            progressStack.heightAnchor.constraint(equalToConstant: 7),
             
-            trendingView.topAnchor.constraint(equalTo: progressStack.bottomAnchor, constant: padding),
-            trendingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            trendingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            trendingView.bottomAnchor.constraint(equalTo: readArticleButton.topAnchor, constant: -5),
             
-            readArticleButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            readArticleButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            readArticleButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5),
-            readArticleButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     
-    ///Adds back and forward tap gestures to trendingView to allow user to go to previous or next article.
-    private func setupGestures() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(gesturePressed))
-        trendingView.addGestureRecognizer(tap)
-        trendingView.isUserInteractionEnabled = true
+    
+    
+    @objc func pageControlChanged(_ sender: UIPageControl) {
+        let current = sender.currentPage
+        scrollView.setContentOffset(CGPoint(x: CGFloat(current) * view.frame.size.width, y: 0), animated: true)
     }
     
+}
+
+//MARK: - ScrollView - UIScrollViewDelegate
+
+extension TrendingCategoryVC: UIScrollViewDelegate {
     
-    ///Animates progressView & sets new news article to view.
-    func animate(num: Int, duration: Double) {
-        UIView.animate(withDuration: duration, delay: 0) {
-            let progress: Float = 1.0
-            self.progressViewArray[num].setProgress(progress, animated: true)
-        } completion: { _ in
-            let article = self.newsArticles[num]
-            self.trendingView.set(article)
-        }
-    }
-    
-    
-    ///Every time the user manually changes which news article is present this func updates the progress view array to properly show where in the array the user is up to.
-    func progressReset() {
-        for (index, view) in progressViewArray.enumerated() {
-            if index < progressStatus {
-                view.setProgress(1.0, animated: false)
-            } else {
-                view.progress = 0.0
-            }
-        }
-    }
-    
-    
-    ///Works in unision with gesture press & animating of progress View array to load animation for wherever in the array the user wants.
-    func animateProgressViews(startingNum: Int) {
-        var num = startingNum
-        let duration = 3.0
-        timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: true) { [weak self] timer in
-            guard let self = self else { return }
-            self.animate(num: num, duration: duration)
-            num += 1
-            self.progressStatus += 1
-            if num >= 5 {
-                timer.invalidate()
-            }
-        }
-    }
-    
-    //MARK: - @objc funcs
-    
-    ///Allows user to tape left or right of the article to progress through the progress view array and view different news articles.
-    @objc func gesturePressed(_ tap: UITapGestureRecognizer) {
-        timer.invalidate()
-        let point = tap.location(in: trendingView)
-        let leftArea = CGRect(x: 0, y: 0, width: trendingView.frame.width / 2, height: trendingView.frame.height)
-        if leftArea.contains(point) {
-            if progressStatus >= 1 {
-                progressStatus -= 1
-            }
-        } else {
-            if progressStatus <= 3 {
-                progressStatus += 1
-            }
-        }
-        progressReset()
-        let article = self.newsArticles[progressStatus]
-        self.trendingView.set(article)
-        animateProgressViews(startingNum: progressStatus)
-    }
-    
-    
-    ///Loads SFSafari browser and pauses timer while in there.
-    @objc func readButtonPressed() {
-        if let article = trendingView.article {
-            showArticle(self, article: article)
-            timer.invalidate()
-        }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        pageControl.currentPage = Int(floor(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width)))
     }
     
 }

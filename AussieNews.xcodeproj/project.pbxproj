@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA1E18D42833AEB200350780 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E18D32833AEB200350780 /* CardView.swift */; };
 		FA79D734280F9AB0004E0CAC /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79D733280F9AB0004E0CAC /* APIKey.swift */; };
 		FA79D73D28124734004E0CAC /* TrendingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79D73C28124734004E0CAC /* TrendingProgressView.swift */; };
 		FA79D73F281247D2004E0CAC /* TrendingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79D73E281247D2004E0CAC /* TrendingStackView.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FA1E18D32833AEB200350780 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		FA79D733280F9AB0004E0CAC /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		FA79D73C28124734004E0CAC /* TrendingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingProgressView.swift; sourceTree = "<group>"; };
 		FA79D73E281247D2004E0CAC /* TrendingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingStackView.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				FA7E123427E81EDC00E2D94C /* EmptyStateView.swift */,
 				FA7E124F27EA9E3700E2D94C /* TrendingView.swift */,
 				FAAE9B5827FBF5E400918996 /* SettingsFooterView.swift */,
+				FA1E18D32833AEB200350780 /* CardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				FAAE9B4327F2725E00918996 /* smallHomeCell.swift in Sources */,
 				FA7E123A27E8405000E2D94C /* SearchVC.swift in Sources */,
 				FA79D73F281247D2004E0CAC /* TrendingStackView.swift in Sources */,
+				FA1E18D42833AEB200350780 /* CardView.swift in Sources */,
 				FAAE9B6327FFC8BC00918996 /* UIApplication + Ext.swift in Sources */,
 				FACE42B727F165C50057772F /* UIViewController + Ext.swift in Sources */,
 				FAAE9B5527FBF58A00918996 /* SettingsSegmentCell.swift in Sources */,
