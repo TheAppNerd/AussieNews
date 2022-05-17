@@ -10,7 +10,7 @@ import UIKit
 class HomeVC: CustomViewController, SafariProtocol {
 
     
-    //MARK: - View Funcs
+    //MARK: - Class Funcs
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,10 +31,11 @@ class HomeVC: CustomViewController, SafariProtocol {
     }
     
     
-    //MARK: - Funcs
+    //MARK: - Functions
     
     func configureVC() {
         view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.tintColor = color.aussieGreen
         title = "Home" // TODO: Change this to Aussie News Logo
         generator.prepare()
     }
@@ -45,6 +46,7 @@ class HomeVC: CustomViewController, SafariProtocol {
         tableViewRefresh.addTarget(self, action: #selector(refreshStarted), for: .valueChanged)
     }
     
+    // TODO: - Move externally
     ///Sets any previously saved Dark Mode status from UserDefaults.
     private func selectCurrentDarkMode() {
         let defaults = UserDefaults.standard

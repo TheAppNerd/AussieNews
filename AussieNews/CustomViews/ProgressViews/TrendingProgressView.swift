@@ -26,7 +26,7 @@ class TrendingProgressView: UIProgressView {
         translatesAutoresizingMaskIntoConstraints = false
         progressViewStyle   = .bar
         backgroundColor     = .systemGray3
-        progressTintColor   = .systemBlue
+        progressTintColor   = color.aussieGreen
         layer.cornerRadius  = 5
         layer.masksToBounds = true
     }

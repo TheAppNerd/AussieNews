@@ -27,7 +27,7 @@ class TrendingCategoryVC: UIViewController, SafariProtocol {
     
     
     
-    //MARK: - View Funcs
+    //MARK: - Class Funcs
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

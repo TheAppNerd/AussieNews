@@ -32,16 +32,16 @@ class smallHomeCell: DefaultCell {
         let padding: CGFloat = 10
         
         NSLayoutConstraint.activate([
-            headlineLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
+            articleDateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding / 2),
+            articleDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            articleDateLabel.trailingAnchor.constraint(equalTo: newsImage.leadingAnchor, constant: -padding),
+            articleDateLabel.bottomAnchor.constraint(equalTo: headlineLabel.topAnchor, constant: -padding / 2),
+            
+            headlineLabel.topAnchor.constraint(equalTo: articleDateLabel.bottomAnchor, constant: padding / 2),
             headlineLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             headlineLabel.trailingAnchor.constraint(equalTo: newsImage.leadingAnchor, constant: -padding * 2),
-            headlineLabel.bottomAnchor.constraint(equalTo: articleDateLabel.topAnchor, constant: -padding),
-            
-            articleDateLabel.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding),
-            articleDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            articleDateLabel.trailingAnchor.constraint(equalTo: articleAuthorLabel.leadingAnchor, constant: -padding),
-            articleDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
-            
+            headlineLabel.bottomAnchor.constraint(equalTo: articleAuthorLabel.topAnchor, constant: -padding),
+                        
             articleAuthorLabel.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding),
             articleAuthorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             articleAuthorLabel.trailingAnchor.constraint(equalTo: saveButton.leadingAnchor, constant: -padding),

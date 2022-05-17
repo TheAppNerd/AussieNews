@@ -15,7 +15,7 @@ class SettingsVC: UIViewController {
     var tableView = UITableView()
     var darkModeSegment: Int = 0
     
-    //MARK: - View Funcs
+    //MARK: - Class Funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()

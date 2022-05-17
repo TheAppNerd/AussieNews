@@ -35,7 +35,7 @@ extension UIViewController {
         secondLabel.textAlignment             = .left
         secondLabel.adjustsFontSizeToFitWidth = true
         
-        imageView.tintColor                   = .systemBlue
+        imageView.tintColor                   = color.aussieGreen
         
         switch status {
         case .saving: imageView.image = images.bookMarkFill

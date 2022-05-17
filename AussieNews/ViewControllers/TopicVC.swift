@@ -16,13 +16,7 @@ class TopicVC: CustomViewController, SafariProtocol {
     var topic: String = ""
     
     
-    //Class Funcs
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        NewsManager.Shared.topic = topic
-        getArticles(params: .topic)
-    }
+   //MARK: - Class Funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +24,8 @@ class TopicVC: CustomViewController, SafariProtocol {
         configureTableView(vc: self)
         layoutUI()
         configureBarButton()
+        NewsManager.Shared.topic = topic
+        getArticles(params: .topic)
     }
   
     
@@ -38,6 +34,17 @@ class TopicVC: CustomViewController, SafariProtocol {
     private func layoutUI() {
         view.addSubview(tableView)
         tableView.frame = view.bounds
+    }
+    
+    func configureTableViewRefresh() {
+        tableView.refreshControl = tableViewRefresh
+        tableViewRefresh.addTarget(self, action: #selector(refreshStarted), for: .valueChanged)
+    }
+    
+    @objc func refreshStarted() {
+        newsArticles.removeAll()
+        getArticles(params: .topic)
+        generator.impactOccurred()
     }
 }
 

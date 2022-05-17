@@ -45,7 +45,6 @@ class DefaultCell: UITableViewCell {
     func configureCell() {
         contentView.addSubviews(newsImage, headlineLabel, articleDateLabel, articleAuthorLabel, saveButton, shareButton)
         contentView.isUserInteractionEnabled = true
-        
         newsImage.contentMode = .scaleAspectFill
         newsImage.image       = images.placeholder
         
@@ -86,7 +85,7 @@ class DefaultCell: UITableViewCell {
         
         switch userDefaultFuncs.savedArticleArray.contains(article) {
         case true:  saveButton.setImage(images.bookMarkFill, for: .normal)
-            saveButton.tintColor = .systemBlue
+            saveButton.tintColor = color.aussieGreen
         case false: saveButton.setImage(images.bookmark, for: .normal)
             saveButton.tintColor = .secondaryLabel
         }
@@ -96,7 +95,7 @@ class DefaultCell: UITableViewCell {
         }
         
         headlineLabel.text      = article.title
-        articleAuthorLabel.text = article.rights
+        articleAuthorLabel.text = article.clean_url
         if let publishedDate    = article.published_date {
             articleDateLabel.text   = DateFuncs().timeSinceDate(dateStr: publishedDate)
         }

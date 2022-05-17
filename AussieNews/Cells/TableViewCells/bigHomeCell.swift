@@ -38,32 +38,33 @@ class bigHomeCell: DefaultCell {
             newsImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             newsImage.heightAnchor.constraint(equalTo: newsImage.widthAnchor, multiplier: 0.5),
             
+            articleDateLabel.topAnchor.constraint(equalTo: newsImage.bottomAnchor, constant: padding / 2),
+            articleDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            articleDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            articleDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.1),
+            
             headlineLabel.topAnchor.constraint(equalTo: newsImage.bottomAnchor, constant: padding / 2),
             headlineLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             headlineLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             headlineLabel.heightAnchor.constraint(equalToConstant: 50),
             
-            articleDateLabel.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
-            articleDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            articleDateLabel.trailingAnchor.constraint(equalTo: articleAuthorLabel.leadingAnchor, constant: -padding / 2),
-            articleDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
-            articleDateLabel.widthAnchor.constraint(equalToConstant: 100),
-            
             articleAuthorLabel.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
-            articleAuthorLabel.leadingAnchor.constraint(equalTo: articleDateLabel.trailingAnchor, constant: padding / 2),
-            articleAuthorLabel.trailingAnchor.constraint(equalTo: saveButton.leadingAnchor, constant: -padding),
+            articleAuthorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            articleAuthorLabel.trailingAnchor.constraint(equalTo: saveButton.leadingAnchor, constant: -padding / 2),
             articleAuthorLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
+            articleAuthorLabel.widthAnchor.constraint(equalToConstant: 100),
             
             saveButton.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
             saveButton.trailingAnchor.constraint(equalTo: shareButton.leadingAnchor, constant: -padding),
             saveButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
-            saveButton.widthAnchor.constraint(equalTo: saveButton.heightAnchor, multiplier: 0.6),
+            saveButton.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.1),
+            saveButton.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.1),
             
             shareButton.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
-            shareButton.leadingAnchor.constraint(equalTo: saveButton.trailingAnchor, constant: padding),
             shareButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             shareButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
-            shareButton.widthAnchor.constraint(equalTo: shareButton.heightAnchor, multiplier: 0.6)
+            shareButton.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.1),
+            shareButton.widthAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.1),
         ])
     }
     

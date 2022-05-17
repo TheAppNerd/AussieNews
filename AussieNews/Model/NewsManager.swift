@@ -11,14 +11,12 @@ class NewsManager {
     
     //MARK: - Properties
     
-    
     let baseURL = "https://api.newscatcherapi.com/v2/"
-    let headlines = "latest_headlines?lang=en&countries=au&topic=entertainment"
+    let headlines = "latest_headlines?lang=en&countries=au&topic=politics"
     let topicURL = "latest_headlines?lang=en&countries=au&topic="
     let searchURL = "&countries=au&lang=en"
     var topic: String = ""
     var searchString: String = ""
-    
     
     enum networkParams {
         case home
@@ -36,8 +34,7 @@ class NewsManager {
     
     //MARK: - Functions
     
-    
-    ///method to parse news data depending on specified endoints
+    ///Method to parse news data depending on specified endoints
     ///
     /// - Parameter: networkParams: the specific type of use the user is after. Eg/ home page, specific topic or search query
     func getNews(params: networkParams, completed: @escaping (Result<Articles, NewsErrors>) -> Void) {

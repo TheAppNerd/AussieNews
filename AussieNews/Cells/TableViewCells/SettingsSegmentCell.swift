@@ -33,7 +33,7 @@ class SettingsSegmentCell: UITableViewCell {
         contentView.backgroundColor = .secondarySystemBackground
         darkModeSegment.translatesAutoresizingMaskIntoConstraints = false
         darkModeSegment.backgroundColor          = .tertiarySystemBackground
-        darkModeSegment.selectedSegmentTintColor = .systemBlue
+        darkModeSegment.selectedSegmentTintColor = color.aussieGreen
         for num in 0...2  {
             darkModeSegment.insertSegment(withTitle: darkMode.segmentArray[num], at: num, animated: true)
         }

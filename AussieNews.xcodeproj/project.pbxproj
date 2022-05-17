@@ -279,7 +279,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		FA7E123827E83ABA00E2D94C /* View Controllers */ = {
+		FA7E123827E83ABA00E2D94C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				FAAE9B4B27F2B81A00918996 /* CustomVCs */,
@@ -291,7 +291,7 @@
 				FA7E123D27E847F300E2D94C /* SettingsVC.swift */,
 				FAAE9B5027F2C83C00918996 /* TopicVC.swift */,
 			);
-			path = "View Controllers";
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		FA7E124127E88A6100E2D94C /* Model */ = {
@@ -325,7 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				FA7E124127E88A6100E2D94C /* Model */,
-				FA7E123827E83ABA00E2D94C /* View Controllers */,
+				FA7E123827E83ABA00E2D94C /* ViewControllers */,
 				FA79D7492817AC24004E0CAC /* CustomViews */,
 				FA7E122C27E43DE300E2D94C /* Cells */,
 				FA7E122427E436AF00E2D94C /* Extensions */,
@@ -692,7 +692,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -719,7 +719,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

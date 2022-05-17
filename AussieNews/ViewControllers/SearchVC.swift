@@ -8,7 +8,7 @@
 import UIKit
 
 
-class SearchVC: CustomViewController {
+class SearchVC: CustomViewController, SafariProtocol {
 
     //MARK: - Properties
     
@@ -18,7 +18,7 @@ class SearchVC: CustomViewController {
     let line         = UIView()
     
      
-    //MARK: - View Funcs
+    //MARK: - Class Funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,7 +125,14 @@ extension SearchVC: UITableViewDelegate, UITableViewDataSource {
        return view.frame.size.height / 6
        
         }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let article = newsArticles[indexPath.row]
+        showArticle(self, article: article)
     }
+    }
+
+
     
     
 
