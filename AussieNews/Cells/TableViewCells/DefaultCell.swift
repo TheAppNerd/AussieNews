@@ -49,6 +49,7 @@ class DefaultCell: UITableViewCell {
         newsImage.image       = images.placeholder
         
         headlineLabel.font    = UIFont.boldSystemFont(ofSize: 16)
+        headlineLabel.adjustsFontSizeToFitWidth = true
     }
     
     
