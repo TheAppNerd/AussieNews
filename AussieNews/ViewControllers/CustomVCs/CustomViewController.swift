@@ -81,7 +81,7 @@ class CustomViewController: UIViewController {
     //Lets user use bar button to switch between cells to alter layout between big and small cell size. Utilises a bool toggle to switch between layouts
     func cellHeight() -> CGFloat {
         switch sizeBool {
-        case true: return view.frame.size.height / 2.4
+        case true: return view.frame.size.height / 2.6
         case false: return view.frame.size.height / 6
         }
     }

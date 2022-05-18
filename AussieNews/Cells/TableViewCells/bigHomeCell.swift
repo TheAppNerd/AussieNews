@@ -43,16 +43,15 @@ class bigHomeCell: DefaultCell {
             articleDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             articleDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.1),
             
-            headlineLabel.topAnchor.constraint(equalTo: newsImage.bottomAnchor, constant: padding / 2),
+            headlineLabel.topAnchor.constraint(equalTo: articleDateLabel.bottomAnchor, constant: padding / 2),
             headlineLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             headlineLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            headlineLabel.heightAnchor.constraint(equalToConstant: 50),
+            headlineLabel.bottomAnchor.constraint(equalTo: articleAuthorLabel.topAnchor, constant: -padding / 2),
             
             articleAuthorLabel.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
             articleAuthorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
             articleAuthorLabel.trailingAnchor.constraint(equalTo: saveButton.leadingAnchor, constant: -padding / 2),
             articleAuthorLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding / 2),
-            articleAuthorLabel.widthAnchor.constraint(equalToConstant: 100),
             
             saveButton.topAnchor.constraint(equalTo: headlineLabel.bottomAnchor, constant: padding / 2),
             saveButton.trailingAnchor.constraint(equalTo: shareButton.leadingAnchor, constant: -padding),
