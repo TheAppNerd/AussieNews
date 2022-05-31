@@ -10,7 +10,7 @@ import SafariServices
 
 class SavedVC: CustomViewController, SafariProtocol {
     
-    //MARK: - Properties
+    // MARK: - Properties
     
     let emptyState       = EmptyStateView()
     let bookmarkButton   = UIButton()
@@ -19,7 +19,7 @@ class SavedVC: CustomViewController, SafariProtocol {
     let lineTwo          = UIView()
     let userDefaultFuncs = UserDefaultFuncs()
     
-    //MARK: - Class Funcs
+    // MARK: - Class Methods
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -34,16 +34,15 @@ class SavedVC: CustomViewController, SafariProtocol {
         layoutUI()
     }
     
-    //MARK: - Functions
+    // MARK: - Methods
     
     private func configure() {
         title = "Saved"
         view.backgroundColor              = .systemBackground
         let clearButton                   = UIBarButtonItem(title: "Clear All", style: .done, target: self, action: #selector(clearPressed))
-        clearButton.tintColor             = color.aussieGreen
+        clearButton.tintColor             = Color.aussieGreen
         navigationItem.rightBarButtonItem = clearButton
     }
-    
     
     private func configureButtons() {
         updateLabel()
@@ -65,7 +64,6 @@ class SavedVC: CustomViewController, SafariProtocol {
         userDefaultFuncs.retrieveArticles()
         bookmarkButton.setTitle("Saved \(userDefaultFuncs.savedArticleArray.count)", for: .normal)
     }
-    
     
     private func layoutUI(){
         view.addSubviews(bookmarkButton, recentButton, lineOne, lineTwo, tableView)
@@ -104,10 +102,9 @@ class SavedVC: CustomViewController, SafariProtocol {
         ])
     }
     
+    // MARK: - @Objc Methods
     
-    //MARK: - @objc Funcs
-    
-    ///Generates an alert to clear all articles from either saved or visited articles in UserDefaults.
+    /// Generates an alert to clear all articles from either saved or visited articles in UserDefaults.
     @objc func clearPressed() {
         let alert = UIAlertController(title: "Clear Articles", message: "Are you sure you wish to clear this list?", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
@@ -129,7 +126,7 @@ class SavedVC: CustomViewController, SafariProtocol {
     }
     
     
-    //Alternates between displaying saved articles & visited Articles
+    // Alternates between displaying saved articles & visited Articles
     @objc func buttonPressed(sender: UIButton) {
         let buttonArray = [bookmarkButton, recentButton]
         for button in buttonArray {
@@ -141,12 +138,12 @@ class SavedVC: CustomViewController, SafariProtocol {
         lineTwo.backgroundColor = .secondaryLabel
         
         if sender == bookmarkButton {
-            lineOne.backgroundColor = color.aussieGreen
-            bookmarkButton.setTitleColor(color.aussieGreen, for: .normal)
+            lineOne.backgroundColor = Color.aussieGreen
+            bookmarkButton.setTitleColor(Color.aussieGreen, for: .normal)
             addEmptyState(array: userDefaultFuncs.savedArticleArray, state: .saved)
         } else if sender ==  recentButton {
-            recentButton.setTitleColor(color.aussieGreen, for: .normal)
-            lineTwo.backgroundColor = color.aussieGreen
+            recentButton.setTitleColor(Color.aussieGreen, for: .normal)
+            lineTwo.backgroundColor = Color.aussieGreen
             addEmptyState(array: userDefaultFuncs.visitedArticleArray, state: .visited)
         }
         tableView.reloadData()
@@ -160,7 +157,7 @@ class SavedVC: CustomViewController, SafariProtocol {
 }
 
 
-//MARK: - TableView - TableViewDelegate, TableViewDataSource
+// MARK: - TableView - TableViewDelegate, TableViewDataSource
 
 extension SavedVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -171,19 +168,17 @@ extension SavedVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
         cell.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         if bookmarkButton.isSelected {
-            cell.set(article: userDefaultFuncs.savedArticleArray[indexPath.row], vc: self, tableView: tableView)
+            cell.set(article: userDefaultFuncs.savedArticleArray[indexPath.row], vc: self)
         } else {
-            cell.set(article: userDefaultFuncs.visitedArticleArray[indexPath.row], vc: self, tableView: tableView)
+            cell.set(article: userDefaultFuncs.visitedArticleArray[indexPath.row], vc: self)
         }
         
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let article: Article?

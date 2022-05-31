@@ -10,11 +10,11 @@ import UIKit
 
 class bigHomeCell: DefaultCell {
     
-    //MARK: - Properties
+    // MARK: - Properties
     
     static let reuseIdentifier = "bigCell"
     
-    //MARK: - Class Funcs
+    // MARK: - Class Funcs
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,7 +27,7 @@ class bigHomeCell: DefaultCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Functions
+    // MARK: - Functions
     
     private func layoutUI() {
         let padding: CGFloat = 10

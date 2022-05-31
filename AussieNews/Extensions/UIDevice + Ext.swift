@@ -9,7 +9,7 @@ import UIKit
 
 extension UIDevice {
     
-    ///Accesses device settings to obtain the current device which is included in the feedback email. Provides additional information if the user provides feedback on app performance.
+    /// Accesses device settings to obtain the current device which is included in the feedback email. Provides additional information if the user provides feedback on app performance.
     func modelIdentifier() -> String {
         if let simulatorModelIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] { return simulatorModelIdentifier }
         var sysinfo = utsname()

@@ -8,20 +8,20 @@
 import UIKit
 
 class TrendingStackView: UIStackView {
-    
-    //MARK: -  Class Funcs
-    
+
+    // MARK: -  Class Methods
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
-    
+
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    //MARK: - Functions
-    
+
+    //MARK: - Methods
+
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         alignment    = .fill
@@ -29,5 +29,5 @@ class TrendingStackView: UIStackView {
         distribution = .fillEqually
         axis         = .horizontal
     }
-    
+
 }

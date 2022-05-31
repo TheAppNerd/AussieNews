@@ -18,7 +18,7 @@ extension UIButton {
         case share
     }
     
-    ///Func created to simplify style of all the buttons used throughout the app.
+    /// Func created to simplify style of all the buttons used throughout the app.
     func setButtonPurpose(_ purpose: buttonPurpose) {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 10
@@ -27,11 +27,11 @@ extension UIButton {
         
         switch purpose {
         case .readArticle:
-            backgroundColor = color.aussieGreen
+            backgroundColor = Color.aussieGreen
             setImage(UIImage(systemName: "chevron.up"), for: .normal)
             setTitle("Read Article", for: .normal)
         case .search:
-            backgroundColor = color.aussieGreen
+            backgroundColor = Color.aussieGreen
             setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
         case .bookmark:
             setTitleColor(.secondaryLabel, for: .normal)

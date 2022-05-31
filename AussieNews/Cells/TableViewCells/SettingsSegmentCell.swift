@@ -8,38 +8,36 @@
 import UIKit
 
 class SettingsSegmentCell: UITableViewCell {
-    
-    //MARK: - Properties
-    
+
+    // MARK: - Properties
+
     static let reuseIdentifier = "SettingsSegmentCell"
     let darkModeSegment        = UISegmentedControl()
-    
-    //MARK: - Class Funcs
-    
+
+    // MARK: - Class Methods
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
         layoutUI()
     }
-    
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    //MARK: - Functions
-    
+
+    // MARK: - Methods
+
     private func configure() {
         contentView.backgroundColor = .secondarySystemBackground
         darkModeSegment.translatesAutoresizingMaskIntoConstraints = false
         darkModeSegment.backgroundColor          = .tertiarySystemBackground
-        darkModeSegment.selectedSegmentTintColor = color.aussieGreen
+        darkModeSegment.selectedSegmentTintColor = Color.aussieGreen
         for num in 0...2  {
-            darkModeSegment.insertSegment(withTitle: darkMode.segmentArray[num], at: num, animated: true)
+            darkModeSegment.insertSegment(withTitle: DarkMode.segmentArray[num], at: num, animated: true)
         }
     }
-    
-    
+
     private func layoutUI() {
         contentView.addSubview(darkModeSegment)
         let padding: CGFloat = 10

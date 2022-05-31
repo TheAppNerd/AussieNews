@@ -11,7 +11,6 @@ struct Articles: Codable {
     let articles: [Article]
 }
 
-
 struct Article: Codable, Hashable {
     let title: String?
         let author: String?
@@ -25,6 +24,3 @@ struct Article: Codable, Hashable {
         let language: String?
         let media: String?
     }
-
-// TODO: - implenment key codes
-

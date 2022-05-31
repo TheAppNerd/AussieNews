@@ -8,8 +8,8 @@
 import UIKit
 
 extension UIView {
-    
-    ///Simplifies adding views to subviews to be just one line
+
+    /// Simplifies adding views to subviews to be just one line
     func addSubviews(_ views: UIView...) {
         for view in views {
             addSubview(view)

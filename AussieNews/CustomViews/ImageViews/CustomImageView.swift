@@ -8,27 +8,27 @@
 import UIKit
 
 class CustomImageView: UIImageView {
-    
-    //MARK: - Class Funcs
-    
+
+    // MARK: - Class Methods
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    //MARK: - Functions
-    
+
+    // MARK: - Methods
+
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius  = 10
         layer.masksToBounds = true
     }
-    
-    ///Utiises NewsManager imagedownload and then adds it to imageview in main thread.
+
+    /// Utiises NewsManager imagedownload and then adds it to imageview in main thread.
     func downloadImage(from urlString: String) {
         NewsManager.Shared.downloadImage(from: urlString, completed: { [weak self] image in
             guard let self = self else { return }
@@ -37,5 +37,5 @@ class CustomImageView: UIImageView {
             }
         })
     }
-    
+
 }

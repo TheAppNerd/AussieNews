@@ -1,17 +1,28 @@
 {
   "images" : [
     {
-      "filename" : "appNerdIcon.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "filename" : "Black on White-1.png",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "scale" : "2x"
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "light"
+        }
+      ],
+      "filename" : "White on Black.png",
+      "idiom" : "universal"
     },
     {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Black on White.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {
