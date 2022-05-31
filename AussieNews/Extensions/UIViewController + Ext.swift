@@ -8,13 +8,32 @@
 import UIKit
 
 extension UIViewController {
-    
+
+    ///Sets any previously saved Dark Mode status from UserDefaults.
+    func selectCurrentDarkMode() {
+        let defaults = UserDefaults.standard
+        var mode     = traitCollection.userInterfaceStyle
+
+        switch defaults.object(forKey: DarkMode.key) as? String {
+        case DarkMode.device: mode = UIScreen.main.traitCollection.userInterfaceStyle
+        case DarkMode.light:  mode = UIUserInterfaceStyle.light
+        case DarkMode.dark:   mode = UIUserInterfaceStyle.dark
+        case nil:             mode = UIScreen.main.traitCollection.userInterfaceStyle
+        default:              mode = UIScreen.main.traitCollection.userInterfaceStyle
+        }
+        UIApplication.shared.windows.forEach { window in
+            window.overrideUserInterfaceStyle = mode
+        }
+    }
+
+
     enum saveStatus {
         case saving
         case removing
         case copied
     }
-    
+
+    // TODO: - create seperate view for this func.
     ///Creates a toast label which can display one of 3 messages depending on where it is called.
     func saveLabel(_ status: saveStatus) {
         
@@ -35,18 +54,18 @@ extension UIViewController {
         secondLabel.textAlignment             = .left
         secondLabel.adjustsFontSizeToFitWidth = true
         
-        imageView.tintColor                   = color.aussieGreen
+        imageView.tintColor                   = Color.aussieGreen
         
         switch status {
-        case .saving: imageView.image = images.bookMarkFill
-            mainLabel.text = saveLabelText.saveMain
-            secondLabel.text = saveLabelText.saveSecond
-        case .removing: imageView.image = images.bookmark
-            mainLabel.text = saveLabelText.removingMain
-            secondLabel.text = saveLabelText.removingSecond
-        case .copied: imageView.image = images.link
-            mainLabel.text = saveLabelText.copiedMain
-            secondLabel.text = saveLabelText.copiedSecond
+        case .saving: imageView.image = Images.bookMarkFill
+            mainLabel.text = SaveLabelText.saveMain
+            secondLabel.text = SaveLabelText.saveSecond
+        case .removing: imageView.image = Images.bookmark
+            mainLabel.text = SaveLabelText.removingMain
+            secondLabel.text = SaveLabelText.removingSecond
+        case .copied: imageView.image = Images.link
+            mainLabel.text = SaveLabelText.copiedMain
+            secondLabel.text = SaveLabelText.copiedSecond
         }
         
         self.view.addSubview(saveView)
@@ -76,12 +95,15 @@ extension UIViewController {
         
         self.view.addSubview(saveView)
         self.view.bringSubviewToFront(saveView)
-        
-        UIView.animate(withDuration: 4.0, delay: 0.0, options: .curveEaseIn) {
-            saveView.alpha = 0.0
-        } completion: { _ in
-            saveView.removeFromSuperview()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn) {
+                saveView.alpha = 0.0
+            } completion: { _ in
+                saveView.removeFromSuperview()
+            }
         }
+
     }
     
 }

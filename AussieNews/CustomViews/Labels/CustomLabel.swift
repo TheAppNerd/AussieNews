@@ -9,30 +9,29 @@ import UIKit
 
 
 class CustomLabel: UILabel {
- 
-    //MARK: - Class Funcs
-    
+
+    // MARK: - Class Methods
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     convenience init(_ textColor: UIColor) {
         self.init(frame: .zero)
         self.textColor = textColor
     }
-    
-    
-    //MARK: - Functions
-    
+
+    // MARK: - Methods
+
     private func configure() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.textAlignment = .left
         self.numberOfLines = 0
     }
-    
+
 }
