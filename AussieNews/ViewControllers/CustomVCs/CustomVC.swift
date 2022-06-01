@@ -64,10 +64,12 @@ class CustomVC: UIViewController {
     /// Lets user use bar button to switch between cells to alter layout between big and small cell size. Utilises a bool toggle to switch between layouts
     func bigSmallCell(article: Article) -> UITableViewCell {
         switch sizeBool {
-        case true: let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
+        case true:
+            let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
             cell.set(article: article, vc: self)
             return cell
-        case false: let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
+        case false:
+            let cell = tableView.dequeueReusableCell(withIdentifier: smallHomeCell.reuseIdentifier) as! smallHomeCell
             cell.set(article: article, vc: self)
             return cell
         }
@@ -102,10 +104,10 @@ class CustomVC: UIViewController {
 
     /// Pressing of nav bar search button opens popover searchVC.
     @objc func searchPressed() {
-        let vc = SearchVC()
-        vc.modalPresentationStyle = .popover
-        vc.modalTransitionStyle = .flipHorizontal
-        self.present(vc, animated: true)
+        let searchVC                    = SearchVC()
+        searchVC.modalPresentationStyle = .popover
+        searchVC.modalTransitionStyle   = .flipHorizontal
+        self.present(searchVC, animated: true)
     }
 
     /// Pressing of nav bar switchCell button reloads tableview with different layout.

@@ -12,9 +12,9 @@ class DefaultCell: UITableViewCell {
     // MARK: - Properties
 
     let newsImage          = CustomImageView(frame: .zero)
-    let headlineLabel      = CustomLabel(.label)
-    let articleDateLabel   = CustomLabel(.secondaryLabel)
-    let articleAuthorLabel = CustomLabel(.secondaryLabel)
+    let headlineLabel      = CustomLabel()
+    let articleDateLabel   = CustomLabel(textColor: .secondaryLabel, alignment: .left, font: UIFont.systemFont(ofSize: 14))
+    let articleAuthorLabel = CustomLabel(textColor: .secondaryLabel, alignment: .left, font: UIFont.systemFont(ofSize: 14))
     let saveButton         = UIButton()
     let shareButton        = UIButton()
     let userDefaultFuncs   = UserDefaultFuncs()
@@ -44,10 +44,9 @@ class DefaultCell: UITableViewCell {
     func configureCell() {
         contentView.addSubviews(newsImage, headlineLabel, articleDateLabel, articleAuthorLabel, saveButton, shareButton)
         contentView.isUserInteractionEnabled = true
-        newsImage.contentMode = .scaleAspectFill
-        newsImage.image       = Images.placeholder // TODO: - Nessecary?
 
-        headlineLabel.font    = UIFont.boldSystemFont(ofSize: 16)
+        headlineLabel.textColor = .label
+        newsImage.contentMode = .scaleAspectFill
         headlineLabel.adjustsFontSizeToFitWidth = true
     }
 
@@ -62,7 +61,6 @@ class DefaultCell: UITableViewCell {
         shareButton.showsMenuAsPrimaryAction = true
     }
 
-    // TODO: - move outside of cell.
     func shareArticle() {
         guard let articleLink = article?.link else { return }
         if let urlString = NSURL(string: articleLink) {
@@ -80,12 +78,7 @@ class DefaultCell: UITableViewCell {
         self.article    = article
         parentVC        = vc //Allocated to perform various actions in primary VC
 
-        switch userDefaultFuncs.savedArticleArray.contains(article) {
-        case true:  saveButton.setImage(Images.bookMarkFill, for: .normal)
-            saveButton.tintColor = Color.aussieGreen
-        case false: saveButton.setImage(Images.bookmark, for: .normal)
-            saveButton.tintColor = .secondaryLabel
-        }
+        adjustSaveButton(article: article)
 
         if let imageURL = article.media {
             newsImage.downloadImage(from: imageURL)
@@ -98,16 +91,29 @@ class DefaultCell: UITableViewCell {
         }
     }
 
+    func adjustSaveButton(article: Article) {
+        switch userDefaultFuncs.savedArticleArray.contains(article) {
+        case true:
+            saveButton.setImage(Images.bookMarkFill, for: .normal)
+
+        case false:
+            saveButton.setImage(Images.bookmark, for: .normal)
+        }
+    }
+
+
     // MARK: - @objc Funcs
 
     @objc func savePressed() {
         guard let article = article else { return }
 
         switch userDefaultFuncs.savedArticleArray.contains(article) {
-        case true: userDefaultFuncs.removeSavedArticle(article: article)
+        case true:
+            userDefaultFuncs.removeSavedArticle(article: article)
             saveButton.setImage(Images.bookmark, for: .normal)
             parentVC.saveLabel(.removing)
-        case false: userDefaultFuncs.saveArticle(.saved, article: article)
+        case false:
+            userDefaultFuncs.saveArticle(.saved, article: article)
             saveButton.setImage(Images.bookMarkFill, for: .normal)
             parentVC.saveLabel(.saving)
         }

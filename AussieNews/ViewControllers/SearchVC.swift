@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchVC: CustomVC, SafariProtocol {
+class SearchVC: CustomVC {
 
     // MARK: - Properties
 
@@ -22,6 +22,7 @@ class SearchVC: CustomVC, SafariProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        configureTopView()
         configureTableView(vc: self)
         layoutUI()
         addEmptyState(array: newsArticles, state: .search)
@@ -32,12 +33,14 @@ class SearchVC: CustomVC, SafariProtocol {
     private func configure() {
         view.backgroundColor = .systemBackground
         textField.delegate   = self
+
         searchButton.setButtonPurpose(.search)
         searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
+    }
 
+    private func configureTopView() {
         topView.translatesAutoresizingMaskIntoConstraints = false
         topView.backgroundColor = .secondarySystemBackground
-
         line.translatesAutoresizingMaskIntoConstraints = false
         line.backgroundColor = .tertiarySystemBackground
     }

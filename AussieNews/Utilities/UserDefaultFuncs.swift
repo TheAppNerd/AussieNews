@@ -7,8 +7,6 @@
 
 import UIKit
 
-// TODO: - setup user defauls differently.
-
 class UserDefaultFuncs {
 
     // MARK: - Properties
@@ -44,14 +42,21 @@ class UserDefaultFuncs {
     func saveArticle(_ articleArray: ArticleArray, article: Article) {
         retrieveArticles()
         switch articleArray {
-        case .visited: visitedArticleArray.insert(article, at: 0)
+        case .visited:
+            for existingArticle in visitedArticleArray {
+                if existingArticle.link == article.link {
+                    return
+                }
+            }
+            visitedArticleArray.insert(article, at: 0)
             if let visitedData = try? JSONEncoder().encode(visitedArticleArray) {
                 defaults.set(visitedData, forKey: "visited")
             } else {
                 print("Failed to save articles.")
             }
 
-        case .saved: savedArticleArray.insert(article, at: 0)
+        case .saved:
+            savedArticleArray.insert(article, at: 0)
             if let savedData = try? JSONEncoder().encode(savedArticleArray) {
                 defaults.set(savedData, forKey: "saved")
             } else {

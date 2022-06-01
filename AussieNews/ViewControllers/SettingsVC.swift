@@ -11,7 +11,7 @@ class SettingsVC: UIViewController {
 
     //MARK: - Properties
 
-    var tableView = UITableView()
+    var tableView            = UITableView()
     var darkModeSegment: Int = 0
 
     //MARK: - Class Methods
@@ -26,8 +26,8 @@ class SettingsVC: UIViewController {
     //MARK: - Methods
 
     private func configure() {
-        view.backgroundColor          = .secondarySystemBackground
-       title = "Settings"
+       view.backgroundColor = .secondarySystemBackground
+       title                = "Settings"
     }
 
     private func configureTableview() {
@@ -38,9 +38,6 @@ class SettingsVC: UIViewController {
         tableView.backgroundColor     = .secondarySystemBackground
         tableView.dataSource          = self
         tableView.delegate            = self
-        tableView.backgroundColor     = .secondarySystemBackground
-        tableView.layer.cornerRadius  = 10
-        tableView.layer.masksToBounds = true
         tableView.tableFooterView     = SettingsFooterView()
 
         view.addSubview(tableView)
@@ -50,19 +47,23 @@ class SettingsVC: UIViewController {
     private func selectCurrentDarkModeSettings() {
         let defaults = UserDefaults.standard
         switch defaults.object(forKey: DarkMode.key) as? String {
-        case DarkMode.device: darkModeSegment = 0
-        case DarkMode.light: darkModeSegment  = 1
-        case DarkMode.dark: darkModeSegment   = 2
-        case nil: darkModeSegment             = 0
+        case DarkMode.device:
+                darkModeSegment = 0
+        case DarkMode.light:
+                darkModeSegment = 1
+        case DarkMode.dark:
+                darkModeSegment = 2
+        case nil:
+                darkModeSegment = 0
         default:
-            darkModeSegment                   = 0
+                darkModeSegment = 0
         }
         tableView.reloadSections([0,0], with: .none)
     }
 
     /// Open relevent social media links.
-    func openSocialMedia(urlString: String) {
-        let urlStr = urlString
+    private func openSocialMedia(urlString: String) {
+        let urlStr    = urlString
         guard let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) else { return }
         UIApplication.shared.open(url)
     }
@@ -75,14 +76,19 @@ class SettingsVC: UIViewController {
         let defaults  = UserDefaults.standard
 
         switch sender.selectedSegmentIndex {
-        case 0: mode  = UIScreen.main.traitCollection.userInterfaceStyle
-                        defaults.set(DarkMode.device, forKey: DarkMode.key)
-        case 1: mode  = UIUserInterfaceStyle.light
-                        defaults.set(DarkMode.light, forKey: DarkMode.key)
-        case 2: mode  = UIUserInterfaceStyle.dark
-                        defaults.set(DarkMode.dark, forKey: DarkMode.key)
-        default: mode = UITraitCollection.current.userInterfaceStyle
+        case 0:
+            mode = UIScreen.main.traitCollection.userInterfaceStyle
+            defaults.set(DarkMode.device, forKey: DarkMode.key)
+        case 1:
+            mode = UIUserInterfaceStyle.light
+            defaults.set(DarkMode.light, forKey: DarkMode.key)
+        case 2:
+            mode = UIUserInterfaceStyle.dark
+            defaults.set(DarkMode.dark, forKey: DarkMode.key)
+        default:
+            mode = UITraitCollection.current.userInterfaceStyle
         }
+        
         UIApplication.shared.windows.forEach { window in
             window.overrideUserInterfaceStyle = mode
         }
@@ -145,11 +151,16 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath {
-        case [1,0]: EmailFeedback().newEmail()
-        case [1,1]: openSocialMedia(urlString: SocialMedia.websiteURL)
-        case [1,2]: openSocialMedia(urlString: SocialMedia.githubURL)
-        case [1,3]: openSocialMedia(urlString: SocialMedia.linkedInURL)
-        case [1,4]: openSocialMedia(urlString: SocialMedia.instagramURL)
+        case [1,0]:
+            EmailFeedback().newEmail()
+        case [1,1]:
+            openSocialMedia(urlString: SocialMedia.websiteURL)
+        case [1,2]:
+            openSocialMedia(urlString: SocialMedia.githubURL)
+        case [1,3]:
+            openSocialMedia(urlString: SocialMedia.linkedInURL)
+        case [1,4]:
+            openSocialMedia(urlString: SocialMedia.instagramURL)
         default:
             print("")
         }

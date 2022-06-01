@@ -10,8 +10,8 @@ import UIKit
 class ToastView: UIView {
 
     let imageView   = CustomImageView(frame: .zero)
-    let mainLabel   = CustomLabel(.label)
-    let secondLabel = CustomLabel(.secondaryLabel)
+    let mainLabel   = CustomLabel(textColor: .label, alignment: .left, font: UIFont.boldSystemFont(ofSize: 16))
+    let secondLabel = CustomLabel(textColor: .secondaryLabel, alignment: .left, font: UIFont.systemFont(ofSize: 16))
 
     
 
@@ -26,16 +26,12 @@ class ToastView: UIView {
     }
 
     private func configure() {
+        translatesAutoresizingMaskIntoConstraints = false
         backgroundColor              = .secondarySystemBackground
         layer.cornerRadius           = 10
         layer.masksToBounds          = true
 
-        translatesAutoresizingMaskIntoConstraints = false
-        mainLabel.font                        = UIFont.boldSystemFont(ofSize: 16)
-        mainLabel.textAlignment               = .left
         mainLabel.adjustsFontSizeToFitWidth   = true
-
-        secondLabel.textAlignment             = .left
         secondLabel.adjustsFontSizeToFitWidth = true
 
         imageView.tintColor                   = Color.aussieGreen

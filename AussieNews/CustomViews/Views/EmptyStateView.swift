@@ -12,8 +12,8 @@ class EmptyStateView: UIView {
     // MARK: - Properties
 
     let emptyImage          = CustomImageView(frame: .zero)
-    let emptyTitleLabel     = CustomLabel()
-    let emptySecondaryLabel = CustomLabel()
+    let emptyTitleLabel     = CustomLabel(textColor: .secondaryLabel, alignment: .center, font: UIFont.systemFont(ofSize: 20))
+    let emptySecondaryLabel = CustomLabel(textColor: .secondaryLabel, alignment: .center, font: UIFont.systemFont(ofSize: 20))
 
     // MARK: - Class Methods
 
@@ -49,16 +49,7 @@ class EmptyStateView: UIView {
 
     private func configure() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        emptyImage.tintColor              = .secondaryLabel
-
-        emptyTitleLabel.textAlignment     = .center
-        emptyTitleLabel.textColor         = .secondaryLabel
-        emptyTitleLabel.font              = UIFont.systemFont(ofSize: 20)
-
-        emptySecondaryLabel.textAlignment = .center
-        emptySecondaryLabel.textColor     = .secondaryLabel
-        emptySecondaryLabel.font          = UIFont.systemFont(ofSize: 20)
-        emptySecondaryLabel.numberOfLines = 0
+        emptyImage.tintColor = .secondaryLabel
     }
 
     private func layoutUI() {

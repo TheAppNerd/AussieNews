@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 extension UIViewController {
 
@@ -23,6 +24,18 @@ extension UIViewController {
         }
         UIApplication.shared.windows.forEach { window in
             window.overrideUserInterfaceStyle = mode
+        }
+    }
+
+    func showArticle(_ vc: UIViewController, article: Article) {
+        UserDefaultFuncs().saveArticle(.visited, article: article)
+        guard let articleLink = article.link else { return }
+        if let url = URL(string: articleLink) {
+            let config = SFSafariViewController.Configuration()
+            config.entersReaderIfAvailable = true
+
+            let safariVC = SFSafariViewController(url: url, configuration: config)
+            vc.present(safariVC, animated: true)
         }
     }
 

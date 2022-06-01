@@ -9,9 +9,9 @@ import UIKit
 
 enum SocialMedia {
     static let socialImageArray  = ["aussieNewsIcon", "appNerdIcon", "GitHub", "linkedIn", "Instagram"]
-    static let socialTextArray   = ["Send Feedback", "Website", "GitHub", "LinkedIn", "Instagram"]
+    static let socialTextArray   = ["Send Feedback", "AppNerd.com.au", "GitHub", "LinkedIn", "Instagram"]
 
-    static let websiteURL        = "appNerd.com.au"
+    static let websiteURL        = "https://appNerd.com.au"
 
     static let linkedInUsername  = "Alexander-Thompson-847a6486"
     static let linkedInURL       = "https://www.linkedin.com/in/\(linkedInUsername)"
@@ -93,7 +93,7 @@ enum SaveLabelText {
     static let saveSecond     = "You can find this story in bookmarks"
 
     static let removingMain   = "Removed"
-    static let removingSecond = "This story has been removed from bookmarks"
+    static let removingSecond = "Story has been removed from bookmarks"
 
     static let copiedMain     = "Copied"
     static let copiedSecond   = "Article copied & can now be shared"
