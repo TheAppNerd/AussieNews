@@ -9,7 +9,6 @@ import UIKit
 
 class SettingsVC: UIViewController {
 
-
     //MARK: - Properties
 
     var tableView = UITableView()

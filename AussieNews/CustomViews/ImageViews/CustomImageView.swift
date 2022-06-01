@@ -9,6 +9,8 @@ import UIKit
 
 class CustomImageView: UIImageView {
 
+    let newsManager = NewsManager()
+
     // MARK: - Class Methods
 
     override init(frame: CGRect) {
@@ -30,7 +32,7 @@ class CustomImageView: UIImageView {
 
     /// Utiises NewsManager imagedownload and then adds it to imageview in main thread.
     func downloadImage(from urlString: String) {
-        NewsManager.Shared.downloadImage(from: urlString, completed: { [weak self] image in
+        newsManager.downloadImage(from: urlString, completed: { [weak self] image in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.image = image

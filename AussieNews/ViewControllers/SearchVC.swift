@@ -7,8 +7,7 @@
 
 import UIKit
 
-
-class SearchVC: CustomViewController, SafariProtocol {
+class SearchVC: CustomVC, SafariProtocol {
 
     // MARK: - Properties
 
@@ -97,7 +96,7 @@ extension SearchVC: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard textField.text != "" else { return }
         newsArticles.removeAll()
-        NewsManager.Shared.searchString = textField.text ?? ""
+        newsManager.searchString = textField.text ?? ""
         getArticles(params: .search)
         textField.resignFirstResponder()
     }

@@ -8,8 +8,7 @@
 import UIKit
 import SafariServices
 
-
-class TopicVC: CustomViewController, SafariProtocol {
+class TopicVC: CustomVC, SafariProtocol {
 
     // MARK: - Properties
 
@@ -23,7 +22,7 @@ class TopicVC: CustomViewController, SafariProtocol {
         configureTableView(vc: self)
         layoutUI()
         configureBarButton()
-        NewsManager.Shared.topic = topic
+        newsManager.topic = topic
         getArticles(params: .topic)
     }
 

@@ -25,6 +25,7 @@
 		FA7E124727E92E3400E2D94C /* NewsErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E124627E92E3400E2D94C /* NewsErrors.swift */; };
 		FA7E124927E96C2B00E2D94C /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E124827E96C2B00E2D94C /* CustomImageView.swift */; };
 		FA7E124D27EA7B4600E2D94C /* TrendingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7E124C27EA7B4600E2D94C /* TrendingVC.swift */; };
+		FA83E3622846282000CF6861 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83E3612846282000CF6861 /* ToastView.swift */; };
 		FAA470E127E298AE0039DC52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E027E298AE0039DC52 /* AppDelegate.swift */; };
 		FAA470E327E298AE0039DC52 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E227E298AE0039DC52 /* SceneDelegate.swift */; };
 		FAA470E527E298AE0039DC52 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA470E427E298AE0039DC52 /* HomeVC.swift */; };
@@ -33,7 +34,7 @@
 		FAA4711327E2DAB70039DC52 /* SavedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4711227E2DAB60039DC52 /* SavedVC.swift */; };
 		FAAE9B4327F2725E00918996 /* smallHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B4227F2725E00918996 /* smallHomeCell.swift */; };
 		FAAE9B4527F2987100918996 /* SafariProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B4427F2987000918996 /* SafariProtocol.swift */; };
-		FAAE9B4D27F2B83200918996 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B4C27F2B83200918996 /* CustomViewController.swift */; };
+		FAAE9B4D27F2B83200918996 /* CustomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B4C27F2B83200918996 /* CustomVC.swift */; };
 		FAAE9B5127F2C83C00918996 /* TopicVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5027F2C83C00918996 /* TopicVC.swift */; };
 		FAAE9B5327FBE1B400918996 /* SettingsSocialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5227FBE1B400918996 /* SettingsSocialCell.swift */; };
 		FAAE9B5527FBF58A00918996 /* SettingsSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE9B5427FBF58A00918996 /* SettingsSegmentCell.swift */; };
@@ -87,6 +88,7 @@
 		FA7E124627E92E3400E2D94C /* NewsErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsErrors.swift; sourceTree = "<group>"; };
 		FA7E124827E96C2B00E2D94C /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		FA7E124C27EA7B4600E2D94C /* TrendingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingVC.swift; sourceTree = "<group>"; };
+		FA83E3612846282000CF6861 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		FAA470DD27E298AE0039DC52 /* AussieNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AussieNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA470E027E298AE0039DC52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA470E227E298AE0039DC52 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,7 +101,7 @@
 		FAA4711227E2DAB60039DC52 /* SavedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedVC.swift; sourceTree = "<group>"; };
 		FAAE9B4227F2725E00918996 /* smallHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = smallHomeCell.swift; sourceTree = "<group>"; };
 		FAAE9B4427F2987000918996 /* SafariProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariProtocol.swift; sourceTree = "<group>"; };
-		FAAE9B4C27F2B83200918996 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
+		FAAE9B4C27F2B83200918996 /* CustomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVC.swift; sourceTree = "<group>"; };
 		FAAE9B5027F2C83C00918996 /* TopicVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicVC.swift; sourceTree = "<group>"; };
 		FAAE9B5227FBE1B400918996 /* SettingsSocialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSocialCell.swift; sourceTree = "<group>"; };
 		FAAE9B5427FBF58A00918996 /* SettingsSegmentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSegmentCell.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				FA7E123427E81EDC00E2D94C /* EmptyStateView.swift */,
 				FAAE9B5827FBF5E400918996 /* SettingsFooterView.swift */,
 				FA1E18D32833AEB200350780 /* CardView.swift */,
+				FA83E3612846282000CF6861 /* ToastView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -348,7 +351,7 @@
 		FAAE9B4B27F2B81A00918996 /* CustomVCs */ = {
 			isa = PBXGroup;
 			children = (
-				FAAE9B4C27F2B83200918996 /* CustomViewController.swift */,
+				FAAE9B4C27F2B83200918996 /* CustomVC.swift */,
 			);
 			path = CustomVCs;
 			sourceTree = "<group>";
@@ -490,7 +493,7 @@
 				FA7E123527E81EDC00E2D94C /* EmptyStateView.swift in Sources */,
 				FA7E123227E8069000E2D94C /* Layout.swift in Sources */,
 				FA7E124D27EA7B4600E2D94C /* TrendingVC.swift in Sources */,
-				FAAE9B4D27F2B83200918996 /* CustomViewController.swift in Sources */,
+				FAAE9B4D27F2B83200918996 /* CustomVC.swift in Sources */,
 				FAD4655827FFDA3900E6CF7A /* DefaultCell.swift in Sources */,
 				FAAE9B4527F2987100918996 /* SafariProtocol.swift in Sources */,
 				FA7E122E27E494C200E2D94C /* CollectionViewCell.swift in Sources */,
@@ -506,6 +509,7 @@
 				FA7E124927E96C2B00E2D94C /* CustomImageView.swift in Sources */,
 				FAAE9B4327F2725E00918996 /* smallHomeCell.swift in Sources */,
 				FA7E123A27E8405000E2D94C /* SearchVC.swift in Sources */,
+				FA83E3622846282000CF6861 /* ToastView.swift in Sources */,
 				FA79D73F281247D2004E0CAC /* TrendingStackView.swift in Sources */,
 				FA1E18D42833AEB200350780 /* CardView.swift in Sources */,
 				FAAE9B6327FFC8BC00918996 /* UIApplication + Ext.swift in Sources */,

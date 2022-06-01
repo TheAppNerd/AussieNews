@@ -9,7 +9,6 @@ import UIKit
 
 class TrendingVC: UIViewController, SafariProtocol, UIGestureRecognizerDelegate {
 
-
     // MARK: - Properties
 
     let pageControl             = UIPageControl()
@@ -18,12 +17,13 @@ class TrendingVC: UIViewController, SafariProtocol, UIGestureRecognizerDelegate 
     var newsArticles: [Article] = []
     var topic: String           = ""
     var array: [CardView]       = []
+    let newsManager = NewsManager()
 
     // MARK: - Class Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NewsManager.Shared.topic = topic
+        newsManager.topic = topic
         getArticles(params: .topic)
         configure()
         configurePageControl()
@@ -80,9 +80,9 @@ class TrendingVC: UIViewController, SafariProtocol, UIGestureRecognizerDelegate 
     }
 
     /// Parses news to instagram style view.
-    func getArticles(params: NewsManager.networkParams) {
-        NewsManager.Shared.topic = topic
-        NewsManager.Shared.getNews(params:params) { [weak self] result in
+    func getArticles(params: NewsManager.NetworkParams) {
+        newsManager.topic = topic
+         newsManager.getNews(params:params) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let newsArticles):

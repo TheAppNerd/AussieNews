@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeVC: CustomViewController, SafariProtocol {
+class HomeVC: CustomVC, SafariProtocol {
 
     //MARK: - Class Methods
 
@@ -108,14 +108,14 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as! CollectionViewCell
+        let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as! CollectionViewCell
         let topic = Topics.topicsArray[indexPath.item]
         cell.set(topic: topic)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = TrendingVC()
+        let vc   = TrendingVC()
         vc.topic = Topics.topicsArray[indexPath.row]
         show(vc, sender: self)
     }
