@@ -7,13 +7,13 @@
 
 import UIKit
 
-class TrendingVC: UIViewController, SafariProtocol, UIGestureRecognizerDelegate {
+class TrendingVC: UIViewController, UIGestureRecognizerDelegate {
 
     // MARK: - Properties
 
-    let pageControl             = UIPageControl()
-    let scrollView              = UIScrollView()
-    var topicLabel              = CustomLabel()
+    let pageControl             = PageControl()
+    let scrollView              = ScrollView()
+    var topicLabel              = CustomLabel(textColor: .label, alignment: .center, font: UIFont.boldSystemFont(ofSize: 30))
     var newsArticles: [Article] = []
     var topic: String           = ""
     var array: [CardView]       = []
@@ -23,16 +23,12 @@ class TrendingVC: UIViewController, SafariProtocol, UIGestureRecognizerDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        newsManager.topic = topic
         getArticles(params: .topic)
         configure()
         configurePageControl()
         configureScrollView()
         layoutUI()
-        // TODO: - move all this out of view did load
-        let tap = UITapGestureRecognizer(target: self, action: #selector(articleTapped))
-        tap.delegate = self
-        scrollView.addGestureRecognizer(tap)
+        configureTap()
     }
 
     override func viewDidLayoutSubviews() {
@@ -45,42 +41,37 @@ class TrendingVC: UIViewController, SafariProtocol, UIGestureRecognizerDelegate 
     private func configure() {
         view.backgroundColor     = .systemBackground
         topicLabel.text          = topic.uppercased()
-        topicLabel.font          = UIFont.boldSystemFont(ofSize: 30)
-        topicLabel.textAlignment = .center
         topicLabel.sizeToFit()
     }
 
     private func configurePageControl() {
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
-        pageControl.layer.cornerRadius            = 15
-        pageControl.numberOfPages                 = 6
-        pageControl.pageIndicatorTintColor        = .secondaryLabel
-        pageControl.currentPageIndicatorTintColor = .label
-        pageControl.backgroundColor               = Color.aussieGreen
         pageControl.addTarget(self, action: #selector(pageControlChanged(_:)), for: .valueChanged)
     }
 
-    @objc func articleTapped(sender: UITapGestureRecognizer) {
-        showArticle(self, article: newsArticles[pageControl.currentPage])
+    private func configureTap() {
+        let tap      = UITapGestureRecognizer(target: self, action: #selector(articleTapped))
+        tap.delegate = self
+        scrollView.addGestureRecognizer(tap)
     }
 
     private func configureScrollView() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.isPagingEnabled = true
         scrollView.delegate        = self
+        let numberOfPages          = pageControl.numberOfPages
 
-        let numberOfPages          = 6
-        scrollView.contentSize     = CGSize(width: scrollView.frame.size.width * CGFloat(numberOfPages), height: scrollView.frame.size.height)
+        scrollView.contentSize     = CGSize(width: scrollView.frame.size.width * CGFloat(numberOfPages),
+                                            height: scrollView.frame.size.height)
 
         for num in 0...numberOfPages - 1 {
-            let page = CardView(frame: CGRect(x: CGFloat(num) * view.frame.size.width, y: 0, width: view.frame.size.width, height: scrollView.frame.size.height))
+            let page = CardView(frame: CGRect(x: CGFloat(num) * view.frame.size.width,
+                                              y: 0, width: view.frame.size.width,
+                                              height: scrollView.frame.size.height))
             array.append(page)
             scrollView.addSubview(page)
         }
     }
 
-    /// Parses news to instagram style view.
-    func getArticles(params: NewsManager.NetworkParams) {
+    /// Parses news to card style view.
+    private func getArticles(params: NewsManager.NetworkParams) {
         newsManager.topic = topic
          newsManager.getNews(params:params) { [weak self] result in
             guard let self = self else { return }
@@ -89,14 +80,18 @@ class TrendingVC: UIViewController, SafariProtocol, UIGestureRecognizerDelegate 
                 DispatchQueue.main.async { [self] in
                     self.newsArticles.append(contentsOf: newsArticles.articles)
                     self.newsArticles.shuffle()
-                    // TODO: - move to func
-                    for (index, views) in self.array.enumerated() {
-                        views.set(article: self.newsArticles[index])
-                        views.card.backgroundColor = .secondarySystemBackground
-                    }
+                    self.setCardViews()
                 }
             case.failure(let error): print(error.rawValue)
             }
+        }
+    }
+
+    /// Applies to parsed news data to the cardViews
+    private func setCardViews() {
+        for (index, cardViews) in array.enumerated() {
+            cardViews.set(article: newsArticles[index])
+            cardViews.card.backgroundColor = .secondarySystemBackground
         }
     }
 
@@ -120,9 +115,15 @@ class TrendingVC: UIViewController, SafariProtocol, UIGestureRecognizerDelegate 
         ])
     }
 
+    // MARK: - @Objc Methods
+
     @objc func pageControlChanged(_ sender: UIPageControl) {
         let current = sender.currentPage
         scrollView.setContentOffset(CGPoint(x: CGFloat(current) * view.frame.size.width, y: 0), animated: true)
+    }
+
+    @objc func articleTapped(sender: UITapGestureRecognizer) {
+        showArticle(self, article: newsArticles[pageControl.currentPage])
     }
 
 }

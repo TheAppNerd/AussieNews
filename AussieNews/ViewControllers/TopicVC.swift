@@ -8,7 +8,7 @@
 import UIKit
 import SafariServices
 
-class TopicVC: CustomVC, SafariProtocol {
+class TopicVC: CustomVC {
 
     // MARK: - Properties
 
@@ -18,9 +18,8 @@ class TopicVC: CustomVC, SafariProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = topic
+        Configure()
         configureTableView(vc: self)
-        layoutUI()
         configureBarButton()
         newsManager.topic = topic
         getArticles(params: .topic)
@@ -28,7 +27,8 @@ class TopicVC: CustomVC, SafariProtocol {
 
     // MARK: - Methods
 
-    private func layoutUI() {
+    private func Configure() {
+        title = topic
         view.addSubview(tableView)
         tableView.frame = view.bounds
     }
@@ -38,6 +38,8 @@ class TopicVC: CustomVC, SafariProtocol {
         tableViewRefresh.addTarget(self, action: #selector(refreshStarted), for: .valueChanged)
     }
 
+    // MARK: - @Objc Methods
+    
     @objc func refreshStarted() {
         newsArticles.removeAll()
         getArticles(params: .topic)

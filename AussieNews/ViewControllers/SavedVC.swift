@@ -8,7 +8,7 @@
 import UIKit
 import SafariServices
 
-class SavedVC: CustomVC, SafariProtocol {
+class SavedVC: CustomVC {
     
     // MARK: - Properties
     
@@ -23,13 +23,16 @@ class SavedVC: CustomVC, SafariProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureButtons()
+        updateLabel()
         bookmarkButton.sendActions(for: .touchUpInside)
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        configureBarButtons()
+        configureButtons()
         configureTableView(vc: self)
         layoutUI()
     }
@@ -37,15 +40,17 @@ class SavedVC: CustomVC, SafariProtocol {
     // MARK: - Methods
     
     private func configure() {
-        title = "Saved"
-        view.backgroundColor              = .systemBackground
+        title                = "Saved"
+        view.backgroundColor = .systemBackground
+    }
+
+    private func configureBarButtons() {
         let clearButton                   = UIBarButtonItem(title: "Clear All", style: .done, target: self, action: #selector(clearPressed))
         clearButton.tintColor             = Color.aussieGreen
         navigationItem.rightBarButtonItem = clearButton
     }
     
     private func configureButtons() {
-        updateLabel()
         bookmarkButton.setButtonPurpose(.bookmark)
         
         bookmarkButton.addTarget(self, action: #selector(buttonPressed(sender:)), for: .touchUpInside)
@@ -148,8 +153,7 @@ class SavedVC: CustomVC, SafariProtocol {
         }
         tableView.reloadData()
     }
-    
-    
+
     @objc func saveButtonPressed() {
         self.updateLabel()
         tableView.reloadData()

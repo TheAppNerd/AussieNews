@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeVC: CustomVC, SafariProtocol {
+class HomeVC: CustomVC {
 
     //MARK: - Class Methods
 
@@ -19,7 +19,7 @@ class HomeVC: CustomVC, SafariProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureVC()
+        configure()
         configureBarButton()
         configureCollectionView()
         configureTableView(vc: self)
@@ -30,26 +30,19 @@ class HomeVC: CustomVC, SafariProtocol {
 
     //MARK: - Methods
 
-    func configureVC() {
+    private func configure() {
         generator.prepare()
         title                = "Home"
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.tintColor = Color.aussieGreen
     }
 
-    func configureTableViewRefresh() {
+    private func configureTableViewRefresh() {
         tableView.refreshControl = tableViewRefresh
         tableViewRefresh.addTarget(self, action: #selector(refreshStarted), for: .valueChanged)
     }
 
-    /// When tableViewRefresh is activated this clears all new articles and reloads a new array of articles.
-    @objc func refreshStarted() {
-        newsArticles.removeAll()
-        getArticles(params: .home)
-        generator.impactOccurred()
-    }
-
-    func configureCollectionView() {
+    private func configureCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: Layout.collectionViewLayout(in: view, items: 4))
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifier)
@@ -58,7 +51,7 @@ class HomeVC: CustomVC, SafariProtocol {
         collectionView.dataSource      = self
     }
 
-    func layoutUI() {
+    private func layoutUI() {
         view.addSubviews(collectionView, tableView)
 
         NSLayoutConstraint.activate([
@@ -74,6 +67,15 @@ class HomeVC: CustomVC, SafariProtocol {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+
+    // MARK: - @Objc Methods
+
+    /// When tableViewRefresh is activated this clears all new articles and reloads a new array of articles.
+    @objc func refreshStarted() {
+        newsArticles.removeAll()
+        getArticles(params: .home)
+        generator.impactOccurred()
+    }
 }
 
 
@@ -86,7 +88,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let article = newsArticles[indexPath.row]
-        let cell = bigSmallCell(article: article)
+        let cell    = bigSmallCell(article: article)
         return cell
     }
 

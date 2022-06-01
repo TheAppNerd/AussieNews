@@ -8,7 +8,7 @@
 import UIKit
 import SafariServices
 
-class CategoriesVC: CustomVC, SafariProtocol {
+class CategoriesVC: CustomVC {
 
     // MARK: - Properties
 
@@ -59,9 +59,9 @@ extension CategoriesVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = categoriesCollectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as! CollectionViewCell
-        let topic = Topics.topicsArray[indexPath.item]
-        cell.collectionImageView.image = UIImage(named: topic)
+        let cell                  = categoriesCollectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as! CollectionViewCell
+        let topic                 = Topics.topicsArray[indexPath.item]
+        cell.imageView.image      = UIImage(named: topic)
         cell.collectionLabel.text = topic
         return cell
     }

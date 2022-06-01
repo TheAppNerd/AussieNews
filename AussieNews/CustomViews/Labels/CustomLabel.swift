@@ -21,9 +21,11 @@ class CustomLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
 
-    convenience init(_ textColor: UIColor) {
+    convenience init(textColor: UIColor, alignment: NSTextAlignment, font: UIFont) {
         self.init(frame: .zero)
-        self.textColor = textColor
+        self.textColor     = textColor
+        self.textAlignment = alignment
+        self.font          = font
     }
 
     // MARK: - Methods

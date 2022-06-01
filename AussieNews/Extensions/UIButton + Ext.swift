@@ -10,7 +10,6 @@ import UIKit
 extension UIButton {
     
     enum buttonPurpose {
-        case readArticle
         case search
         case bookmark
         case recent
@@ -26,10 +25,6 @@ extension UIButton {
         setTitleColor(.label, for: .normal)
         
         switch purpose {
-        case .readArticle:
-            backgroundColor = Color.aussieGreen
-            setImage(UIImage(systemName: "chevron.up"), for: .normal)
-            setTitle("Read Article", for: .normal)
         case .search:
             backgroundColor = Color.aussieGreen
             setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
@@ -39,10 +34,10 @@ extension UIButton {
             setTitleColor(.secondaryLabel, for: .normal)
             setTitle("Recently Viewed", for: .normal)
         case .save:
-            tintColor = .secondaryLabel
+            tintColor = Color.aussieGreen
             setImage(UIImage(systemName: "bookmark"), for: .normal)
         case .share:
-            tintColor = .secondaryLabel
+            tintColor = Color.aussieGreen
             setImage(UIImage(systemName: "ellipsis"), for: .normal)
         }
     }

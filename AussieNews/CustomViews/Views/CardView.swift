@@ -13,10 +13,10 @@ class CardView: UIView {
 
     let card               = UIView()
     let newsImage          = CustomImageView(frame: .zero)
-    let headlineLabel      = CustomLabel(.label)
-    let articleLabel       = CustomLabel(.label)
-    let articleDateLabel   = CustomLabel(.secondaryLabel)
-    let articleAuthorLabel = CustomLabel(.secondaryLabel)
+    let headlineLabel      = CustomLabel(textColor: .label, alignment: .left, font: UIFont.boldSystemFont(ofSize: 25))
+    let articleLabel       = CustomLabel(textColor: .label, alignment: .left, font: UIFont.systemFont(ofSize: 16))
+    let articleDateLabel   = CustomLabel(textColor: .secondaryLabel, alignment: .left, font: UIFont.systemFont(ofSize: 14))
+    let articleAuthorLabel = CustomLabel(textColor: .secondaryLabel, alignment: .right, font: UIFont.systemFont(ofSize: 14))
 
     // MARK: - Class Methods
 
@@ -34,28 +34,24 @@ class CardView: UIView {
 
     private func configure() {
         card.translatesAutoresizingMaskIntoConstraints = false
-        card.layer.borderColor = Color.aussieGreen.cgColor
-        card.layer.borderWidth = 2
-        card.layer.cornerRadius = 10
+        card.layer.borderColor                  = Color.aussieGreen.cgColor
+        card.layer.borderWidth                  = 2
+        card.layer.cornerRadius                 = 10
 
-        articleAuthorLabel.textAlignment = .right
-
-        headlineLabel.textColor          = .label
-        headlineLabel.font = UIFont.boldSystemFont(ofSize: 25)
         headlineLabel.adjustsFontSizeToFitWidth = true
         headlineLabel.sizeToFit()
 
-        newsImage.contentMode = .scaleAspectFill
+        newsImage.contentMode                   = .scaleAspectFill
     }
 
     func set(article: Article) {
         newsImage.downloadImage(from: article.media ?? "")
-        headlineLabel.text      = article.title
-        articleLabel.text = article.summary
+        headlineLabel.text             = article.title
+        articleLabel.text              = article.summary
         articleLabel.sizeToFit()
-        articleAuthorLabel.text = article.clean_url
-        if let publishedDate = article.published_date {
-            self.articleDateLabel.text   = publishedDate.timeSinceDate()
+        articleAuthorLabel.text        = article.clean_url
+        if let publishedDate           = article.published_date {
+            self.articleDateLabel.text = publishedDate.timeSinceDate()
         }
     }
 

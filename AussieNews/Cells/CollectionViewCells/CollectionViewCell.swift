@@ -11,9 +11,9 @@ class CollectionViewCell: UICollectionViewCell {
 
     // MARK: - Properties
 
-    static let reuseIdentifier   = "CollectionViewCell"
-    lazy var collectionImageView = CustomImageView(frame: .zero)
-    let collectionLabel          = CustomLabel()
+    static let reuseIdentifier = "CollectionViewCell"
+    lazy var imageView         = CustomImageView(frame: .zero)
+    let collectionLabel        = CustomLabel()
 
     // MARK: - Class Methods
 
@@ -30,15 +30,15 @@ class CollectionViewCell: UICollectionViewCell {
     // MARK: - Methods
 
     func set(topic: String) {
-        collectionImageView.image = UIImage(named: topic)
+        imageView.image = UIImage(named: topic)
         collectionLabel.text      = topic
     }
 
     private func configure() {
-        collectionImageView.addSubview(collectionLabel)
-        collectionImageView.layer.cornerRadius  = 10
-        collectionImageView.layer.masksToBounds = true
-        collectionImageView.contentMode         = .scaleAspectFill
+        imageView.addSubview(collectionLabel)
+        imageView.layer.cornerRadius  = 10
+        imageView.layer.masksToBounds = true
+        imageView.contentMode         = .scaleAspectFill
 
         collectionLabel.textAlignment           = .center
         collectionLabel.layer.cornerRadius      = 10
@@ -53,16 +53,16 @@ class CollectionViewCell: UICollectionViewCell {
     }
 
     private func layoutUI() {
-        contentView.addSubviews(collectionImageView)
+        contentView.addSubviews(imageView)
 
         NSLayoutConstraint.activate([
-            collectionImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            collectionImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            collectionImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            collectionImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            collectionLabel.leadingAnchor.constraint(equalTo: collectionImageView.leadingAnchor),
-            collectionLabel.trailingAnchor.constraint(equalTo: collectionImageView.trailingAnchor),
-            collectionLabel.bottomAnchor.constraint(equalTo: collectionImageView.bottomAnchor),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            collectionLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            collectionLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
+            collectionLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
             collectionLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
     }

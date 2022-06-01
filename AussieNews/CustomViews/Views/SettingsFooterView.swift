@@ -12,7 +12,7 @@ class SettingsFooterView: UIView {
     // MARK: - Properties
 
     let appNerdImage = CustomImageView(frame: .zero)
-    let footerLabel  = CustomLabel()
+    let footerLabel  = CustomLabel(textColor: .secondaryLabel, alignment: .center, font: UIFont.systemFont(ofSize: 20))
 
     // MARK: - Class Methods
 
@@ -30,8 +30,6 @@ class SettingsFooterView: UIView {
 
     private func configure() {
         appNerdImage.image = Settings.iconImage
-        footerLabel.textAlignment = .center
-        footerLabel.textColor = .secondaryLabel
         footerLabel.text = Settings.footerText
     }
 
@@ -40,7 +38,7 @@ class SettingsFooterView: UIView {
         let padding: CGFloat = 10
 
         NSLayoutConstraint.activate([
-            footerLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: padding * 5),
+            footerLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: padding * 3),
             footerLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             footerLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6),
             footerLabel.heightAnchor.constraint(equalTo: footerLabel.heightAnchor),
