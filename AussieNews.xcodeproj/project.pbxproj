@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		FA1E18D42833AEB200350780 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E18D32833AEB200350780 /* CardView.swift */; };
-		FA79D734280F9AB0004E0CAC /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79D733280F9AB0004E0CAC /* APIKey.swift */; };
 		FA79D73D28124734004E0CAC /* TrendingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79D73C28124734004E0CAC /* TrendingProgressView.swift */; };
 		FA79D73F281247D2004E0CAC /* TrendingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79D73E281247D2004E0CAC /* TrendingStackView.swift */; };
 		FA79D74128124EA4004E0CAC /* UIButton + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA79D74028124EA4004E0CAC /* UIButton + Ext.swift */; };
@@ -71,7 +70,6 @@
 
 /* Begin PBXFileReference section */
 		FA1E18D32833AEB200350780 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		FA79D733280F9AB0004E0CAC /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		FA79D73C28124734004E0CAC /* TrendingProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingProgressView.swift; sourceTree = "<group>"; };
 		FA79D73E281247D2004E0CAC /* TrendingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingStackView.swift; sourceTree = "<group>"; };
 		FA79D74028124EA4004E0CAC /* UIButton + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Ext.swift"; sourceTree = "<group>"; };
@@ -92,6 +90,7 @@
 		FA83E3612846282000CF6861 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		FAA2A2162846EC7100BA0833 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		FAA2A2192846ED9400BA0833 /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
+		FAA2A22028471D7400BA0833 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		FAA470DD27E298AE0039DC52 /* AussieNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AussieNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA470E027E298AE0039DC52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA470E227E298AE0039DC52 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -246,7 +245,6 @@
 				FAAE9B5E27FFC58800918996 /* Constants.swift */,
 				FAD46559280041D200E6CF7A /* UserDefaultFuncs.swift */,
 				FAAE9B6027FFC87A00918996 /* EmailFeedback.swift */,
-				FA79D733280F9AB0004E0CAC /* APIKey.swift */,
 				FA7E123127E8069000E2D94C /* Layout.swift */,
 				FA7E124627E92E3400E2D94C /* NewsErrors.swift */,
 			);
@@ -329,6 +327,7 @@
 		FAA470D427E298AE0039DC52 = {
 			isa = PBXGroup;
 			children = (
+				FAA2A22028471D7400BA0833 /* Secrets.xcconfig */,
 				FAA470DF27E298AE0039DC52 /* AussieNews */,
 				FAA470DE27E298AE0039DC52 /* Products */,
 			);
@@ -516,7 +515,6 @@
 				FAA4711127E2A11B0039DC52 /* TabBarController.swift in Sources */,
 				FAA4711327E2DAB70039DC52 /* SavedVC.swift in Sources */,
 				FA7E124527E92D3A00E2D94C /* NewsManager.swift in Sources */,
-				FA79D734280F9AB0004E0CAC /* APIKey.swift in Sources */,
 				FA7E124927E96C2B00E2D94C /* CustomImageView.swift in Sources */,
 				FAAE9B4327F2725E00918996 /* smallHomeCell.swift in Sources */,
 				FA7E123A27E8405000E2D94C /* SearchVC.swift in Sources */,
@@ -573,6 +571,7 @@
 /* Begin XCBuildConfiguration section */
 		FAA4710527E298AF0039DC52 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FAA2A22028471D7400BA0833 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -633,6 +632,7 @@
 		};
 		FAA4710627E298AF0039DC52 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FAA2A22028471D7400BA0833 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
