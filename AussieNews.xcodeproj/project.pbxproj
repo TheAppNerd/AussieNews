@@ -90,7 +90,6 @@
 		FA83E3612846282000CF6861 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		FAA2A2162846EC7100BA0833 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		FAA2A2192846ED9400BA0833 /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
-		FAA2A22028471D7400BA0833 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		FAA470DD27E298AE0039DC52 /* AussieNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AussieNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA470E027E298AE0039DC52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA470E227E298AE0039DC52 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -327,7 +326,6 @@
 		FAA470D427E298AE0039DC52 = {
 			isa = PBXGroup;
 			children = (
-				FAA2A22028471D7400BA0833 /* Secrets.xcconfig */,
 				FAA470DF27E298AE0039DC52 /* AussieNews */,
 				FAA470DE27E298AE0039DC52 /* Products */,
 			);
@@ -571,7 +569,6 @@
 /* Begin XCBuildConfiguration section */
 		FAA4710527E298AF0039DC52 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FAA2A22028471D7400BA0833 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -632,7 +629,6 @@
 		};
 		FAA4710627E298AF0039DC52 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FAA2A22028471D7400BA0833 /* Secrets.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
