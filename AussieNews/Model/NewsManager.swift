@@ -19,23 +19,18 @@ class NewsManager {
     var searchString: String = ""
     let searchLink           = "search?q="
 
-    enum networkParams {
+    enum NetworkParams {
         case home
         case topic
         case search
     }
-
-    // MARK: - Singleton
-
-    static let Shared = NewsManager()
-    private init () {}
 
     // MARK: - Functions
 
     /// Method to parse news data depending on specified endoints
     ///
     /// - Parameter: networkParams: the specific type of use the user is after. Eg/ home page, specific topic or search query
-    func getNews(params: networkParams, completed: @escaping (Result<Articles, NewsErrors>) -> Void) {
+    func getNews(params: NetworkParams, completed: @escaping (Result<Articles, NewsErrors>) -> Void) {
         let encodedSearchString = searchString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         var endpoint: String = ""
 
@@ -82,8 +77,6 @@ class NewsManager {
         }
         task.resume()
     }
-
-
 
     /// Method to cache downloaded images.
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {

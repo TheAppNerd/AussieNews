@@ -7,25 +7,24 @@
 
 import UIKit
 
-class CustomViewController: UIViewController {
+class CustomVC: UIViewController {
 
     // MARK: - Properties
 
-    let tableView        = UITableView()
-    let tableViewRefresh = UIRefreshControl()
-    let generator        = UIImpactFeedbackGenerator(style: .light)
-    let emptyStateView   = EmptyStateView()
-
-    var sizeBool: Bool   = true
-    var collectionView: UICollectionView!
+    let tableView               = UITableView()
+    let tableViewRefresh        = UIRefreshControl()
+    let generator               = UIImpactFeedbackGenerator(style: .light)
+    let emptyStateView          = EmptyStateView()
+    var sizeBool: Bool          = true
     var newsArticles: [Article] = []
+    var collectionView: UICollectionView!
 
-
+    let newsManager = NewsManager()
     // MARK: - Methods
 
     ///Parses the newsArticle data into the relevent tableview.
-    func getArticles(params: NewsManager.networkParams) {
-        NewsManager.Shared.getNews(params: params) { [weak self] result in
+    func getArticles(params: NewsManager.NetworkParams) {
+        newsManager.getNews(params: params) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
@@ -39,7 +38,6 @@ class CustomViewController: UIViewController {
         }
     }
 
-
     /// Update UI in event of successful network call.
     func updateUI() {
         tableView.reloadData()
@@ -47,7 +45,6 @@ class CustomViewController: UIViewController {
         tableViewRefresh.endRefreshing()
         newsArticles.shuffle()
     }
-
 
     func configureBarButton() {
         let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchPressed))
@@ -64,8 +61,7 @@ class CustomViewController: UIViewController {
         tableView.dataSource     = vc as? UITableViewDataSource
     }
 
-
-    // Lets user use bar button to switch between cells to alter layout between big and small cell size. Utilises a bool toggle to switch between layouts
+    /// Lets user use bar button to switch between cells to alter layout between big and small cell size. Utilises a bool toggle to switch between layouts
     func bigSmallCell(article: Article) -> UITableViewCell {
         switch sizeBool {
         case true: let cell = tableView.dequeueReusableCell(withIdentifier: bigHomeCell.reuseIdentifier) as! bigHomeCell
@@ -77,8 +73,7 @@ class CustomViewController: UIViewController {
         }
     }
 
-
-    // Lets user use bar button to switch between cells to alter layout between big and small cell size. Utilises a bool toggle to switch between layouts
+    /// Lets user use bar button to switch between cells to alter layout between big and small cell size. Utilises a bool toggle to switch between layouts
     func cellHeight() -> CGFloat {
         switch sizeBool {
         case true: return view.frame.size.height / 2.6
@@ -86,8 +81,7 @@ class CustomViewController: UIViewController {
         }
     }
 
-
-    // Adds empty state view to tableview if no articles present. Can choose between 3 views. Saved, Searched & visited.
+    /// Adds empty state view to tableview if no articles present. Can choose between 3 views. Saved, Searched & visited.
     func addEmptyState(array: [Article], state: EmptyState) {
         if array.isEmpty == true {
             emptyStateView.set(state: state)
@@ -104,7 +98,6 @@ class CustomViewController: UIViewController {
         }
     }
 
-
     // MARK: - @objc Funcs
 
     /// Pressing of nav bar search button opens popover searchVC.
@@ -114,7 +107,6 @@ class CustomViewController: UIViewController {
         vc.modalTransitionStyle = .flipHorizontal
         self.present(vc, animated: true)
     }
-
 
     /// Pressing of nav bar switchCell button reloads tableview with different layout.
     @objc func switchCellButtonPressed() {

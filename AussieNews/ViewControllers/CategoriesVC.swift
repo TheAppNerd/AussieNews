@@ -8,7 +8,7 @@
 import UIKit
 import SafariServices
 
-class CategoriesVC: CustomViewController, SafariProtocol {
+class CategoriesVC: CustomVC, SafariProtocol {
 
     // MARK: - Properties
 

@@ -15,7 +15,6 @@ class EmptyStateView: UIView {
     let emptyTitleLabel     = CustomLabel()
     let emptySecondaryLabel = CustomLabel()
 
-
     // MARK: - Class Methods
 
     override init(frame: CGRect) {

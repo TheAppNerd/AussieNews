@@ -26,85 +26,41 @@ extension UIViewController {
         }
     }
 
-
     enum saveStatus {
         case saving
         case removing
         case copied
     }
 
-    // TODO: - create seperate view for this func.
-    ///Creates a toast label which can display one of 3 messages depending on where it is called.
     func saveLabel(_ status: saveStatus) {
-        
-        let saveView    = UIView()
-        let imageView   = CustomImageView(frame: .zero)
-        let mainLabel   = CustomLabel(.label)
-        let secondLabel = CustomLabel(.secondaryLabel)
-        
-        saveView.translatesAutoresizingMaskIntoConstraints = false
-        saveView.backgroundColor              = .secondarySystemBackground
-        saveView.layer.cornerRadius           = 10
-        saveView.layer.masksToBounds          = true
-        
-        mainLabel.font                        = UIFont.boldSystemFont(ofSize: 16)
-        mainLabel.textAlignment               = .left
-        mainLabel.adjustsFontSizeToFitWidth   = true
-        
-        secondLabel.textAlignment             = .left
-        secondLabel.adjustsFontSizeToFitWidth = true
-        
-        imageView.tintColor                   = Color.aussieGreen
-        
+        let toastView = ToastView()
+
         switch status {
-        case .saving: imageView.image = Images.bookMarkFill
-            mainLabel.text = SaveLabelText.saveMain
-            secondLabel.text = SaveLabelText.saveSecond
-        case .removing: imageView.image = Images.bookmark
-            mainLabel.text = SaveLabelText.removingMain
-            secondLabel.text = SaveLabelText.removingSecond
-        case .copied: imageView.image = Images.link
-            mainLabel.text = SaveLabelText.copiedMain
-            secondLabel.text = SaveLabelText.copiedSecond
+        case .saving:
+            toastView.set(image: Images.bookMarkFill!, mainText: SaveLabelText.saveMain, secondText: SaveLabelText.saveSecond)
+        case .removing:
+            toastView.set(image: Images.bookmark!, mainText: SaveLabelText.removingMain, secondText: SaveLabelText.removingSecond)
+        case .copied:
+            toastView.set(image: Images.link!, mainText: SaveLabelText.copiedMain, secondText: SaveLabelText.copiedSecond)
         }
         
-        self.view.addSubview(saveView)
-        saveView.addSubviews(imageView, mainLabel, secondLabel)
+        self.view.addSubview(toastView)
+        self.view.bringSubviewToFront(toastView)
         
         NSLayoutConstraint.activate([
-            saveView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            saveView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9),
-            saveView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            saveView.heightAnchor.constraint(equalToConstant: 60),
-            
-            imageView.centerYAnchor.constraint(equalTo: saveView.centerYAnchor),
-            imageView.leadingAnchor.constraint(equalTo: saveView.leadingAnchor, constant: 10),
-            imageView.heightAnchor.constraint(equalTo: saveView.heightAnchor, multiplier: 0.7),
-            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
-            
-            mainLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 5),
-            mainLabel.topAnchor.constraint(equalTo: imageView.topAnchor),
-            mainLabel.heightAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.5),
-            mainLabel.trailingAnchor.constraint(equalTo: saveView.trailingAnchor),
-            
-            secondLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 5),
-            secondLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-            secondLabel.heightAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: 0.5),
-            secondLabel.trailingAnchor.constraint(equalTo: saveView.trailingAnchor)
+            toastView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            toastView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9),
+            toastView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            toastView.heightAnchor.constraint(equalToConstant: 60),
         ])
-        
-        self.view.addSubview(saveView)
-        self.view.bringSubviewToFront(saveView)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn) {
-                saveView.alpha = 0.0
+                toastView.alpha = 0.0
             } completion: { _ in
-                saveView.removeFromSuperview()
+                toastView.removeFromSuperview()
             }
         }
-
     }
     
 }
-
