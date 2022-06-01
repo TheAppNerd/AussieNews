@@ -49,7 +49,11 @@ class NewsManager {
         }
 
         var request = URLRequest(url: url)
-        request.addValue(APIKey().apiKey, forHTTPHeaderField: "x-api-key")
+
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String else { return }
+
+        request.addValue(apiKey, forHTTPHeaderField: "x-api-key")
+
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let _ = error {
